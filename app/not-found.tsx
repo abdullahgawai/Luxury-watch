@@ -1,0 +1,1 @@
+export default function NotFound(){return <main className="prose section"><p className="eyebrow">404 · A moment out of time</p><h1>This page is unavailable.</h1><p>The reference may have moved or has not been published.</p><a className="button" href="/watches">Explore the catalogue</a></main>;}
