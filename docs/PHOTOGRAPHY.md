@@ -1,0 +1,18 @@
+# Photography provenance
+
+Five published photographs, four visibly matched configurations. All were visually reviewed against the reference, dial and visible bracelet described by the manufacturer. The images document examples; they do not certify authenticity, condition, internal components or stock.
+
+| Configuration | Photographer | Licence | Commons evidence |
+|---|---|---|---|
+| Omega 311.30.42.30.01.005, black / steel (two photos) | Daniel Zimmermann from Bayern, Deutschland (Germany), CallMeWhatEver.com | CC BY 2.0 | Moonwatch (24023224706); Classic Speedy (24067321725) |
+| Tudor M79000N-0001, black / steel | EMore98 | CC BY-SA 4.0 | Tudor Black Bay 54 ref. m79000n-0001 |
+| Rolex 126000 / m126000-0015, med blue / Oyster | EMore98 | CC BY-SA 4.0 | Quadrante Med Blue del Rolex Oyster Perpetual ref. 126000 |
+| Omega 215.30.44.21.01.001, black / steel | KaiKnight2 | CC BY-SA 4.0 | Omega Seamaster Planet Ocean (Referenz 215.30.44.21.01.001) |
+
+Exact links, author names, licence URLs, Commons metadata retrieval times and original SHA-256 checksums are in `lib/image-registry.json` and `docs/source-evidence/*.json`. Original files are offered from each photograph's rights disclosure. Displayed WebP derivatives retain the same licence. Conversion applies EXIF orientation, proportional resizing and WebP compression; no recolouring, retouching or invented configuration. Hero framing uses a CSS crop and contrast gradient; original remains accessible. `scripts/collect-open-images.mjs` is a bounded asset collector, not a catalogue importer. Existing metadata evidence and downloads are cached; a failed network request never changes checked dates.
+
+Image matching approval is explicitly assigned in `lib/research-catalogue.mjs`, separately from the asset collector's pending visual-review flag. Production editorial validation requires exact variant ID, reference, approved match, evidence, author, licence, changes and local asset URL for every gallery image.
+
+Excluded: a Tudor gold Black Bay photograph showed printed artwork, so underlying photo/artwork rights were not established. Its assets were removed. A 2024 black Rolex 124200 photo could not confidently match the current lacquer-dial configuration; it is withheld. A public-domain 16610 photograph was not assigned to newer Submariner references. Metadata for rejected/withheld candidates remains internal research evidence; their binary assets are not published.
+
+Open copyright licences do not imply brand endorsement or grant trademark affiliation. Brand names identify researched products. Remaining exact-configuration image gaps require further open-license research or an explicit commercial photography licence, including website use, derivatives, geography and attribution terms.

@@ -39,7 +39,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 - Boutique homepage with original forest/ivory/champagne composition and responsive search.
 - Brand/model/reference/alias search; exact-reference ranking; brand, size, material, movement, collection and original local retail filters; URL search state and helpful empty results.
 - Stable configuration pages, sourced specifications, plain-language glossary, brand pages, methodology and field/source disclosures.
-- Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. No actual local prices are supplied.
+- Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. Two official regional retail research snapshots are supplied for one exact configuration; no live feed is claimed.
 - Deterministic comparable asking ranges, freshness, minor-unit money and provenance-preserving FX logic; no active FX feed.
 - 2–3 configuration comparison with contained mobile horizontal scrolling; device-local favourites and market persistence.
 - Source-bound history plot and accessible table when at least two comparable actual observations exist; no invented preview history.
@@ -60,6 +60,6 @@ The integration suite runs the actual editorial handler against transactional SQ
 
 ## Honest launch status
 
-This is a functional private development release, **not ready for public launch**. It has four researched references, no local price observations and explicit photo placeholders. Production mode starts empty and cannot serve the preview catalogue. No subscriptions were purchased; no watch images were copied from brand websites.
+This is a functional private development release, **not ready for public launch**. It has 32 distinct researched references / 33 configurations, five openly licensed photos covering four configurations, and two original local retail research snapshots for the med-blue Oyster Perpetual 36. Other price/photo gaps stay unavailable. Production mode starts empty and cannot serve the preview catalogue. No subscriptions were purchased; no watch images were copied from brand websites. See [photography rights](docs/PHOTOGRAPHY.md) and [catalogue research](docs/CATALOGUE-RESEARCH.md) for evidence and connection requirements.
 
 See [provider feasibility and connection requirements](docs/PROVIDER-FEASIBILITY.md), [editorial record format](docs/IMPORT-FORMAT.md) and [operations/launch runbook](docs/RUNBOOK.md). P1 accounts/enquiries and P2 professional tools are deliberately left for later roadmap stages.

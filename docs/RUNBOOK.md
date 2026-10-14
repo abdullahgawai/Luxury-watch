@@ -33,8 +33,8 @@ For a UI/server regression, redeploy the last successful saved Sites version usi
 - Approve brand/domain and operating owner/contact/retention policy.
 - Secure specification/price/image permissions and provider contracts.
 - Supply credentials through secure runtime settings; test actual coverage and quota/latency on 5–10 references.
-- Curate 30–50 reviewed references, or explicitly accept revised scope; populate useful original local price examples in **both** markets. Current preview contains four references and zero prices.
-- Add accurate licensed photographs with an asset-rights registry.
+- Research coverage now meets 30–50 references: 32 distinct references / 33 configurations. Production rights review and editorial publication are still required. Expand useful original local retail coverage beyond the two checked observations for one med-blue configuration.
+- Five openly licensed photos now cover four exact configurations. The remaining configurations still need matched licensed photos; see PHOTOGRAPHY.md for attribution, licence and rejection evidence.
 - Configure actual hosted editor IDs; verify hosted role and anonymous denial through dispatch.
 - Set production mode and confirm fixtures absent; enable production sitemap/indexing only at launch. Canonical origin and brand-specific metadata need final approved identity.
 - Configure error/quota monitoring, spend limits, backups and rehearse a hosted restore and deployment rollback.
