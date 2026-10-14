@@ -1,12 +1,14 @@
 # Catalogue research snapshot — 15 October 2026 IST
 
-The isolated research preview now contains **32 distinct references / 33 configurations**, across Rolex, Tudor, Omega and Cartier. A manufacturer URL, check time, field-to-source evidence and original short explanation accompany every record. The source code in `lib/research-catalogue.mjs` is the structured reference list; the original four researched records remain in `lib/demo.mjs`. These are not production database seed data. Production publication rejects `demo:true` and pending source rights.
+The isolated research preview now contains **34 distinct references / 35 configurations**, across Rolex, Tudor, Omega and Cartier. A manufacturer URL, check time, field-to-source evidence and original short explanation accompany every record. The source code in `lib/research-catalogue.mjs` is the structured reference list; the original four researched records remain in `lib/demo.mjs`. These are not production database seed data. Production publication rejects `demo:true` and pending source rights.
 
 Sources were read through the web research tool. Some retrieved pages were cached by the search provider. Dates describe when that content was checked, not a successful live manufacturer API fetch. Do not automate date refreshes without fetching evidence again. No model-family default fills an unknown field: the FXD's unreviewed technical fields, Sea-Dweller and GMT reserve fields, and several bezel/calibre/reserve fields remain unavailable.
 
+Public check dates explicitly include IST (UTC+05:30); original UTC timestamps are retained in the evidence records. Selecting UAE changes price geography/currency, not the documented display timezone.
+
 ## Original local retail observations
 
-Only the Rolex Oyster Perpetual 36 **m126000-0015 / med blue / Oyster** has checked original local retail observations:
+The catalogue now has **22 original local retail snapshots: eleven India/INR and eleven UAE/AED**, across eleven exact Rolex configurations. The initial Rolex Oyster Perpetual 36 **m126000-0015 / med blue / Oyster** observations remain unchanged:
 
 - India: INR 654,100, [official regional page](https://www.rolex.com/en-in/watches/oyster-perpetual/m126000-0015).
 - UAE: AED 26,950, [official regional page](https://www.rolex.com/ar-ae/watches/oyster-perpetual/m126000-0015).
@@ -14,6 +16,12 @@ Only the Rolex Oyster Perpetual 36 **m126000-0015 / med blue / Oyster** has chec
 Checked 2026-10-14 19:00 UTC (15 October IST), through regional-page text retrieval. Condition basis: new manufacturer retail; box/papers not stated; tax inclusion unconfirmed. A stale India search snippet showing INR 622,800 was excluded in favour of the reopened product page. The current research snapshot must not be described as a live local feed. Manufacturer redistribution/publication review remains pending. The silver dial shares reference 126000 but receives neither these observations nor the med-blue photograph. No stock or seller verification follows from a retail page.
 
 No dealer asks, buy offers, estimates or verified sales were added. No historical series is fabricated from a single observation. USD conversion is never presented as Indian/UAE market evidence.
+
+Twenty additional snapshots were checked at 2026-10-14 19:22:20 UTC (15 October IST), for Explorer36/40, ExplorerII white, Air-King, OysterPerpetual34 silver, Yacht-Master40 slate, Datejust36 silver/Jubilee, Submariner124060 and SubmarinerDate126610LN/LV. Exact amounts, URLs, configuration tuples, retrieval-cache age at the time of review and match notes are retained in `docs/source-evidence/retail-expansion.json`. Source region headers, original currency and configuration identifiers were checked together; incidental geolocation footer text may disagree with the selected region and is disclosed. No publisher price-effective date, live stock or tax inclusion is inferred.
+
+`lib/retail-research.mjs` requires exact reference/dial/bracelet/material/size/configuration ID, matching official regional URL and original local currency. It rejects duplicates, conversions, wrong-region sources and production records. These safeguards also have automated tests. Public cards, detail panels, comparison and market rows retain source names/links, currency, condition and check dates, plus a visible “Research snapshot · live price not verified” disclosure. Cached checks are excluded from price history, even if multiple research checks exist, because price-effective dates are unknown.
+
+New photo-backed manufacturer entries: blue Planet Ocean215.30.44.21.03.001 and SpeedmasterReduced3510.50.00. Primary Omega pages were checked on 15 October IST; missing Reduced bezel details and both entries' India/UAE prices remain unavailable. Manufacturer page purchase status never becomes a dealer stock claim. Cartier/Tudor local retail searches supplied no qualifying official evidence and remain unavailable.
 
 ## Connecting production
 

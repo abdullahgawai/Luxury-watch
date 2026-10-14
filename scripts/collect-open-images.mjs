@@ -8,6 +8,9 @@ const assets=[
  {id:'omega-moonwatch-classic',title:'File:Classic Speedy (24067321725).jpg',reference:'311.30.42.30.01.005'},
  {id:'rolex-oyster-perpetual-med-blue',title:'File:Quadrante Med Blue del Rolex Oyster Perpetual ref. 126000.jpg',reference:'126000'},
  {id:'omega-planet-ocean-black',title:'File:Omega Seamaster Planet Ocean (Referenz 215.30.44.21.01.001).jpg',reference:'215.30.44.21.01.001'},
+ {id:'omega-planet-ocean-blue',title:'File:Omega Planet Ocean ref. 215.30.44.21.03.001.jpg',reference:'215.30.44.21.03.001'},
+ {id:'omega-speedmaster-reduced',title:'File:Omega speedmaster reduced 351050.jpg',reference:'3510.50.00'},
+ {id:'rolex-air-king-126900',title:'File:Rolex Air-King ref. 126900, risalente al 2022.jpg',reference:'126900'},
 ];
 const strip=s=>String(s||'').replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').trim();
 const registry=[];
@@ -22,11 +25,11 @@ for(const a of assets){
  const payload=await res.json();info=Object.values(payload.query.pages)[0].imageinfo?.[0];if(!info)throw new Error('Image metadata missing');checkedAt=new Date().toISOString();
  await writeFile(evidencePath,JSON.stringify({file:a.title,metadata:info,checkedAt},null,2));}
  const m=info.extmetadata,license=strip(m.LicenseShortName?.value),licenseUrl=strip(m.LicenseUrl?.value);
- if(!['CC BY 2.0','CC BY 3.0','CC BY-SA 4.0','Public domain'].includes(license))throw new Error('Licence requires separate review: '+license);
+ if(!['CC BY 2.0','CC BY 3.0','CC BY 4.0','CC BY-SA 2.0','CC BY-SA 4.0','Public domain'].includes(license))throw new Error('Licence requires separate review: '+license);
  const original=new URL(info.url);if(original.hostname!=='upload.wikimedia.org')throw new Error('Unexpected asset host');
  let bytes;
  if(existsSync(originalPath))bytes=await readFile(originalPath);
- else{const download=await fetch(original,{headers:{'User-Agent':'LuxuryWatchExplorer/0.2'},signal:AbortSignal.timeout(30000)});if(!download.ok||!download.headers.get('content-type')?.startsWith('image/')){console.warn(a.id+' skipped: download status '+download.status);continue;}bytes=Buffer.from(await download.arrayBuffer());if(bytes.length>12_000_000)throw new Error('Image exceeds size limit');await writeFile(originalPath,bytes);}
+ else{if(info.size>20_000_000)throw new Error('Image exceeds size limit');const download=await fetch(original,{headers:{'User-Agent':'LuxuryWatchExplorer/0.3'},signal:AbortSignal.timeout(30000)});if(!download.ok||!download.headers.get('content-type')?.startsWith('image/')){console.warn(a.id+' skipped: download status '+download.status);continue;}bytes=Buffer.from(await download.arrayBuffer());if(bytes.length>20_000_000)throw new Error('Image exceeds size limit');await writeFile(originalPath,bytes);}
  const full=await sharp(bytes).rotate().resize({width:1200,height:1400,fit:'inside',withoutEnlargement:true}).webp({quality:85}).toBuffer();
  const thumb=await sharp(bytes).rotate().resize({width:500,height:600,fit:'inside',withoutEnlargement:true}).webp({quality:82}).toBuffer();
  await writeFile(`public/watch-photos/${a.id}.webp`,full);await writeFile(`public/watch-photos/${a.id}-small.webp`,thumb);

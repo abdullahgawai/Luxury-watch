@@ -1,0 +1,150 @@
+{
+  "checkedAt": "2026-10-14T19:23:24.274Z",
+  "status": "Candidate metadata only. No download, visual approval, production publication or exact-match certification.",
+  "candidates": [
+    {
+      "id": "omega-planet-ocean-blue",
+      "fileTitle": "File:Omega Planet Ocean ref. 215.30.44.21.03.001.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_Planet_Ocean_ref._215.30.44.21.03.001.jpg",
+      "reference": "215.30.44.21.03.001",
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Bjc157",
+      "confidence": "high_reference_pending_visual",
+      "concerns": "Explicit full reference, Nikon D800 own-work photo. Blue version differs from existing black record; create separately after manufacturer verification. Original15.14MB."
+    },
+    {
+      "id": "rolex-explorer-124270-pair",
+      "fileTitle": "File:Two 36m adventure watches - Flickr - Mario A. P..jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_36m_adventure_watches_-_Flickr_-_Mario_A._P..jpg",
+      "reference": "124270",
+      "variantId": "rolex-124270-black-oyster",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "author": "Mario A. P. from San Sebastian, Spain",
+      "confidence": "medium_pending_visual",
+      "concerns": "Flickr tag names Rolex Explorer124270; frame includes another watch and watermark. Keep watermark intact, identify Rolex explicitly, verify black dial and Oyster bracelet. Flickr reviewed15Aug2022."
+    },
+    {
+      "id": "rolex-air-king-126900",
+      "fileTitle": "File:Rolex Air-King ref. 126900, risalente al 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rolex_Air-King_ref._126900,_risalente_al_2022.jpg",
+      "reference": "126900",
+      "variantId": "rolex-126900-black-oyster",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "medium_pending_visual",
+      "concerns": "Exact reference stated. Uploader has some photographs of printed artwork; must inspect this particular image for printed-art evidence and visible bracelet."
+    },
+    {
+      "id": "omega-seamaster-coaxial",
+      "fileTitle": "File:Omega Seamaster Co-Axial.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_Seamaster_Co-Axial.jpg",
+      "reference": null,
+      "variantId": "omega-21030422001001-black-steel",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "author": "Saptarshi2005",
+      "confidence": "low_reference_pending_visual",
+      "concerns": "Description only says Seamaster Co-Axial Master Chronometre2024. Full reference absent; cannot bind to existing exact config unless additional primary provenance supports. Consider held family-level photograph only."
+    },
+    {
+      "id": "omega-speedmaster-reduced",
+      "fileTitle": "File:Omega speedmaster reduced 351050.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_speedmaster_reduced_351050.jpg",
+      "reference": "3510.50",
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Kjellnz",
+      "confidence": "high_reference_pending_visual",
+      "concerns": "Explicit3510.50, own-work. Distinct automatic Reduced configuration; must add separately from Moonwatch with manufacturerarchivefacts and visually verify bracelet."
+    },
+    {
+      "id": "cartier-tank-must-2021",
+      "fileTitle": "File:Cartier Tank Must, 2021.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Tank_Must,_2021.jpg",
+      "reference": null,
+      "variantId": "cartier-wsta0041-silver-leather",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "low_reference_pending_visual",
+      "concerns": "No exact reference or case width. Could depict small or large; do not assume WSTA0041. Printed-art risk."
+    },
+    {
+      "id": "cartier-tank-must-xl",
+      "fileTitle": "File:Cartier Tank Must XL automatico.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Tank_Must_XL_automatico.jpg",
+      "reference": null,
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "medium_pending_visual",
+      "concerns": "XL automatic description, exact commercial ref absent. Potential newconfiguration; steel bracelet versus leather must be distinguished. Printed-art risk."
+    },
+    {
+      "id": "cartier-santos-dumont-4240",
+      "fileTitle": "File:Cartier Santos Dumont al quarzo ref. 4240.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Santos_Dumont_al_quarzo_ref._4240.jpg",
+      "reference": "4240",
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "medium_pending_visual",
+      "concerns": "Case/reference4240 described, commercial WSSA identifier mapping unconfirmed. Must verify size and strap using primary source. Printed-art risk."
+    },
+    {
+      "id": "cartier-tank-solo-xl",
+      "fileTitle": "File:Cartier Tank Solo XL ref. 3800.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Tank_Solo_XL_ref._3800.jpg",
+      "reference": "3800",
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "medium_pending_visual",
+      "concerns": "Case3800ref stated but WSTA identifier mapping must be verified; XL distinct from existing TankMustLarge. Printed-art risk."
+    },
+    {
+      "id": "rolex-gmt-126713grnr",
+      "fileTitle": "File:Rolex GMT-Master II ref. 126713GRNR.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg",
+      "reference": "126713GRNR",
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "EMore98",
+      "confidence": "medium_pending_visual",
+      "concerns": "Exact ref, distinct two-tone greyblack bezel; manufacturerconfigneeded. Printed-art risk."
+    },
+    {
+      "id": "tudor-heritage-ranger",
+      "fileTitle": "File:Tudor Heritage Ranger watch (27446117146).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tudor_Heritage_Ranger_watch_(27446117146).jpg",
+      "reference": null,
+      "variantId": null,
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "author": "Manuel Rebic",
+      "confidence": "low_reference_pending_visual",
+      "concerns": "Truecameraimage2016; HeritageRanger differs from current79950. Needs verified olderref/fullbraceletsuffix; no reassignment to current Ranger."
+    },
+    {
+      "id": "tudor-pelagos-carolina",
+      "fileTitle": "File:Tudor Pelagos for Carolina Watch Club on Wrist.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tudor_Pelagos_for_Carolina_Watch_Club_on_Wrist.jpg",
+      "reference": null,
+      "variantId": null,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "OpaleHorse",
+      "confidence": "rejected_existing_configuration",
+      "concerns": "Explicit custom club limitededition1/75; differs dial from standard25600TN. Cannot use for current standard record; no manufacturer exact-configsource identified."
+    }
+  ]
+}

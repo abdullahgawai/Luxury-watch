@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-14T19:24:41.357Z",
+  "entries": [
+    {
+      "brand": "Omega",
+      "model": "Speedmaster Reduced",
+      "reference": "3510.50.00",
+      "dial": "Black",
+      "bracelet": "Steel",
+      "material": "Steel",
+      "size": 39,
+      "movement": "Automatic",
+      "calibre": "3220",
+      "powerReserve": 40,
+      "waterResistance": 30,
+      "bezel": null,
+      "crystal": "Hesalite",
+      "sourceUrl": "https://www.omegawatches.com/watch-omega-speedmaster-reduced-35105000",
+      "sourceTitle": "OMEGA official Speedmaster3510.50.00 archive product page",
+      "evidence": "Exact reference3510.50.00 table confirms diameter39mm/Steelcase/Blackdial/3220 Selfwinding/40hours/3bar30m/Hesalite. Bracelettable Steel Foldoverclasp. Tachymeterfeature confirms scale, notbezelmaterial orcolour. Manufacturer page unavailable forpurchase; stockstatusnotinferred.",
+      "photoFile": "File:Omega speedmaster reduced 351050.jpg",
+      "photoMatchStatus": "pending_visual_review",
+      "photoReferenceNote": "Commons reference3510.50 omits final.00; manufacturer reference3510.50.00 shown. Verify visible steel bracelet and black dial; no inference of internal movement in photographed example.",
+      "prices": []
+    },
+    {
+      "brand": "Tudor",
+      "model": "Black Bay Fifty-Eight",
+      "reference": "79030N",
+      "configurationReference": null,
+      "dial": "Black, domed",
+      "bracelet": "Riveted steel (one of three manufacturer-listed options)",
+      "material": "Steel",
+      "size": 39,
+      "movement": "Automatic",
+      "calibre": "MT5402",
+      "powerReserve": 70,
+      "waterResistance": 200,
+      "bezel": "Steel, matte black anodised aluminium60-minute disc, pink gilded markings, unidirectional",
+      "crystal": "Domed sapphire",
+      "sourceUrl": "https://media.tudorwatch.com/image/upload/fl_attachment/v1/tudorwatch/pressroom/products/black-bay-58/pdf/bw18-tudor-black-bay-fifty-eight-en.pdf",
+      "sourceTitle": "TUDOR2018 Black Bay Fifty-Eight manufacturer press dossier",
+      "evidence": "PDF page5 explicitly reference79030N with statedfacts. Braceletoptions include rivetedsteel/brownleather/blackfabric goldband; suffix0001 not shown, so configurationReference remainsnull. Page2also70h. Do not claim Swiss CHF2018prices areIndia/UAE retail.",
+      "photoFile": null,
+      "photoMatchStatus": "unavailable",
+      "photoReferenceNote": "No openly licensed actual-photo exact79030N/79030B found in indexed Commons/category searches. Existing79018V gold imageexcluded asprintedart unrelatedconfiguration.",
+      "prices": []
+    }
+  ],
+  "excluded": "No guessed specification defaults. No USD/CHFcurrencyconversion. No current collectionredirect accepted asexactreference."
+}
