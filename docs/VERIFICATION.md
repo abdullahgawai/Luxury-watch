@@ -5,7 +5,7 @@ Verified locally on 14–15 October 2026 (India time). Hosted deployment status 
 ## Automated checks
 
 - TypeScript: `node node_modules/typescript/bin/tsc --noEmit` — passed.
-- Domain/editorial: `node --test tests/domain.test.mjs tests/editorial.test.mjs` — **13 tests passed**.
+- Domain/editorial: `node --test tests/domain.test.mjs tests/editorial.test.mjs` — **14 tests passed** (including FX precision overflow protection).
 - Deployable Vinext/Sites Worker: `node scripts/run-framework.mjs build` — passed. The Sites starter's build integration is retained. A middleware convention deprecation was noted; it does not fail this locked build.
 - Local D1 migration — all 14 schema statements applied successfully.
 - Local homepage — HTTP 200.
