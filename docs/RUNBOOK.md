@@ -61,3 +61,13 @@ For a UI/server regression, redeploy the last successful saved Sites version usi
 - Review Vinext beta compatibility and production support against the eventual host workload. The supplied Sites starter is used and locked; a framework build alone does not establish production readiness.
 
 P1 customer accounts, cloud saves, alerts/enquiries and moderated dealers, and P2 tenant-isolated professional tools remain later roadmap stages. No active customer enquiry, checkout, verification or dealer-cost control is presented in this release.
+
+## Device preferences and shared comparisons
+
+Saved watches remain browser-local; no account or cloud save is implied. Market, favourites and comparison preferences are read independently so malformed data in one key does not block the others. Reads never rewrite device storage. Unknown saved catalogue IDs are retained with an unavailable-selection notice, rather than silently deleted or filled with guessed metadata. Supported selection IDs are deduplicated; comparisons accept at most three currently known configurations in selection order.
+
+Storage access or quota failures return an explicit failure result. Save/clear messages do not claim persistence after a failed write; a persistent page notice explains that changes may be lost on navigation. Valid save changes synchronize across same-origin tabs through browser storage events. Unreadable updates do not replace an already loaded saved selection. No preferences or storage errors are sent to an external service.
+
+Navigation, homepage search, configuration/evidence links, saved pages and glossary links carry market=IN or market=AE. An explicit valid URL market takes precedence over the device preference. Comparison URLs carry only selected configuration IDs and market, never saved-watch lists. Removing or clearing a comparison updates the URL, including explicit ids= for an empty selection; reloading cannot revive an old URL selection. Shared IDs take precedence over stored comparisons, and unknown IDs never become a priced configuration. There is no share button or cloud publication; copying a comparison URL shares the visible comparison identifiers.
+
+If storage is blocked entirely, favourite changes are usable only on that page; persistence cannot be promised. Explicit comparison links still retain their selected IDs. Corrupt preference recovery and blocked/full storage are covered by isolated adapter tests, without changing browser security settings.

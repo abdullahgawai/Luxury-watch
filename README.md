@@ -42,7 +42,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 - Stable configuration pages, sourced specifications, plain-language glossary, brand pages, methodology and field/source disclosures.
 - Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. Forty-three original local retail research observations (19 India, 24 UAE) are eligible, with three archived Cartier observations excluded from current pricing; no live feed is claimed. Cached checks disclose unknown price-effective dates and never become historical trends.
 - Deterministic comparable asking ranges, freshness, minor-unit money and provenance-preserving FX logic; no active FX feed.
-- 2–3 configuration comparison with contained mobile horizontal scrolling; device-local favourites and market persistence.
+- 2–3 configuration comparison with contained mobile horizontal scrolling; device-local favourites, cross-tab save updates and explicit storage-failure warnings. Market-aware navigation/search and comparison URLs preserve exact selection order, removals and empty selections after reload. Unavailable saved configurations are retained without invented details.
 - Source-bound history plot and accessible table when at least two comparable actual observations exist; no invented preview history.
 - D1 schema/migration, validated idempotent drafts, review/publication/withdrawal, immutable configuration identity, snapshots, audit history and rollback to draft.
 - Paginated editorial queues, pending-correction filters and per-record revision history with explicit restore to draft; older entries stay reachable beyond the previous limits.
