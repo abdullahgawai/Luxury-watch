@@ -102,3 +102,10 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - Browser verified price/source modal with16OctoberIST current date, tax inclusion and original15October authority date. UAE comparison shows20800/15000 for TankXL/blackTank; no archived point appears. Current-retail gaps now show2 Cartier configurations.
 - Coverage URL filters load from the initial request and update the URL on change, preserving the anchor. Cartier missing-photo filter survives reload and returns4; invalid brand/gap values fall back to39 configurations. At390px, document width375px and880px table remains inside334px region. Temporary viewport reset after QA.
 - Screenshot `screenshots/cartier-tank-xl-uae-current.png`. No new photo licence qualified; exact asset/licence requirements are in CARTIER-ASSET-REQUIREMENTS.md. No public-launch or live-feed claim.
+
+## Two remaining Cartier UAE source checks — 16 October 2026
+
+-46 automated tests pass. New checks prevent coverage-review timestamps or mismatched offered references from becoming prices, historical points, source rechecks or production records. Price fields/currency/future dates/wrong variants are rejected in gap reviews. Explicit sourceProductReference mismatches fail both research assembly and protected imports. TypeScript and production build pass.
+- Browser verified WSTA0041 UAE unavailable with16October coverage-review date and offeredWSTA0109 explanation; India switch shows the originalINR404000 and15October price check with no UAE gap note. WSTA0056 UAE likewise remains unavailable and identifies the pricedWSTA0115 conflict. Its existing photographic matching caveat is unchanged.
+- Mobile coverage shows both dated notes and source links in the correct UAE column. At390px document width375px;880px table remains in334px container. No document overflow. Temporary viewport reset. Screenshot: `screenshots/cartier-wsta0041-gap-evidence.png`.
+- No current price, licence check date or photo approval was inferred from successful HTTP responses. Public launch still requires rights-approved production data and operational acceptance.

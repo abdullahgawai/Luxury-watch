@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-15T19:03:15.139Z",
+  "scope": "One focused new search batch for original photographer or commercially compatible Creative Commons evidence for WSTA0041 and WSTA0056. Previously exhausted Commons/Openverse/press routes were not repeated.",
+  "searchAttempts": [
+    {
+      "query": "\"Cartier\" \"WSTA0041\" \"Creative Commons\"",
+      "result": "No qualifying original photographer/CC source returned."
+    },
+    {
+      "query": "\"Cartier\" \"WSTA0056\" \"CC BY\" photographer",
+      "result": "No qualifying original photographer/CC source returned."
+    },
+    {
+      "query": "\"WSTA0041\" photograph license photographer",
+      "result": "Returned dealer listings and commercial product catalogues. Dealer business licence numbers and embedded software licences are not photo-publication licences."
+    },
+    {
+      "query": "\"WSTA0056\" \"Creative Commons\"",
+      "result": "No qualifying source returned."
+    }
+  ],
+  "reviewedResultUrls": [
+    {
+      "url": "https://www.chrono24.ro/cartier/---lm-wsta0041-ss-ss-qz---id48496743.htm",
+      "decision": "Rejected as rights evidence: dealer states business licence number and actual watch photos, but no image redistribution grant."
+    },
+    {
+      "url": "https://wastenot-official.com/products/9626f150208",
+      "decision": "Commercial listing with exact WSTA0041, no original photographer CC licence or publication grant found in returned evidence. No image copied."
+    },
+    {
+      "url": "https://www.bettyroad.co.jp/shop/g/gca564/",
+      "decision": "Commercial product-page photography, no applicable image licence established. No image copied."
+    },
+    {
+      "url": "https://manuals.plus/m/3fa7e3702236a6fdfa93b2cb8b37e31916ca9aba0d406b2eb1567741c5e834e2.pdf",
+      "decision": "VintageGrail sales-catalogue discovery names WSTA0041; no photo-publication licence or original photographer grant verified. Not accepted as licensed source."
+    }
+  ],
+  "referenceResults": [
+    {
+      "reference": "WSTA0041",
+      "acceptedPhoto": null,
+      "result": "No addition. Keep exact silver-dial/black-calfskin photograph unavailable."
+    },
+    {
+      "reference": "WSTA0056",
+      "acceptedPhoto": null,
+      "result": "No new full-reference author caption or stronger exact-match evidence. Existing licensed green shop photograph retains its disclosed visual-mapping limitation; it is not upgraded to full-reference documentary confirmation."
+    }
+  ],
+  "acceptedPhotos": [],
+  "matchingUpgrades": [],
+  "noChanges": "No asset copying, photographer contact, app/native Sites/Git changes, new specifications, prices or availability claims.",
+  "result": "No productive qualifying source. No photo added. Repeated search loops should wait for a new authoritative photo/licence/reference source."
+}

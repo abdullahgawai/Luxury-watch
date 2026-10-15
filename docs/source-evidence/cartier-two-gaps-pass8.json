@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded review of the two remaining Cartier UAE gaps; two ordinary existing URLs, no retries, no guessed product grids or substitutions.",
+  "reviewedSources": [],
+  "observations": [],
+  "gapReviews": [
+    {
+      "variantId": "cartier-wsta0041-silver-leather",
+      "country": "AE",
+      "reviewedAt": "2026-10-15T19:03:02Z",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0041",
+      "outcome": "different_reference",
+      "reason": "The requested retailer page retains WSTA0041 in its metadata, but its priced offer points to WSTA0109. No exact-reference UAE retail price is confirmed.",
+      "reference": "WSTA0041",
+      "offeredReference": "WSTA0109"
+    },
+    {
+      "variantId": "cartier-wsta0056-green-leather",
+      "country": "AE",
+      "reviewedAt": "2026-10-15T19:03:03Z",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0056",
+      "outcome": "different_reference",
+      "reason": "The requested retailer page retains WSTA0056 in its metadata, but its priced offer points to WSTA0115. No exact-reference UAE retail price is confirmed.",
+      "reference": "WSTA0056",
+      "offeredReference": "WSTA0115"
+    }
+  ],
+  "attempts": [
+    {
+      "reference": "WSTA0041",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0041",
+      "retrievedAt": "2026-10-15T19:03:02Z",
+      "httpStatus": 200,
+      "responseSha256": "84102a5a60e63706e86012f31e6ea74d55bef724f1cc16acc3efa192ce28b71e",
+      "requestedReference": "WSTA0041",
+      "pricedOfferReference": "WSTA0109",
+      "identityEvidence": "Original structured offer URLs identify the pricedOfferReference, while the requested legacy reference remains in meta descriptions. Full exact configuration evidence is insufficient."
+    },
+    {
+      "reference": "WSTA0056",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0056",
+      "retrievedAt": "2026-10-15T19:03:03Z",
+      "httpStatus": 200,
+      "responseSha256": "5a50f0ddd6b89495d56e17f87f7d98233f7bcef3be7ee210713d36d9869e4263",
+      "requestedReference": "WSTA0056",
+      "pricedOfferReference": "WSTA0115",
+      "identityEvidence": "Original structured offer URLs identify the pricedOfferReference, while the requested legacy reference remains in meta descriptions. Full exact configuration evidence is insufficient."
+    }
+  ],
+  "decision": "No retail observations admitted. Gap review dates are separate from price dates. Priced replacement-reference values are deliberately absent.",
+  "limitations": [
+    "HTTP200 alone does not verify an exact watch configuration.",
+    "No stock, seller-verification, transaction or photograph-licence inference.",
+    "Previous archived/current observations and their dates remain unchanged."
+  ]
+}
