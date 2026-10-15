@@ -11,6 +11,8 @@ const assets=[
  {id:'omega-planet-ocean-blue',title:'File:Omega Planet Ocean ref. 215.30.44.21.03.001.jpg',reference:'215.30.44.21.03.001'},
  {id:'omega-speedmaster-reduced',title:'File:Omega speedmaster reduced 351050.jpg',reference:'3510.50.00'},
  {id:'rolex-air-king-126900',title:'File:Rolex Air-King ref. 126900, risalente al 2022.jpg',reference:'126900'},
+ {id:'cartier-tank-must-green',title:'File:Cartier Tank Must, 2021.jpg',reference:'WSTA0056'},
+ {id:'cartier-tank-must-xl',title:'File:Cartier Tank Must XL automatico.jpg',reference:'WSTA0040'},
 ];
 const strip=s=>String(s||'').replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').trim();
 const registry=[];
