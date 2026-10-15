@@ -19,5 +19,5 @@ test('direct snapshots need evidence and cannot imply a live feed or a trend',()
 test('new Cartier retailer evidence does not refresh older manufacturer amounts or fill gaps',()=>{
  const black=researchWatches.find(w=>w.reference==='WSTA0108'),old=archivedResearchObservations(black,'AE')[0],current=publishedObservations(black,'AE')[0];assert.equal(old.amountMinor,1460000);assert.equal(current.amountMinor,1500000);assert.notEqual(old.sourceId,current.sourceId);assert.notEqual(old.checkedAt,current.checkedAt);
  for(const ref of ['WSTA0056']){const w=researchWatches.find(w=>w.reference===ref);assert.equal(publishedObservations(w,'IN').length,0);assert.equal(publishedObservations(w,'AE').length,0);}
- assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'IN')).length,19);assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'AE')).length,23);
+ assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'IN')).length,19);assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'AE')).length,24);
 });

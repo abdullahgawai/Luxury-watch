@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "scope": "One bounded ordinary product request plus focused manufacturer UAE search. New current retailer observation is separate from previous cached archive; publication permissions remain pending.",
+  "reviewedSources": [
+    {
+      "id": "cartier-calibre88-ae-wsta0040-pass7",
+      "brand": "Cartier",
+      "country": "AE",
+      "category": "authorised_retailer",
+      "title": "Calibre88 UAE · Cartier Tank Must XL displayed retail",
+      "productUrls": [
+        "https://www.calibre88.com/products/wsta0040"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Dubai&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Calibre 88 Dubai",
+        "checkedAt": "2026-10-15T09:04:38Z",
+        "httpStatus": 200,
+        "responseSha256": "a5e659f9904a413c04c7b2cf4378cd46004bf9227ffc74a97e0f51bf5296b5c1",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary HTTPS GET of manufacturer public watch-retailer search; matched named retailer and Products Available Watches.",
+        "evidence": "Manufacturer search names Dubai - Calibre 88, Building 4 Sheikh Zayed RD Shop No.45, Dubai UAE, telephone 04 341 8285, with Products Available Watches. This Cartier-specific evidence independently corroborates the retailer at the address stated on calibre88.com. Physical retailer authorisation is established; this does not imply platform seller verification, online checkout approval or data publication rights. Authority verification date remains the original successful manufacturer-locator check; this pass does not refresh it."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.calibre88.com/products/wsta0040",
+          "variantId": "cartier-wsta0040-silver-leather",
+          "reference": "WSTA0040",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0040"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wsta0040-silver-leather-retail-ae-current-pass7-20261016",
+      "variantId": "cartier-wsta0040-silver-leather",
+      "reference": "WSTA0040",
+      "dial": "Silvered flinqué",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 31,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0040",
+      "reviewedSourceId": "cartier-calibre88-ae-wsta0040-pass7",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0040",
+      "country": "AE",
+      "currency": "AED",
+      "amountMinor": 2080000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer RRP not independently established; no checkout or promotion price inferred",
+      "checkedAt": "2026-10-15T18:52:45Z",
+      "observedAt": "2026-10-15T18:52:45Z",
+      "publisherEffectiveAt": null,
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "4348465dd201fdd415a110dae260ad981cedc44dbc9d5c2a2e87bd7f514fb4f4",
+      "method": "One ordinary HTTPS GET returned HTTP200. Original page names WSTA0040 and shows price20800.00 with priceCurrencyAED and Taxes included. SHA256 fingerprints the actual UTF-8 decoded HTML response. Source check is a point-in-time snapshot, not a live integration, stock assertion, publisher effective date or transaction record.",
+      "evidence": "Full reference WSTA0040, automatic movement, extra-large rectangular steel case and black leather strap are explicit in the current retailer full-specification section. Manufacturer reference crosswalk fixes silvered flinque dial,31mm width and black grained calfskin from the existing sourced configuration. No nearby-reference substitution or FX conversion. Existing older cached AED20800 observation remains separate and archived.",
+      "matchingNotes": "Exact full-reference match plus automatic XL steel black-leather configuration. No seller specification or photograph licence imported."
+    }
+  ],
+  "gapReviews": [
+    {
+      "variantId": "cartier-wsta0041-silver-leather",
+      "country": "AE",
+      "reviewedAt": "2026-10-15T18:53:35Z",
+      "sourceUrl": "https://www.cartier.com/en-ae/watches/collections/tank/",
+      "outcome": "no_qualified_source",
+      "reason": "One focused manufacturer UAE search for the exact two references produced no qualified exact-reference current original AED retail evidence. Family pages and other references are excluded. No old source date refreshed and no amount inferred."
+    },
+    {
+      "variantId": "cartier-wsta0056-green-leather",
+      "country": "AE",
+      "reviewedAt": "2026-10-15T18:53:35Z",
+      "sourceUrl": "https://www.cartier.com/en-ae/watches/collections/tank/",
+      "outcome": "no_qualified_source",
+      "reason": "One focused manufacturer UAE search for the exact two references produced no qualified exact-reference current original AED retail evidence. Family pages and other references are excluded. No old source date refreshed and no amount inferred."
+    }
+  ],
+  "attempts": [
+    {
+      "sourceUrl": "https://www.calibre88.com/products/wsta0040",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-15T18:52:45Z",
+      "responseSha256": "4348465dd201fdd415a110dae260ad981cedc44dbc9d5c2a2e87bd7f514fb4f4"
+    }
+  ],
+  "limitations": [
+    "Price checked at actual UTC15October18:52:45; localISTdate16October. No date shifted to match calendar assumptions.",
+    "Current retailer price does not establish inventory, discount eligibility, seller verification, manufacturer RRP or permission to republish.",
+    "Manufacturer retailer-authorisation proof retains its previous successful timestamp.",
+    "No direct price observation for WSTA0041 or WSTA0056 in this pass."
+  ]
+}

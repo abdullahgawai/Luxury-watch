@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-15T18:54:15.883Z",
+  "scope": "Final bounded manufacturer press-permission route. No email, rights request, download of manufacturer watch assets, app/native Sites or Git changes.",
+  "rightsChecks": [
+    {
+      "sourceUrl": "https://www.cartier.com/en-ae/terms-of-use.html",
+      "sourceTitle": "Cartier UAE Terms of Use",
+      "retrieval": "Indexed primary terms reviewed; direct page returned403. Index reported five-month crawl age. Current retrieval is not a refreshed grant.",
+      "finding": "General platform terms limit copies to personal/noncommercial contexts and do not grant public catalogue redistribution of Cartier photographs. No separate affirmative licence covering this website was found.",
+      "decision": "Do not copy product-page photographs under these general terms."
+    },
+    {
+      "sourceUrl": "https://www.cartier.com/en-us/legal-%26-privacy/credits.html",
+      "sourceTitle": "Cartier Credits",
+      "retrieval": "Primary indexed credits reviewed.",
+      "finding": "Credits identify Cartier and multiple third-party photographers/archive owners. Attribution is not an image publication licence.",
+      "decision": "No photo approved from credits alone."
+    },
+    {
+      "sourceUrl": "https://womenspavilion.cartier.com/press",
+      "sourceTitle": "Cartier Women's Pavilion press materials",
+      "retrieval": "Opened original primary press page.",
+      "finding": "Download materials concern the Expo2025 Women's Pavilion, not the exact Cartier watch configurations. No applicable watch catalogue-image licence established.",
+      "decision": "Out of scope; download availability is not a watch photo grant."
+    },
+    {
+      "sourceUrl": "https://www.showonshow.com/thyssen/cartier_241012_170213/see/cartier_241012_170213_credits.pdf",
+      "sourceTitle": "The Art of Cartier exhibition press images and credits,2012–2013",
+      "retrieval": "Opened all3pages; express terms on page1.",
+      "finding": "Image permission is restricted to announcements/reviews of that particular exhibition, with credit and no-cropping requirements. Assets cover exhibition objects, not the four modern reference configurations.",
+      "decision": "Not applicable to an evergreen watch catalogue. No exhibition asset reused."
+    }
+  ],
+  "acceptedPhotos": [],
+  "practicalAssetRequirements": {
+    "minimumEvidence": [
+      "Original photograph file and stable asset identifier.",
+      "Photographer/copyright-owner name and a verifiable original source or explicit publication grant; an uploader or dealer attribution alone is insufficient for manufacturer artwork.",
+      "Permission covering public website catalogue use for customers/dealers in India and UAE, hosting and redistribution of the image, and resizing/format conversion or a permitted way to serve unchanged originals. Record any required attribution, licence link, duration and restrictions.",
+      "Exact full commercial reference and matching dial, case material, case width and photographed bracelet/strap supported by the photographer's own product caption or product documentation linked to that photographed example. A nearby reference or inferred physical size is insufficient.",
+      "A clear face/bracelet photograph with the configuration visible. Optional private supporting reference-tag/caseback evidence may establish the mapping; publish only the licensed photograph and appropriate reference description.",
+      "Source URL, licence evidence and date checked captured alongside the asset; no price or stock claim inferred from a photo."
+    ],
+    "preferredRoutes": [
+      "Owner-supplied original photographs with explicit publication permission and exact reference/configuration documentation.",
+      "A manufacturer/distributor asset-specific written licence expressly covering this catalogue context.",
+      "An original photographer's CC BY or CC BY-SA photograph whose exact commercial reference and configuration can be verified at the original source."
+    ],
+    "noRequestSent": true
+  },
+  "configurationBriefs": [
+    {
+      "reference": "WSSA0029",
+      "model": "Santos de Cartier medium",
+      "requiredVisibleConfiguration": "Steel case, silvered opaline dial,35.1mm width, steel SmartLink bracelet. Additional calfskin in the factory package must not cause a different photographed strap to be labelled steel.",
+      "exclude": "Date-equipped large Santos0009/0018, old Santos100 or leather-only photographed examples without separate configuration labelling."
+    },
+    {
+      "reference": "WSTA0041",
+      "model": "Tank Must large",
+      "requiredVisibleConfiguration": "Steel case, silver dial,33.7×25.5mm, black grained calfskin strap; quartz configuration.",
+      "exclude": "Green2021 Must, black lacquer0108, automaticXL0040, olderpre2021 Must and small-case alternatives."
+    },
+    {
+      "reference": "WSTA0108",
+      "model": "Tank Must large, black lacquer",
+      "requiredVisibleConfiguration": "Steel case, black lacquer dial,33.7×25.5mm, semi-matte black alligator strap; quartz configuration.",
+      "exclude": "Silver0041, green0056, oldgold/vermeil Must or black-strap photos lacking the exact reference."
+    },
+    {
+      "reference": "WSSA0086",
+      "model": "Santos-Dumont small",
+      "requiredVisibleConfiguration": "Steel case, silver sunray dial,27.5mm width, navy blue alligator strap; exact current reference0086.",
+      "exclude": "Older4240 commercial-reference ambiguity, larger0022, small0023 without a validated current-reference crosswalk or two-tone variants."
+    }
+  ],
+  "configurationEvidenceBasis": "Briefs reflect existing project manufacturer/research evidence and are asset acquisition requirements, not newly researched specifications or photo matching approvals.",
+  "result": "No applicable manufacturer press grant and no exact photo accepted. Keep the four missing images unavailable. Existing discovery routes are exhausted; repeat searching only when a new authoritative source, original photo or explicit licence becomes available."
+}
