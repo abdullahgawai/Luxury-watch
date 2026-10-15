@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded fourth Cartier India research pass. Three clean original local retail observations; one current but internally inconsistent product held. Data rights pending; no app changes.",
+  "reviewedSources": [
+    {
+      "id": "cartier-kapoor-in-pass4",
+      "brand": "Cartier",
+      "country": "IN",
+      "category": "authorised_retailer",
+      "title": "Kapoor Watch India · displayed catalogue retail",
+      "productUrls": [
+        "https://www.kapoorwatch.com/watches/cartier-tank-men-wsta0040"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=New%20Delhi&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Kapoor Watch Co. Delhi",
+        "checkedAt": "2026-10-15T09:24:25.0019205Z",
+        "httpStatus": 200,
+        "responseSha256": "76a876deb143f70086dff9e9ccf90757dba3c2c4e9497b034f3d528619d845c4",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary public manufacturer watch-retailer search, decoded HTML SHA-256.",
+        "evidence": "Cartier identifies Kapoor Watch Co. Delhi at D-10 South Extension-II, New Delhi110049, telephone01141658888 and Products Available Watches, plus Gurgaon Ambience Mall. Establishes physical retailer authorisation, not data/media permission, inventory or platform seller verification."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-tank-men-wsta0040",
+          "variantId": "cartier-wsta0040-silver-leather",
+          "reference": "WSTA0040",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0040"
+        }
+      ]
+    },
+    {
+      "id": "cartier-artoftime-in-pass4",
+      "brand": "Cartier",
+      "country": "IN",
+      "category": "authorised_retailer",
+      "title": "Art Of Time India · displayed catalogue retail",
+      "productUrls": [
+        "https://artoftimeindia.com/collections/cartier/products/tank-must-large-steel-leather-wsta0041",
+        "https://artoftimeindia.com/products/wssa0086"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Mumbai&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Art Of Time Mumbai watch retailers",
+        "checkedAt": "2026-10-15T09:24:48.2719144Z",
+        "httpStatus": 200,
+        "responseSha256": "5bc6c2eab1c4cf17ab7aa445c98f5da72d64103fdb0f99fc34e7d3bfa032608e",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary public manufacturer watch-retailer search. Each named retailer has Products Available Watches. Decoded HTML SHA-256.",
+        "evidence": "Cartier lists ART OF TIME – South Mumbai, Orbit Arya Napean Sea Road; Art Of Time – Madame Cama Road, C1 Amarchand Mansion Mumbai400001 telephone09773433333; and Time Vallee by Art of Time – Waterfield Road Mumbai400050. Each states Watches. Direct Cartier-specific corroboration supersedes the weaker parent-group inference from pass3. Physical authorisation does not establish online checkout, inventory, publication rights or platform seller verification."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://artoftimeindia.com/collections/cartier/products/tank-must-large-steel-leather-wsta0041",
+          "variantId": "cartier-wsta0041-silver-leather",
+          "reference": "WSTA0041",
+          "configurationId": "tank-must-de-cartier%E8%85%95%E9%8C%B6-CRWSTA0041.html"
+        },
+        {
+          "sourceUrl": "https://artoftimeindia.com/products/wssa0086",
+          "variantId": "cartier-wssa0086-silver-leather",
+          "reference": "WSSA0086",
+          "configurationId": "santos-dumont-watch-CRWSSA0086.html"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wsta0040-silver-leather-retail-in-current-pass4-20261015",
+      "variantId": "cartier-wsta0040-silver-leather",
+      "reference": "WSTA0040",
+      "dial": "Silvered flinqué",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 31,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0040",
+      "reviewedSourceId": "cartier-kapoor-in-pass4",
+      "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-tank-men-wsta0040",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 59000000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer MRP/RRP not independently established; no promotion or checkout price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Tax status not confirmed",
+      "checkedAt": "2026-10-15T09:24:09.1181809Z",
+      "observedAt": "2026-10-15T09:24:09.1181809Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "d6f17d97e75d30c7caed96f107c52dbe4824281712f79051bc5154ec99cfeca8",
+      "method": "Ordinary direct public HTTPS GET returned200. SHA-256 of UTF-8 decoded HTML response. Visible product price and model matched page INR analytics. Point-in-time check, no stock or checkout guarantee.",
+      "evidence": "Product model and JSON-LD SKU WSTA0040, visible INR590000; page analytics value590000 currencyINR. Tank Must XL, silver dial, steel31mm, automatic and leather stated. Additional flinqué/calfskin detail remains bound to existing manufacturer reference. Retailer power-reserve text not imported.",
+      "matchingNotes": "Full commercial reference matches existing exact configuration. No specifications, photo permissions, stock or sales derived from the price."
+    },
+    {
+      "id": "cartier-wsta0041-silver-leather-retail-in-current-pass4-20261015",
+      "variantId": "cartier-wsta0041-silver-leather",
+      "reference": "WSTA0041",
+      "dial": "Silver",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 25.5,
+      "configurationId": "tank-must-de-cartier%E8%85%95%E9%8C%B6-CRWSTA0041.html",
+      "reviewedSourceId": "cartier-artoftime-in-pass4",
+      "sourceUrl": "https://artoftimeindia.com/collections/cartier/products/tank-must-large-steel-leather-wsta0041",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 40400000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer MRP/RRP not independently established; no promotion or checkout price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:24:18.4406753Z",
+      "observedAt": "2026-10-15T09:24:18.4406753Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "452dea97428a270fc3e34f5300bd16301837a97f5342c9438376ca22aa410941",
+      "method": "Ordinary direct public HTTPS GET returned200. SHA-256 of UTF-8 decoded HTML. Exact SKU and original JSON-LD price/currency corroborate displayed product amount. Point-in-time source check only.",
+      "evidence": "Product SKU WSTA0041 and JSON-LD INR404000.00, displayed INR404000 and Tax included. Large steel Tank Must quartz, silvered dial and black grained leather description matches existing manufacturer's exact reference. No stock status inferred from embedded schema.",
+      "matchingNotes": "Current Art Of Time SKU remains WSTA0041; unlike Kapoor's old WSTA0041 URL, it does not relabel the offered watch as WSTA0109."
+    },
+    {
+      "id": "cartier-wssa0086-silver-leather-retail-in-current-pass4-20261015",
+      "variantId": "cartier-wssa0086-silver-leather",
+      "reference": "WSSA0086",
+      "dial": "Satin-brushed silver, sunray effect",
+      "bracelet": "Navy blue alligator leather",
+      "material": "Steel",
+      "size": 27.5,
+      "configurationId": "santos-dumont-watch-CRWSSA0086.html",
+      "reviewedSourceId": "cartier-artoftime-in-pass4",
+      "sourceUrl": "https://artoftimeindia.com/products/wssa0086",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 49300000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer MRP/RRP not independently established; no promotion or checkout price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:24:21.6894561Z",
+      "observedAt": "2026-10-15T09:24:21.6894561Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "889e29c2f730ea4be7c57025485bf77059e8e40a8d0be92c5ed44243e3040479",
+      "method": "Ordinary direct public HTTPS GET returned200. SHA-256 of UTF-8 decoded HTML. Exact SKU with original JSON-LD INR493000.0; explicit tax notice reviewed. Point-in-time source check only.",
+      "evidence": "Current product SKU and MPN WSSA0086, Cartier Santos Dumont steel; original priceCurrencyINR and price493000.0, Tax included. Exact silver sunray dial, navy alligator and27.5mm width remain sourced to existing manufacturer record, not guessed from generic retailer prose.",
+      "matchingNotes": "Full commercial reference matches existing exact configuration; no photo publication permission, availability or sales inference."
+    }
+  ],
+  "heldCandidates": [
+    {
+      "reference": "WSTA0108",
+      "variantId": "cartier-wsta0108-black-leather",
+      "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-tank-men-wsta0108",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 42300000,
+      "checkedAt": "2026-10-15T09:23:36.4876269Z",
+      "observedAt": "2026-10-15T09:23:36.4876269Z",
+      "httpStatus": 200,
+      "responseSha256": "499485dc61ff304330b55d888958940f024a4d9c3605f861beb721d729513e15",
+      "retrievalMethod": "direct_source_snapshot",
+      "taxStatus": "Tax status not confirmed",
+      "rights": "pending",
+      "reason": "Current visible model and JSON-LD SKU are WSTA0108 with visible INR423000 and matching value423000/currencyINR analytics, but description names older WSTA0072 and photo filenames use WSTA0072. Do not import conflicting description/photos. Exact price association requires explicit editorial acceptance of displayed SKU despite stale product prose.",
+      "retailBasis": "Displayed authorised retailer catalogue/list price, not established manufacturer MRP or checkout amount."
+    }
+  ],
+  "unavailable": [
+    {
+      "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-tank-women-wsta0041",
+      "attemptedReference": "WSTA0041",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-15T09:24:10.3410147Z",
+      "responseSha256": "2542fb4499e3284c9c02ab46fa2f60b7ddc2baf9c2e6b17e929e772abe3b515d",
+      "reason": "Old URL currently renders WSTA0109 as model and analytics SKU. INR404000 belongs to that current rendered SKU; rejected as WSTA0041 price evidence despite old image filename."
+    },
+    {
+      "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-santos-women-wssa0086",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-15T09:24:12.7555002Z",
+      "responseSha256": "51a5d226dfbfacff1b93525398b2b21bb91b356d9f8b15228333de0a9177e6b3",
+      "reason": "HTTP200 body contained no matched exact reference or product price; not a usable product observation."
+    },
+    {
+      "sourceUrl": "https://artoftimeindia.com/products/tank-must-extra-large-steel-leather",
+      "attemptedAt": "2026-10-15T09:24:15.7822884Z",
+      "httpStatus": 429,
+      "reason": "Rate limited. Did not retry or refresh any successful/cached observation."
+    },
+    {
+      "sourceUrl": "https://artoftimeindia.com/products/tank-must-large-quartz-steel-leather-wsta0108",
+      "attemptedAt": "2026-10-15T09:24:47.7431744Z",
+      "httpStatus": 429,
+      "reason": "Rate limited. Did not retry or relabel previous cached evidence as current."
+    }
+  ],
+  "publicationNote": "reviewDecision=published denotes research-preview eligibility matching the existing research-file schema, not a release or cleared commercial reuse licence. Every record retains rights=pending. No production approval, media permission, conversion, historical trend, seller verification or stock claim.",
+  "importSelection": {
+    "references": [
+      "WSTA0041"
+    ],
+    "note": "Only WSTA0041 is selected from this file. WSTA0040 and WSSA0086 use the independently checked Exclusive Lines MRP evidence; no duplicate public observations. The manufacturer URL identifier for WSTA0041 is stored in its URL-encoded form, matching URL.pathname in the catalogue."
+  }
+}

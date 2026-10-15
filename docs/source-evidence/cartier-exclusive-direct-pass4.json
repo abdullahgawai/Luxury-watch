@@ -1,0 +1,39 @@
+[
+  {
+    "url": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0040",
+    "status": 200,
+    "checkedAt": "2026-10-15T09:24:31.0439566Z",
+    "sha256": "d6655ee304601ab27619af7aff376fe681d9d22e3fe2927b7a80caba50aaeac6",
+    "selected": [
+      " Cartier Tank Must Tank Must 41 X 31mm, Automatic Ref: WSTA0040 MRP ₹ 5,90,000 *Inclusive of all taxes Tank Must watch, extra-large model, mechanical movement with automatic winding, calibre. Steel case, beaded crown set with a synthetic cabochon-shaped spinel, silvered flinqué dial, blued-steel sword-shaped hands, black grained calfskin strap, interchangeable steel folding buckle, calendar aperture at 6 o'clock. Case dimensions: 41 mm x 31 mm, thickness: 8.4 mm. Water-resistant to 3 bar (approx. 30 metres). "
+    ],
+    "product": {
+      "reference": "WSTA0040",
+      "currency": "INR",
+      "price": "590000.00"
+    }
+  },
+  {
+    "url": "https://exclusivelinesindia.com/p/cartier-santos-de-cartier-WSSA0086",
+    "status": 200,
+    "checkedAt": "2026-10-15T09:24:32.0798438Z",
+    "sha256": "f09ecdedbcef6651b47b6f32eca1508b6c8da9015abdad7232ab89c022ab5b78",
+    "selected": [
+      " Cartier Santos-Dumont Santos-Dumont 38 X 27.5mm, Quartz Ref: WSSA0086 MRP ₹ 4,93,000 *Inclusive of all taxes Santos-Dumont watch, small model, with a high-autonomy quartz movement offering approximately 6 years of battery life. Crafted in steel, it features a beaded crown set with a blue synthetic cabochon spinel, a satin-brushed silver sunray dial with Roman numerals, and blued-steel sword-shaped hands, protected by a sapphire crystal. Completed with a navy blue alligator leather strap and steel ardillon buckle. Case dimensions: 38 × 27.5 mm; thickness: 7.3 mm. Water-resistant up to 3 bar (approx. 30 m). "
+    ],
+    "product": {
+      "reference": "WSSA0086",
+      "currency": "INR",
+      "price": "493000.00"
+    }
+  },
+  {
+    "url": "https://stores.cartier.com/search?q=Kolkata&category=storeLocatorSearch",
+    "status": 200,
+    "checkedAt": "2026-10-15T09:24:32.8169374Z",
+    "sha256": "bf18ebed234fc152e498769cf13eb422059897a3007f00f8f9ad9a3d17f829d1",
+    "selected": [
+      "Cartier locator names Exclusive Lines Kolkata, LUXE PLATINA #17 Shakespeare Sarani, Kolkata 700071, telephone 08336916220, Products Available Watches; embedded isRetail=true and isTimepieces=true."
+    ]
+  }
+]

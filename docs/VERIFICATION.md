@@ -75,3 +75,10 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - TypeScript and production build pass. Browser verified Santos UAE AED30900, its price evidence dialog and Cartier retailer locator, India switch INR870000, and the black Tank UAE AED15000 with a separate older-evidence disclosure.
 - At390px, the Cartier page document width and scroll width both measure375px. No document overflow. Source modal closes with Escape. Screenshot: `screenshots/cartier-current-source.png`.
 - No new photo was approved without adequate exact-configuration evidence. Photos, cache limitations and unavailable data retain their existing disclosures. This is a private research preview; no full WCAG audit, field performance validation or public-launch readiness is claimed.
+
+## Cartier India gaps — 15 October 2026
+
+-38 tests pass, including originalINR/tax/MRP basis, exact reference and configuration checks, successful response fingerprints/dates, rejection of incomplete direct-source evidence, Art Of Time manufacturer authority, unsupported Tank India gaps and unchanged UAE counts. Existing persistence, correction and editor-access tests pass. TypeScript and production build pass.
+- Browser QA used the built Worker locally: Tank XL shows INR590000 with Exclusive Lines MRP/tax/source and Cartier locator; switching to UAE shows unavailable. WSTA0041 shows INR404000 and its own Art Of Time source/Cartier Mumbai locator. Escape closes source dialogs.
+- A390px three-watch comparison displays404000/590000/493000 INR with independent sources. The670px table remains in its334px scroll container; document width and scroll width are both375px. Screenshot `screenshots/cartier-india-current.png` shows the new Tank XL pricing/date/tax basis.
+- No new photo qualified. Matching limitations, missing India prices and production data/permission gates remain explicit. No field performance measurement or full accessibility certification is claimed.

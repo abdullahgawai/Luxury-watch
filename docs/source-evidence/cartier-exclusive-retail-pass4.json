@@ -1,0 +1,101 @@
+{
+  "reviewedSources": [
+    {
+      "id": "cartier-exclusive-in-pass4",
+      "brand": "Cartier",
+      "country": "IN",
+      "category": "authorised_retailer",
+      "title": "Exclusive Lines India · Cartier displayed MRP",
+      "productUrls": [
+        "https://exclusivelinesindia.com/p/cartier-tank-WSTA0040",
+        "https://exclusivelinesindia.com/p/cartier-santos-de-cartier-WSSA0086"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Kolkata&category=storeLocatorSearch",
+        "title": "Cartier manufacturer locator · Exclusive Lines Kolkata",
+        "checkedAt": "2026-10-15T09:24:32.8169374Z",
+        "httpStatus": 200,
+        "responseSha256": "bf18ebed234fc152e498769cf13eb422059897a3007f00f8f9ad9a3d17f829d1",
+        "evidence": "Cartier locator names Exclusive Lines Kolkata, LUXE PLATINA #17 Shakespeare Sarani, Kolkata 700071, telephone 08336916220, Products Available Watches; embedded isRetail=true and isTimepieces=true. Address matches the product-page seller. Retailer relationship only; no platform seller verification or publication/photo permission."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0040",
+          "variantId": "cartier-wsta0040-silver-leather",
+          "reference": "WSTA0040",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0040"
+        },
+        {
+          "sourceUrl": "https://exclusivelinesindia.com/p/cartier-santos-de-cartier-WSSA0086",
+          "variantId": "cartier-wssa0086-silver-leather",
+          "reference": "WSSA0086",
+          "configurationId": "santos-dumont-watch-CRWSSA0086.html"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wsta0040-silver-leather-retail-in-exclusive-20261015",
+      "variantId": "cartier-wsta0040-silver-leather",
+      "reference": "WSTA0040",
+      "dial": "Silvered flinqué",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 31,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0040",
+      "reviewedSourceId": "cartier-exclusive-in-pass4",
+      "sourceUrl": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0040",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 59000000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Retailer-labelled MRP; manufacturer RRP not independently confirmed",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Inclusive of all taxes according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:24:31.0439566Z",
+      "observedAt": "2026-10-15T09:24:31.0439566Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "retrievalMethod": "direct_source_snapshot",
+      "httpStatus": 200,
+      "responseSha256": "d6655ee304601ab27619af7aff376fe681d9d22e3fe2927b7a80caba50aaeac6",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "evidence": "Exact reference and dial, strap, steel case and dimensions match the existing manufacturer configuration. Visible MRP and original INR structured amount agree. Retailer specification tables and images do not replace manufacturer specifications or licensed photography. Stock and future price-validity flags are not imported.",
+      "method": "Ordinary HTTPS GET returned HTTP 200; SHA-256 fingerprints decoded response. This is a point-in-time source observation, not a live feed or guaranteed checkout amount."
+    },
+    {
+      "id": "cartier-wssa0086-silver-leather-retail-in-exclusive-20261015",
+      "variantId": "cartier-wssa0086-silver-leather",
+      "reference": "WSSA0086",
+      "dial": "Satin-brushed silver, sunray effect",
+      "bracelet": "Navy blue alligator leather",
+      "material": "Steel",
+      "size": 27.5,
+      "configurationId": "santos-dumont-watch-CRWSSA0086.html",
+      "reviewedSourceId": "cartier-exclusive-in-pass4",
+      "sourceUrl": "https://exclusivelinesindia.com/p/cartier-santos-de-cartier-WSSA0086",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 49300000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Retailer-labelled MRP; manufacturer RRP not independently confirmed",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Inclusive of all taxes according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:24:32.0798438Z",
+      "observedAt": "2026-10-15T09:24:32.0798438Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "retrievalMethod": "direct_source_snapshot",
+      "httpStatus": 200,
+      "responseSha256": "f09ecdedbcef6651b47b6f32eca1508b6c8da9015abdad7232ab89c022ab5b78",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "evidence": "Exact reference and dial, strap, steel case and dimensions match the existing manufacturer configuration. Visible MRP and original INR structured amount agree. Retailer specification tables and images do not replace manufacturer specifications or licensed photography. Stock and future price-validity flags are not imported.",
+      "method": "Ordinary HTTPS GET returned HTTP 200; SHA-256 fingerprints decoded response. This is a point-in-time source observation, not a live feed or guaranteed checkout amount."
+    }
+  ]
+}

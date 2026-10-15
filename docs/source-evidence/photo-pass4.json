@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-10-15T09:24:42.691Z",
+  "scope": "Bounded exact Cartier commercially licensed photograph research; candidate evidence only. No app, catalogue, native Sites, commit or rights-status changes.",
+  "methods": [
+    {
+      "name": "Wikimedia Commons official API",
+      "endpoint": "https://commons.wikimedia.org/w/api.php",
+      "parameters": "action=query; list=search; srnamespace=6; srlimit=10; srsearch=quoted exact reference",
+      "checks": [
+        {
+          "reference": "WSSA0029",
+          "totalhits": 0,
+          "results": []
+        },
+        {
+          "reference": "WSTA0041",
+          "totalhits": 0,
+          "results": []
+        },
+        {
+          "reference": "WSTA0108",
+          "totalhits": 0,
+          "results": []
+        },
+        {
+          "reference": "WSSA0086",
+          "totalhits": 0,
+          "results": []
+        },
+        {
+          "reference": "WSTA0040",
+          "totalhits": 0,
+          "results": []
+        },
+        {
+          "reference": "WSTA0056",
+          "totalhits": 0,
+          "results": []
+        }
+      ],
+      "limitations": "Search covers indexed file-description text. Zero results do not establish absence of every unindexed/uncaptioned image; no licence or reference assumption made from a similar family photograph."
+    },
+    {
+      "name": "Flickr public tag feeds",
+      "endpoint": "https://www.flickr.com/services/feeds/photos_public.gne",
+      "parameters": "format=json; nojsoncallback=1; tags=lowercase exact commercial reference",
+      "checks": [
+        {
+          "reference": "WSSA0029",
+          "tag": "wssa0029",
+          "items": []
+        },
+        {
+          "reference": "WSTA0041",
+          "tag": "wsta0041",
+          "items": []
+        },
+        {
+          "reference": "WSTA0108",
+          "tag": "wsta0108",
+          "items": []
+        },
+        {
+          "reference": "WSSA0086",
+          "tag": "wssa0086",
+          "items": []
+        },
+        {
+          "reference": "WSTA0040",
+          "tag": "wsta0040",
+          "items": []
+        },
+        {
+          "reference": "WSTA0056",
+          "tag": "wsta0056",
+          "items": []
+        }
+      ],
+      "limitations": "Public recent tag feed only, not exhaustive Flickr historical search or licence certification. No candidate photo pages appeared, so no author's licence was inferred or verified."
+    },
+    {
+      "name": "Web indexed primary photographer/Commons search",
+      "queries": [
+        "site:flickr.com/photos \"Cartier\" \"WSTA0108\"",
+        "site:flickr.com/photos \"Cartier\" \"WSSA0086\"",
+        "site:flickr.com/photos \"Cartier\" \"WSTA0056\"",
+        "site:commons.wikimedia.org \"WSSA0029\" OR \"WSTA0041\" OR \"WSTA0040\""
+      ],
+      "result": "No results returned."
+    }
+  ],
+  "candidates": [],
+  "matchingUpgrades": [],
+  "preservedHolds": [
+    {
+      "reference": "WSTA0040",
+      "reason": "Existing actual wrist photo has TankMustXLautomatic caption but no full commercial reference; no new authoritative full-reference caption/crosswalk obtained. Do not upgrade visual inference to exact documentary certification."
+    },
+    {
+      "reference": "WSTA0056",
+      "reason": "Existing actual shop photo green Tank at left has family/year caption but no full commercial reference; no new primary full-reference caption obtained. Do not upgrade visual inference to exact documentary certification."
+    },
+    {
+      "reference": "4240/3800",
+      "reason": "Previously held commercial crosswalks not reopened or silently resolved."
+    }
+  ],
+  "acceptedCount": 0,
+  "result": "No newly qualifying exact configuration photo or matching-status upgrade found in this bounded pass. Missing photos should remain unavailable. No photographer contacted, photo licence assumed, manufacturer artwork reused, AI photo substituted or photograph downloaded."
+}
