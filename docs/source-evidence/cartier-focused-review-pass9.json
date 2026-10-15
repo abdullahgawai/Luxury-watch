@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-15T19:20:46Z",
+  "scope": "Research archive only. Focused primary-page and photo-licence discovery for WSTA0041/WSTA0056; no catalogue imports or new price/specification/photo approvals.",
+  "queries": [
+    "site:cartier.com/en-ae WSTA0041 AED",
+    "site:cartier.com/en-ae WSTA0056 AED",
+    "WSTA0041 WSTA0056 Creative Commons"
+  ],
+  "observations": [],
+  "approvedPhotos": [],
+  "primaryResults": [
+    {
+      "reference": "WSTA0041",
+      "url": "https://www.cartier.com/zh-tw/%E8%85%95%E9%8C%B6/%E6%89%80%E6%9C%89%E7%B3%BB%E5%88%97/tank%E7%B3%BB%E5%88%97/tank-must-de-cartier%E8%85%95%E9%8C%B6-CRWSTA0041.html",
+      "retrieval": "Cached primary product text, crawl labelled five months ago",
+      "finding": "Exact reference and silver-dial/black-calfskin configuration described. Non-UAE regional content does not establish original AED retail. No photo-publication grant established.",
+      "decision": "No price or photograph imported; existing specification evidence unchanged."
+    },
+    {
+      "reference": "WSTA0056",
+      "url": "https://www.cartier.com/en-bl/watches/collections/tank/tank-must-de-cartier-watch-CRWSTA0056",
+      "retrieval": "Cached primary product text, crawl labelled nine months ago",
+      "finding": "Exact green-dial/alligator configuration described. No qualifying UAE amount or image-publication grant established in inspected text.",
+      "decision": "No price, photograph or specification update. Existing licensed documentary image retains its visual-reference limitation."
+    },
+    {
+      "reference": "WSTA0041",
+      "url": "https://www.userguide.cartier.com/WSTA0041.html",
+      "retrieval": "Cached manufacturer guide, crawl labelled six months ago",
+      "finding": "Guide labels a metal-bracelet quartz model, whereas the primary product description specifies black calfskin. This generic operating guide is insufficient evidence to change the exact catalogue configuration or approve a photograph.",
+      "decision": "Not used for price, strap or photo mapping."
+    }
+  ],
+  "unchangedEvidence": "The earlier successful retailer checks pointing to WSTA0109/WSTA0115 remain in cartier-two-gaps-pass8.json with their original dates. They were not re-requested or refreshed by this search review.",
+  "requiredInputs": [
+    "Dated original AED manufacturer or manufacturer-corroborated UAE retailer evidence whose priced product is explicitly WSTA0041 or WSTA0056, with exact configuration and tax/condition basis; a successor reference or currency conversion is insufficient.",
+    "Original photograph plus an applicable public-catalogue publication licence and evidence of full reference/dial/strap/material/size. See CARTIER-ASSET-REQUIREMENTS.md."
+  ],
+  "result": "No qualifying additions. Existing unavailable states, review notes, source/price/licence dates and production rights gates remain unchanged."
+}
