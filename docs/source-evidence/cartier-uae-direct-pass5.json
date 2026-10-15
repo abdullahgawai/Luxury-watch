@@ -1,0 +1,13 @@
+[
+  {
+    "url": "https://www.calibre88.com/products/wsta0040",
+    "error": "Response status code does not indicate success: 429 (Too Many Requests)."
+  },
+  {
+    "url": "https://stores.cartier.com/search?q=Dubai&category=storeLocatorSearch&watches=true",
+    "httpStatus": 200,
+    "checkedAt": "2026-10-15T09:34:28.8441271Z",
+    "responseSha256": "a5e659f9904a413c04c7b2cf4378cd46004bf9227ffc74a97e0f51bf5296b5c1",
+    "selected": "Cartier watch-retailer search: Dubai - Calibre 88, Building 4 Sheikh Zayed Road Shop 45, Dubai, 04 341 8285, Products Available Watches."
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded Cartier missing-price pass5; one current exact India observation, other attempted gaps unavailable. Research-preview evidence only; commercial reuse permission pending.",
+  "reviewedSources": [
+    {
+      "id": "cartier-exclusive-in-pass5",
+      "brand": "Cartier",
+      "country": "IN",
+      "category": "authorised_retailer",
+      "title": "Exclusive Lines India · Cartier displayed MRP",
+      "productUrls": ["https://exclusivelinesindia.com/p/cartier-tank-WSTA0108"],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Kolkata&category=storeLocatorSearch",
+        "title": "Cartier manufacturer locator · Exclusive Lines Kolkata",
+        "checkedAt": "2026-10-15T09:34:36.4917902Z",
+        "httpStatus": 200,
+        "responseSha256": "bf18ebed234fc152e498769cf13eb422059897a3007f00f8f9ad9a3d17f829d1",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary public manufacturer locator HTTPS GET; decoded HTML SHA-256. Named retailer and product scope reviewed independently from seller claims.",
+        "evidence": "Cartier lists Exclusive Lines Kolkata, LUXE PLATINA #17 Shakespeare Sarani, Kolkata700071, telephone08336916220, Products Available Watches. Address matches product-page seller. Establishes physical Cartier watch retail relationship, not inventory, platform verification, or data/photo publication rights."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0108",
+          "variantId": "cartier-wsta0108-black-leather",
+          "reference": "WSTA0108",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0108.html"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wsta0108-black-leather-retail-in-exclusive-pass5-20261015",
+      "variantId": "cartier-wsta0108-black-leather",
+      "reference": "WSTA0108",
+      "dial": "Black lacquered",
+      "bracelet": "Semi-matte black alligator leather",
+      "material": "Steel",
+      "size": 25.5,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0108.html",
+      "reviewedSourceId": "cartier-exclusive-in-pass5",
+      "sourceUrl": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0108",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 42300000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Retailer-labelled MRP; manufacturer RRP not independently confirmed",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Inclusive of all taxes according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:33:52.4755964Z",
+      "observedAt": "2026-10-15T09:33:52.4755964Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "httpStatus": 200,
+      "responseSha256": "51abd539f98fb7fa4dc05bc9e58e933ff9b5fbbacad3ec570352ecdb8992220c",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "method": "Ordinary public HTTPS GET returned200. SHA-256 fingerprints UTF-8 decoded response. Visible INR MRP, full reference and description matched original JSON-LD amount/currency and SKU/MPN. Point-in-time observation, no guarantee of stock or checkout amount.",
+      "evidence": "Visible Ref WSTA0108 and MRP INR423000, Inclusive of all taxes; JSON-LD sku/mpn WSTA0108 and priceCurrencyINR price423000.00. Full product description explicitly matches black lacquer dial, steel case33.7×25.5mm, semi-matte black alligator strap and quartz movement. No specification replacement or stock flag imported.",
+      "matchingNotes": "Full reference plus explicit configuration tuple matches existing manufacturer record. Image filenames retain WSTA0072; images are neither used nor treated as reference or permission evidence. Unlike held Kapoor candidate, the Exclusive Lines description itself contains no conflicting WSTA0072 reference."
+    }
+  ],
+  "unavailable": [
+    {
+      "reference": "WSTA0108",
+      "country": "IN",
+      "sourceUrl": "https://artoftimeindia.com/products/tank-must-large-quartz-steel-leather-wsta0108",
+      "attemptedAt": "2026-10-15T09:33:51.3879025Z",
+      "httpStatus": 429,
+      "reason": "Single ordinary request in this pass rate limited; no retry or refresh of prior snapshots. Qualified observation comes from separate Exclusive Lines source."
+    },
+    {
+      "reference": "WSTA0056",
+      "country": "IN",
+      "sourceUrl": "https://exclusivelinesindia.com/p/cartier-tank-WSTA0056",
+      "attemptedAt": "2026-10-15T09:33:57.4623394Z",
+      "httpStatus": 200,
+      "responseSha256": "a3a49b7fd4e795eec1ba84e00b8a77e7ffd29f1cba7ddffae131c12e2a473b98",
+      "reason": "HTTP200 non-product response contained no exact reference, MRP or currency/price match. HTTP success alone is not price evidence; leave unavailable."
+    },
+    {
+      "reference": "WSTA0041",
+      "country": "AE",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0041",
+      "attemptedAt": "2026-10-15T09:34:01.6136116Z",
+      "httpStatus": 429,
+      "reason": "Single ordinary request rate limited; no current product evidence and no retry. Leave unavailable."
+    },
+    {
+      "reference": "WSTA0056",
+      "country": "AE",
+      "reason": "Bounded search found marketplace/independent dealer asking listings or stale snapshots, not qualified current manufacturer or authorised local retailer original retail. None imported."
+    }
+  ],
+  "publicationNote": "reviewDecision=published denotes research-preview eligibility following existing evidence-file schema, not permission for public commercial publication. rights=pending retained. Prior failed checks and cached manufacturer observations have not been refreshed. No FX conversion, seller verification, availability, verified sale or trend invented."
+}

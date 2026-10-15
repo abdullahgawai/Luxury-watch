@@ -1,0 +1,64 @@
+{
+  "reviewedSources": [
+    {
+      "id": "cartier-calibre-archive-pass5",
+      "brand": "Cartier",
+      "country": "AE",
+      "category": "authorised_retailer",
+      "title": "Calibre88 UAE · archived Cartier catalogue evidence",
+      "productUrls": [
+        "https://www.calibre88.com/products/wsta0040"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Dubai&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Calibre 88 Dubai",
+        "checkedAt": "2026-10-15T09:34:28.8441271Z",
+        "httpStatus": 200,
+        "responseSha256": "a5e659f9904a413c04c7b2cf4378cd46004bf9227ffc74a97e0f51bf5296b5c1",
+        "evidence": "Cartier watch-retailer search: Dubai - Calibre 88, Building 4 Sheikh Zayed Road Shop 45, Dubai, 04 341 8285, Products Available Watches. Retailer relationship only; data and photo publication permission is not established."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.calibre88.com/products/wsta0040",
+          "variantId": "cartier-wsta0040-silver-leather",
+          "reference": "WSTA0040",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0040"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wsta0040-silver-leather-retail-ae-archive-pass5-20261015",
+      "variantId": "cartier-wsta0040-silver-leather",
+      "reference": "WSTA0040",
+      "dial": "Silvered flinqué",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 31,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0040",
+      "reviewedSourceId": "cartier-calibre-archive-pass5",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0040",
+      "country": "AE",
+      "currency": "AED",
+      "amountMinor": 2080000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price in cached text; current retail unconfirmed",
+      "condition": "New (retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included in cached product text; breakdown not stated",
+      "observedAt": "2026-10-15T09:35:30Z",
+      "checkedAt": "2026-10-15T09:35:30Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "retrievalMethod": "cached_web_research",
+      "retrievalCacheAgeLabel": "Crawled 2 days ago at review",
+      "reviewDecision": "archived_research",
+      "archivalReason": "The retailer page was reviewed through a two-day-old web cache. A direct product request returned HTTP 429, so current UAE retail remains unavailable. This cached amount is excluded from current prices and history; the review date is not a price-effective date.",
+      "method": "Reviewed cached public product text, including exact WSTA0040 reference, AED20800 and taxes included. Ordinary direct request was rate-limited; it did not produce a new live price observation.",
+      "evidence": "Cached retailer description names WSTA0040, automatic movement, extra-large steel case and black leather strap. Remaining exact dial and dimensions retain manufacturer evidence. Cached currency/amount is corroborating evidence only; the earlier product JSON without currency is not promoted to current retail."
+    }
+  ],
+  "reviewScope": "Read-only cached product source; current price unavailable. No stock, image licence or historical price inference."
+}

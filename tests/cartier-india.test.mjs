@@ -21,8 +21,8 @@ test('direct response evidence survives assembly and is required by protected re
 test('the silver quartz Tank uses its own current SKU while mismatched listings stay unavailable',()=>{
  const w=researchWatches.find(w=>w.reference==='WSTA0041'),p=publishedObservations(w,'IN')[0],expected=india.observations.find(p=>p.reference==='WSTA0041'),source=w.sources.find(s=>s.id===p.sourceId);
  assert.equal(p.amountMinor,40400000);assert.equal(p.checkedAt,expected.checkedAt);assert.equal(p.responseSha256,expected.responseSha256);assert.match(source.authorisation.url,/stores.cartier.com\/search\?q=Mumbai/);assert.match(p.taxStatus,/Taxes included/);assert.equal(p.configurationId,w.configurationId);assert.doesNotThrow(()=>validateRecord(w,false));
- for(const ref of ['WSTA0108','WSTA0056'])assert.equal(publishedObservations(researchWatches.find(w=>w.reference===ref),'IN').length,0);
- assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'IN')).length,18);assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'AE')).length,23);
+ for(const ref of ['WSTA0056'])assert.equal(publishedObservations(researchWatches.find(w=>w.reference===ref),'IN').length,0);
+ assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'IN')).length,19);assert.equal(researchWatches.flatMap(w=>publishedObservations(w,'AE')).length,23);
  assert.equal(india.unavailable.find(x=>x.attemptedReference==='WSTA0041').httpStatus,200);
  assert.equal(researchWatches.flatMap(w=>w.prices).filter(p=>p.sourceId.startsWith('cartier-wsta0040-silver-leather-retail-in-current-pass4')).length,0);
 });

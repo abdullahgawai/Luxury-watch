@@ -1,0 +1,88 @@
+{
+  "checkedAt": "2026-10-15T09:35:43.195Z",
+  "scope": "Focused alternative documentary/museum/Commons category pass. Metadata-only evidence file; no catalogue/image publication, native Sites or Git changes.",
+  "candidates": [
+    {
+      "id": "cartier-santos-prague-large",
+      "fileTitle": "File:Cartier Santos wristwatch.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Santos_wristwatch.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Cartier_Santos_wristwatch.jpg",
+      "author": "Pittigrilli",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:Pittigrilli",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "photographDate": "2022-05-02",
+      "visualReview": "Actual shop-display watch in CartierPrague; metalbracelet,silverRoman,bluedhands,DATEaperture6,contemporarycontouredbezel. No printedart. OriginaldownloadedtoTEMPandinspected.",
+      "candidateReference": null,
+      "status": "held_reference_ambiguous_large_model_not_prioritized_medium",
+      "why": "DATE6excludesWSSA0029medium(noDate). PrimaryWSSA0009 andWSSA0018 bothlarge39.8mm/steel/silveropaline/steelSmartLink/date. Photographcaptiondoesnotstatecommercialreference; visibleviewdoesnotresolveboth. No diameter/braceletoriginality inferredfrompixelappearance.",
+      "primaryComparisons": [
+        {
+          "reference": "WSSA0009",
+          "sourceUrl": "https://www.cartier.com/en-hk/watches/collections/santos-de-cartier/santos-de-cartier-watch-CRWSSA0009",
+          "evidence": "Cachedmanufacturerdescriptionlarge1847MCSteel/silveropaline/steelSmartLinkpluscalfskin39.8mm100m,datefunction."
+        },
+        {
+          "reference": "WSSA0018",
+          "sourceUrl": "https://www.cartier.com/en-mc/watches/collections/santos-de-cartier/santos-de-cartier-watch-CRWSSA0018",
+          "evidence": "Cachedmanufacturerdescriptionlarge1847MCSteel/silveropaline/steelSmartLinkpluscalfskin39.8mm100m,datefunction."
+        },
+        {
+          "reference": "WSSA0029",
+          "sourceUrl": "https://www.cartier.com/en-de/watches/collections/santos-de-cartier/santos-de-cartier-watch-CRWSSA0029",
+          "evidence": "Medium35.1mm technicalfunctionsonlycentral seconds,hours,minutes; photo'sdate6iswrongconfiguration."
+        }
+      ]
+    },
+    {
+      "id": "cartier-santos-100-medium",
+      "fileTitle": "File:Cartier Santos 100 medium.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Santos_100_medium.jpg",
+      "author": "EMore98",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:EMore98",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "photographDate": "2025-02-10",
+      "visualReview": "Actualwristphoto oldSantos100thickseparatebezel blackalligator-patternstrap, silverRoman, AUTOMATICtext, nodate.",
+      "status": "rejected_for_existing_current_santos",
+      "why": "FamilycaptionexplicitSantos100. Older100generation/strap differfromWSSA0029steelbracelet; fullcommercialrefabsent. Don'tconfusephotographcapturedate2025withmodelgeneration."
+    },
+    {
+      "id": "cartier-tank-guysie-2013",
+      "fileTitle": "File:Cartier Tank.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Tank.jpg",
+      "author": "Guy Sie",
+      "authorUrl": "https://www.flickr.com/photos/guysie/8708191767",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "photographDate": "2013-05-05",
+      "status": "rejected_for_prioritized_modern_tankmust",
+      "why": "Photographpredates2021TankMustrelaunch; captiononlyLesMustdeCartierTank, noexactreference. CannotrepresentWSTA0041/WSTA0108/currentconfiguration."
+    }
+  ],
+  "museumChecks": [
+    {
+      "institution": "TheMetropolitanMuseumofArt",
+      "sourceUrl": "https://www.metmuseum.org/art/collection/search/488150",
+      "object": "CartierWatch1929,43.81ab",
+      "result": "PrimarymuseumrecordexpresslyNoimageavailable; neither modernTank/Santos norusablephotograph. GeneralOpenAccesspolicydoesnotprovideamissingimage."
+    },
+    {
+      "institution": "VictoriaandAlbertMuseum",
+      "sourceUrl": "https://collections.vam.ac.uk/",
+      "result": "Searchdomainblockedrobots; no exactconfiguration/licenceassertion made."
+    }
+  ],
+  "crosswalkResult": "No newly verified Cartier4240/3800 commercialreferencecrosswalk. Existingheldstatuspreserved.",
+  "acceptedPhotoCount": 0,
+  "potentialNewDataEvidence": {
+    "reference": "WSSA0029",
+    "field": "powerReserve",
+    "cachedValue": 40,
+    "unit": "hours",
+    "sourceUrl": "https://www.cartier.com/en-de/watches/collections/santos-de-cartier/santos-de-cartier-watch-CRWSSA0029",
+    "evidence": "CachedprimarytechnicaltablePOWERRESERVE40HOUR alsoCH/LTpages. Not writtenintocatalogue; requirerecheckbeforeresolvingunavailablefield.",
+    "notPriceOrPhotoApproval": true
+  },
+  "conclusion": "No qualified exact prioritized configuration image. Keepmissingphotosunavailable; preserveexistingvisual-inferencelimits. No manufacturerimagecopyrightreuse orAIwatchsubstitution."
+}

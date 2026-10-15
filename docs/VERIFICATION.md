@@ -82,3 +82,9 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - Browser QA used the built Worker locally: Tank XL shows INR590000 with Exclusive Lines MRP/tax/source and Cartier locator; switching to UAE shows unavailable. WSTA0041 shows INR404000 and its own Art Of Time source/Cartier Mumbai locator. Escape closes source dialogs.
 - A390px three-watch comparison displays404000/590000/493000 INR with independent sources. The670px table remains in its334px scroll container; document width and scroll width are both375px. Screenshot `screenshots/cartier-india-current.png` shows the new Tank XL pricing/date/tax basis.
 - No new photo qualified. Matching limitations, missing India prices and production data/permission gates remain explicit. No field performance measurement or full accessibility certification is claimed.
+
+## Remaining Cartier gaps — 15 October 2026
+
+-41 automated tests pass. Added checks cover WSTA0108 INR423000, exact source/date/hash/tax basis, unchanged UAE15000 and separate archived14600 evidence, and Tank XL cachedAED20800 exclusion from current-price filters/comparison/history/premiums. Existing access, persistence and corrections tests pass. TypeScript passes.
+- No new exact licensed photo qualified. Missing-photo states and existing visual-match disclosures are preserved. New cached evidence cannot imply a live source check or stock verification.
+- Production build passes. Browser verified WSTA0108 India INR423000 source dialog, Cartier locator, check date and inclusive-tax basis. Tank XL UAE remains current-retail unavailable while the separate archive shows AED20800, two-day cache label and direct-request429 limitation. UAE comparison shows unavailable/15000 rather than20800/15000. At390px both document widths measure375px. Screenshot: `screenshots/cartier-black-tank-india.png`.
