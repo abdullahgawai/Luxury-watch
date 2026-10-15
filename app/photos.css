@@ -12,3 +12,4 @@
 .retail-gap-review{border-left:2px solid var(--line,#d8d5cb);padding:.5rem 0 .5rem .75rem;margin:.75rem 0}.retail-gap-review p{margin:.5rem 0}.retail-gap-review a{text-decoration:underline;text-underline-offset:3px}
 
 .operational-checks{padding:1.5rem;border:1px solid var(--border);margin:2rem 0}.operational-checks ul{padding-left:1.5rem}.operational-checks li{margin:.75rem 0}
+.editorial-pagination{border-block:1px solid var(--border);padding:1rem 0;margin:1.25rem 0}.editorial-pagination p{margin:0 0 .75rem}.editorial-pagination .actions{display:flex;flex-wrap:wrap;gap:.75rem}.revision-history{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}.revision-history form>button{margin-top:1rem}.revision-history select{width:100%}.admin-record{overflow-wrap:anywhere}.admin-record pre,.provider-evaluation pre,.audit-list pre{max-width:100%;overflow:auto}.editorial-pagination button:disabled{cursor:default}

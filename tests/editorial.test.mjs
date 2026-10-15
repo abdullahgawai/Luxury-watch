@@ -11,7 +11,7 @@ const statement=(sql,values=[])=>({bind(...v){return statement(sql,v);},async fi
 globalThis.testEnv={DB:{prepare:statement,async batch(a){sqlite.exec('BEGIN');try{const r=a.map(s=>sqlite.prepare(s.sql).run(...s.values));sqlite.exec('COMMIT');return r;}catch(e){sqlite.exec('ROLLBACK');throw e;}}},EDITOR_USER_IDS:'editor',DATA_MODE:'production'};
 const b=await build({entryPoints:['lib/editorial.ts'],bundle:true,write:false,platform:'node',format:'esm',plugins:[{name:'test-env',setup(b){b.onResolve({filter:/^cloudflare:workers$/},()=>({path:'env',namespace:'test'}));b.onLoad({filter:/.*/,namespace:'test'},()=>({contents:'export const env = globalThis.testEnv;',loader:'js'}));}}]});
 const {editorialApi}=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));
-async function call(path,body,editor=true,extra={}){const req=new Request('https://test.local/api/'+path.join('/'),{method:body===undefined?'GET':'POST',headers:{'content-type':'application/json',origin:'https://test.local',...(editor?{'oai-authenticated-user-id':'editor'}:{}),...extra},body:body===undefined?undefined:JSON.stringify(body)});const r=await editorialApi(req,path);return {status:r.status,data:await r.json()};}
+async function call(path,body,editor=true,extra={},query=''){const req=new Request('https://test.local/api/'+path.join('/')+(query?'?'+query:''),{method:body===undefined?'GET':'POST',headers:{'content-type':'application/json',origin:'https://test.local',...(editor?{'oai-authenticated-user-id':'editor'}:{}),...extra},body:body===undefined?undefined:JSON.stringify(body)});const r=await editorialApi(req,path);return {status:r.status,data:await r.json()};}
 test('server rejects logged-out editor access, cross-origin writes, and non-editor identity',async()=>{assert.equal((await call(['admin'],undefined,false)).status,403);assert.equal((await call(['admin'],undefined,true,{'oai-authenticated-user-id':'outsider'})).status,403);assert.equal((await call(['admin','imports'],{},true,{origin:'https://evil.test'})).status,403);});
 test('imports are idempotent, publication requires review, revisions rollback and moderation persist',async()=>{
  const record=structuredClone(demoWatches[0]);record.demo=false;record.sources.forEach(s=>s.rights='approved');const key={'idempotency-key':'test-import-001'};
@@ -60,4 +60,49 @@ test('health checks are protected, count freshness and never expose secrets or c
  }finally{delete globalThis.testEnv.THEWATCHAPI_TOKEN;for(const [id] of fixtures)sqlite.prepare('DELETE FROM observations WHERE id=?').run('health-'+id);}
  const db=globalThis.testEnv.DB;globalThis.testEnv.DB={prepare(){throw new Error('SENSITIVE DATABASE ERROR');}};
  try{const r=await call(['admin','health']);assert.equal(r.status,503);assert.ok(!JSON.stringify(r).includes('SENSITIVE'));}finally{globalThis.testEnv.DB=db;}
+});
+
+async function drain(path,state='all'){
+ const rows=[],cursors=new Set();let cursor=null;
+ do{const response=await call(path,undefined,true,{},new URLSearchParams({state,...(cursor?{cursor}:{})}).toString());assert.equal(response.status,200);assert.ok(response.data.rows.length<=25);rows.push(...response.data.rows);cursor=response.data.nextCursor;assert.equal(response.data.hasMore,!!cursor);if(cursor){assert.ok(!cursors.has(cursor));cursors.add(cursor);}assert.ok(cursors.size<30);}while(cursor);
+ assert.equal(new Set(rows.map(row=>row.id)).size,rows.length);return rows;
+}
+test('all editorial queues remain reachable beyond 100 rows with tied timestamps and bounded pages',async()=>{
+ const at='2026-10-14T12:00:00.000Z';
+ for(let i=0;i<107;i++){
+  const id='pagination-'+String(i).padStart(3,'0');
+  sqlite.prepare('INSERT INTO records VALUES(?,?,?,?,?,?,?,?)').run(id,'Synthetic test','TEST-'+i,'fixture','{}',i%2?'draft':'review',1,at);
+  sqlite.prepare('INSERT INTO corrections VALUES(?,?,?,?,?,?,?)').run(id,'/synthetic-test','test','Synthetic pagination only','test@example.invalid',i%2?'pending':'resolved',at);
+  sqlite.prepare('INSERT INTO audit VALUES(?,?,?,?,?,?,?)').run(id,'test',id,'synthetic',null,'{}',at);
+ }
+ try{
+  for(const table of ['records','corrections','audit']){const rows=await drain(['admin','queues',table]),expected=sqlite.prepare(`SELECT id FROM ${table} ORDER BY ${table==='records'?'updated_at':table==='corrections'?'created_at':'at'} DESC,id DESC`).all().map(row=>row.id);assert.deepEqual(rows.map(row=>row.id),expected);}
+  const pending=await drain(['admin','queues','corrections'],'pending');assert.ok(pending.length>25);assert.ok(pending.every(row=>row.state==='pending'));
+  const drafts=await drain(['admin','queues','records'],'draft');assert.ok(drafts.every(row=>row.state==='draft'));
+  const first=(await call(['admin','queues','corrections'],undefined,true,{},'state=pending')).data;
+  sqlite.prepare('INSERT INTO corrections VALUES(?,?,?,?,?,?,?)').run('pagination-new','/test','test','Synthetic new arrival',null,'pending','2026-10-16T12:00:00.000Z');
+  const second=await call(['admin','queues','corrections'],undefined,true,{},new URLSearchParams({state:'pending',cursor:first.nextCursor}).toString());assert.equal(second.status,200);assert.ok(!second.data.rows.some(row=>first.rows.some(previous=>previous.id===row.id)));
+ }finally{for(const table of ['records','corrections','audit'])sqlite.prepare(`DELETE FROM ${table} WHERE id LIKE 'pagination-%'`).run();}
+});
+test('queue cursors reject cross-filter reuse, malformed inputs and unauthorised readers',async()=>{
+ for(const path of [['admin','queues','records'],['admin','queues','corrections'],['admin','queues','audit'],['admin','revisions',demoWatches[0].id]]){
+  assert.equal((await call(path,undefined,false)).status,403);assert.equal((await call(path,undefined,true,{'oai-authenticated-user-id':'outsider'})).status,403);
+ }
+ const token=Buffer.from(JSON.stringify([1,JSON.stringify(['corrections','pending',null]),'2026-10-14T12:00:00Z','id'])).toString('base64url');
+ for(const query of ['cursor=bad!','cursor='+('A'.repeat(1025)),'state=invalid','cursor='+token,'state='+encodeURIComponent("pending' OR 1=1 --")])assert.equal((await call(['admin','queues','records'],undefined,true,{},query)).status,400);
+ assert.equal((await call(['admin','queues','corrections'],undefined,true,{},'state=all&cursor='+token)).status,400);
+ assert.equal((await call(['admin','queues','secrets'])).status,404);assert.equal((await call(['admin','revisions','missing'])).status,404);
+ const database=globalThis.testEnv.DB;globalThis.testEnv.DB={prepare(){throw new Error('SECRET SQL ERROR');}};
+ try{const r=await call(['admin','queues','records']);assert.equal(r.status,503);assert.ok(!JSON.stringify(r).includes('SECRET'));}finally{globalThis.testEnv.DB=database;}
+});
+test('per-record history reaches revisions older than the global 300 cutoff and rollback stays a draft',async()=>{
+ const record=JSON.parse(sqlite.prepare('SELECT payload FROM records LIMIT 1').get().payload);record.id='history-test';record.status='draft';record.prices=[];const payload=JSON.stringify(record);
+ sqlite.prepare('INSERT INTO records VALUES(?,?,?,?,?,?,?,?)').run(record.id,record.brand,record.reference,'synthetic-history',payload,'draft',306,'2026-10-14T12:00:00Z');
+ for(let revision=1;revision<=306;revision++)sqlite.prepare('INSERT INTO revisions VALUES(?,?,?,?,?,?)').run('history-'+revision,record.id,revision,payload,'test','2026-10-14T12:00:00Z');
+ try{
+  const rows=await drain(['admin','revisions',record.id]);assert.equal(rows.length,306);assert.equal(rows[0].revision,306);assert.equal(rows.at(-1).revision,1);assert.ok(rows.every(row=>row.record_id===record.id&&!Object.hasOwn(row,'payload')));
+  const first=(await call(['admin','revisions',record.id])).data;
+  assert.equal((await call(['admin','revisions',demoWatches[0].id],undefined,true,{},'cursor='+first.nextCursor)).status,400);
+  const restored=await call(['admin','records',record.id],{action:'rollback',revision:306,targetRevision:1});assert.equal(restored.status,200);assert.equal(restored.data.state,'draft');assert.equal(restored.data.revision,307);
+ }finally{sqlite.prepare('DELETE FROM revisions WHERE record_id=?').run(record.id);sqlite.prepare('DELETE FROM audit WHERE entity_id=?').run(record.id);sqlite.prepare('DELETE FROM records WHERE id=?').run(record.id);}
 });

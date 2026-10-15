@@ -11,10 +11,11 @@ cd 'C:\Users\abdul\OneDrive\文档\assessment\luxury-watch-explorer'
 npm run install:ci
 npm run build
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_organic_micromax.sql
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_editorial_queue_indexes.sql
 npm run dev
 ```
 
-Apply the migration once to a fresh local database; do not replay it on an already migrated database. Development prints http://127.0.0.1:5173/. If this Windows npm shim fails, run its JavaScript entrypoint directly:
+Apply both migrations once, in order, to a fresh local database. For a database already on 0000, apply only 0001; do not replay a migration that has succeeded. Development prints http://127.0.0.1:5173/. If this Windows npm shim fails, run its JavaScript entrypoint directly:
 
 ```powershell
 node 'C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js' run install:ci
@@ -44,6 +45,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 - 2–3 configuration comparison with contained mobile horizontal scrolling; device-local favourites and market persistence.
 - Source-bound history plot and accessible table when at least two comparable actual observations exist; no invented preview history.
 - D1 schema/migration, validated idempotent drafts, review/publication/withdrawal, immutable configuration identity, snapshots, audit history and rollback to draft.
+- Paginated editorial queues, pending-correction filters and per-record revision history with explicit restore to draft; older entries stay reachable beyond the previous limits.
 - Server-side authenticated editor allowlist, same-origin mutation checks, bounded inputs and correction rate limits. Working correction receipt and moderation workflow.
 - Editor-only system checks for database readiness, stale price checks and correction backlog; repeatable encrypted synthetic D1 recovery rehearsal (hosted backup/alerts remain unconfigured).
 - Disabled-by-default server TheWatchAPI evaluation adapter with timeout, quota guard and unresolved candidates; no credentials or claimed live integration.

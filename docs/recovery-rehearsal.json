@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checkedAt": "2026-10-15T19:43:29.606Z",
+  "checkedAt": "2026-10-15T19:56:26.328Z",
   "scope": "Synthetic local D1 only; no hosted backup or restore verified",
   "tables": [
     {
@@ -52,9 +52,9 @@
       "rows": 1
     }
   ],
-  "sourceDigest": "2de115d9bb1341315776e6172ef58565cb6d8fb36ea53001733df62e950e6691",
-  "restoredDigest": "2de115d9bb1341315776e6172ef58565cb6d8fb36ea53001733df62e950e6691",
-  "sqlDigest": "6c4e136bb4442f6074f59071b99f36a19ea46aaa56010656bdb29de98b69df6f",
+  "sourceDigest": "e7df4e8864b8758db195267d3af2ccbf29c14c96a382b1fc661746144a135cc9",
+  "restoredDigest": "e7df4e8864b8758db195267d3af2ccbf29c14c96a382b1fc661746144a135cc9",
+  "sqlDigest": "97b17ee0118b0c7fc376c6fd05a7b26406ebde113685fb800fadb06c9a33f329",
   "checks": [
     "Wrangler local SQL export/import",
     "AES-256-GCM round trip",

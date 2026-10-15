@@ -2,6 +2,7 @@ import { env } from 'cloudflare:workers';
 import { canEdit, validateRecord, nextState } from './domain.mjs';
 import { evaluateTheWatchAPI } from './provider';
 import {operationalHealth} from './operations';
+import {editorialPage,EditorialPageError} from './editorial-pages';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
@@ -40,9 +41,12 @@ export async function editorialApi(req:Request,path:string[]){
   if(admin&&req.method==='GET'&&path[1]==='health'){
    try{return json(await operationalHealth(db()));}catch{return json({error:'Database checks unavailable. No readiness result is confirmed.'},503);}
   }
-  if(admin&&req.method==='GET'){
-   const [records,corrections,audit,revisions]=await Promise.all([db().prepare('SELECT id,brand,reference,state,revision,updated_at,payload FROM records ORDER BY updated_at DESC LIMIT 100').all(),db().prepare('SELECT * FROM corrections ORDER BY created_at DESC LIMIT 100').all(),db().prepare('SELECT * FROM audit ORDER BY at DESC LIMIT 100').all(),db().prepare('SELECT id,record_id,revision,actor,at FROM revisions ORDER BY at DESC LIMIT 300').all()]);
-   return json({records:records.results,corrections:corrections.results,audit:audit.results,revisions:revisions.results,userId});
+  if(admin&&req.method==='GET'&&path.length===1)return json({userId});
+  if(admin&&req.method==='GET'&&((path[1]==='queues'&&path.length===3&&['records','corrections','audit'].includes(path[2]))||(path[1]==='revisions'&&path.length===3))){
+   try{
+    if(path[1]==='revisions'&&!await db().prepare('SELECT id FROM records WHERE id=?').bind(path[2]).first())return json({error:'Record not found'},404);
+    return json(await editorialPage(db(),path[1]==='revisions'?'revisions':path[2],new URL(req.url).searchParams,path[1]==='revisions'?path[2]:undefined));
+   }catch(e){return e instanceof EditorialPageError?json({error:e.message},400):json({error:'Editorial queue unavailable. Retry without repeating any mutation.'},503);}
   }
   if(admin&&req.method==='POST'&&path[1]==='imports'){
    const b=await body(req),r=validateRecord(b.record,true),key=req.headers.get('idempotency-key');
