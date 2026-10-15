@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-15T09:53:57.252Z",
+  "scope": "Bounded Openverse discovery followed by original photographer-source checks. This evidence file does not approve any photo, change the app, or modify catalogue data.",
+  "discovery": {
+    "endpoint": "https://api.openverse.org/v1/images/",
+    "licenseFilter": [
+      "by",
+      "by-sa",
+      "cc0",
+      "pdm"
+    ],
+    "queries": [
+      {
+        "q": "Cartier Santos",
+        "reportedResultCount": 29,
+        "pagesRead": [
+          1,
+          2
+        ]
+      },
+      {
+        "q": "Cartier Tank",
+        "reportedResultCount": 30,
+        "pagesRead": [
+          1,
+          2
+        ]
+      }
+    ],
+    "caveat": "Openverse metadata is discovery evidence only. A licence label does not establish that an uploader owns underlying manufacturer artwork or establish an exact watch reference."
+  },
+  "originalSourceChecks": [
+    {
+      "title": "FullControl-Product Photography",
+      "sourceUrl": "https://www.flickr.com/photos/8696648@N03/3562064359/",
+      "author": "Darkside_sithlord [Marlon Garcia]",
+      "authorUrl": "https://www.flickr.com/photos/8696648@N03",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "licenseVerifiedAtOriginal": true,
+      "reference": null,
+      "status": "held_no_watch_reference",
+      "evidence": "Original public HTML contains CC BY2.0 JSON-LD and rel=license link. Caption describes a product photography session conducted by Mr. Richard (Eyelight) Santos of Doha Pinoy Shooter Club; Santos is part of the instructor's name, not exact watch identification. No WSSA/WSTA commercial reference obtained.",
+      "underlyingImageVisualReview": false
+    },
+    {
+      "title": "CARTIER SANTOS MALLA COMBINADA CAUCHO Y ACERO",
+      "sourceUrl": "https://www.flickr.com/photos/12792493@N06/2140334461/",
+      "author": "nilda barales / relojes de lujo",
+      "authorUrl": "https://www.flickr.com/photos/12792493@N06",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "licenseVerifiedAtOriginal": true,
+      "reference": null,
+      "status": "rejected_for_existing_configurations",
+      "evidence": "Original public HTML verifies CC BY2.0 and title identifying mixed rubber and steel bracelet. Description is empty; no exact commercial reference. This differs from the requested steel bracelet/current Cartier configurations.",
+      "underlyingImageVisualReview": false
+    },
+    {
+      "title": "SANTOS-DUMONT",
+      "sourceUrl": "https://www.flickr.com/photos/150219019@N03/33829872106",
+      "author": "Johnson Watch Co",
+      "license": "Public Domain Mark 1.0 (Openverse index only)",
+      "licenseVerifiedAtOriginal": false,
+      "reference": null,
+      "status": "held_original_authority_and_reference_unverified",
+      "evidence": "Retailer stock image discovery, no established photographer ownership or manufacturer permission. Do not reuse a retail upload's PDM mark as proof of underlying manufacturer-art rights."
+    }
+  ],
+  "otherDiscoveryResults": {
+    "knownCommons": "Previously reviewed and held 4240, 3800, Santos large, Santos100, TankMust XL and green2021 photos recur. These were not relabelled or upgraded.",
+    "oldFlickrTank": "GuySie pre2021 Must series and a Tank mockup recur; they cannot substitute for current exact references.",
+    "newCommonsCaseReference": "Cartier Santos Demoiselle2698 appears, but no commercial manufacturer-reference crosswalk, exact dial/bracelet validation or underlying-rights review was completed. Not a qualified candidate."
+  },
+  "acceptedPhotos": [],
+  "matchingUpgrades": [],
+  "result": "No newly qualifying licensed exact-configuration photo. Keep absent images unavailable and preserve existing matching limitations.",
+  "noChanges": "No app/native Sites/Git changes, photographer contact, licence assumption, AI imagery, price or specification creation."
+}

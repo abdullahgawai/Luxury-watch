@@ -33,7 +33,7 @@ For a UI/server regression, redeploy the last successful saved Sites version usi
 - Approve brand/domain and operating owner/contact/retention policy.
 - Secure specification/price/image permissions and provider contracts.
 - Supply credentials through secure runtime settings; test actual coverage and quota/latency on 5–10 references.
-- Research coverage now meets 30–50 references: 38 distinct references / 39 configurations. Production rights review and editorial publication are still required. There are 34 local retail snapshots (14 India, 20 UAE) across twenty exact configurations, plus two older Cartier records excluded from current retail. Obtain corroborated Cartier/local gaps and establish ongoing original-source checks; research checks are not verified live prices.
+- Research coverage now meets 30–50 references: 38 distinct references / 39 configurations. Production rights review and editorial publication are still required. There are 42 eligible local retail research observations (19 India, 23 UAE), plus three archived Cartier records excluded from current retail. Obtain corroborated Cartier/local gaps and establish ongoing original-source checks; research checks are not verified live prices.
 - Ten openly licensed photos now cover nine configurations, including two Cartier visual mappings with reference/strap limitations displayed. The remaining 30 configurations still need matched licensed photos; see PHOTOGRAPHY.md for attribution, licence and rejection evidence.
 - Configure actual hosted editor IDs; verify hosted role and anonymous denial through dispatch.
 - Set production mode and confirm fixtures absent; enable production sitemap/indexing only at launch. Canonical origin and brand-specific metadata need final approved identity.

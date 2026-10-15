@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded remaining Cartier UAE current-retail review. No accepted prices; existing archived observations and their dates remain unchanged.",
+  "reviewedSources": [],
+  "observations": [],
+  "attempts": [
+    {
+      "url": "https://www.calibre88.com/products/wsta0040",
+      "failedAt": "2026-10-15T09:46:59Z",
+      "error": "Response status code does not indicate success: 429 (Too Many Requests)."
+    }
+  ],
+  "unavailable": [
+    {
+      "id": "cartier-wsta0040-silver-leather",
+      "reference": "WSTA0040",
+      "dial": "Silvered flinqué",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 31,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0040",
+      "country": "AE",
+      "currency": "AED",
+      "decision": "hold",
+      "reason": "One ordinary existing product-URL request returned429. Stopped requests immediately; no live price admitted and earlier archived AED20800 evidence remains unchanged."
+    },
+    {
+      "id": "cartier-wsta0041-silver-leather",
+      "reference": "WSTA0041",
+      "dial": "Silver",
+      "bracelet": "Black grained calfskin",
+      "material": "Steel",
+      "size": 25.5,
+      "configurationId": "tank-must-de-cartier%E8%85%95%E9%8C%B6-CRWSTA0041.html",
+      "country": "AE",
+      "currency": "AED",
+      "decision": "hold",
+      "reason": "No successful original local retail source in this bounded pass. Calibre requests stopped after first429; no guessed alternative product URLs or converted marketplace values admitted."
+    },
+    {
+      "id": "cartier-wsta0056-green-leather",
+      "reference": "WSTA0056",
+      "dial": "Green lacquered",
+      "bracelet": "Green alligator leather",
+      "material": "Steel",
+      "size": 25.5,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0056",
+      "country": "AE",
+      "currency": "AED",
+      "decision": "hold",
+      "reason": "No successful original local retail source in this bounded pass. Calibre requests stopped after first429; no guessed alternative product URLs or converted marketplace values admitted."
+    }
+  ],
+  "alternativeSourceReview": [
+    {
+      "url": "https://stores.cartier.com/search?q=Dubai&category=storeLocatorSearch&watches=true",
+      "method": "Ordinary direct GET HTTP200; public manufacturer watch-retailer results inspected during this pass.",
+      "evidence": "Dubai results list Cartier boutiques, Cartier Terminal1 ConcourseD airport location and Dubai-Calibre88 Shop45 Building4 SheikhZayedRoad, ProductsAvailableWatches. No second local online retailer with exact remaining product-price evidence was found."
+    },
+    {
+      "url": "https://stores.cartier.com/search?q=Abu%20Dhabi&category=storeLocatorSearch&watches=true",
+      "method": "Ordinary direct GET HTTP200; public manufacturer watch-retailer results inspected during this pass.",
+      "evidence": "AbuDhabi results list Cartier GalleriaAlMaryahIsland boutique and Cartier-TimeVallee YasMall GroundFloor Shop95/96, telephone025839587, ProductsAvailableWatches. Exact remaining retail prices were not exposed."
+    },
+    {
+      "url": "https://www.timevallee.com/locations/United%20Arab%20Emirates/abu-dhabi",
+      "method": "Public web-research search result, crawl labelledtoday.",
+      "evidence": "TimeVallee own YasMall location confirms Cartier brand portfolio and same AbuDhabi phone. No exact-reference original AED amount in inspected result."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "reference": "WSTA0041",
+      "url": "https://www.mrporter.com/en-ae/mens/product/cartier/luxury-watches/dress-watches/tank-must-337mm-stainless-steel-and-leather-watch-ref-no-wsta0041/11452292646754554",
+      "decision": "reject_local_retail",
+      "evidence": "Retrieved search text explicitly presents GBP2630.67 and Approx AED13079, and says unavailable for purchase in the location. The approximate converted amount is not original UAE retail."
+    },
+    {
+      "reference": "WSTA0040",
+      "url": "https://www.calibre88.com/products/wsta0040",
+      "decision": "hold_archived_only",
+      "evidence": "Search-retrieved AED20800 remains labelledtwo-week cache in this pass. A cached amount and successful locator relationship do not override the failed direct429 price check."
+    },
+    {
+      "references": [
+        "WSTA0041",
+        "WSTA0056"
+      ],
+      "decision": "reject_marketplace_or_nonlocal",
+      "evidence": "Search results were preowned asking prices, third-party price tables, or GBP retail. None admitted as original UAE retail."
+    }
+  ],
+  "nextRequirement": "A successful ordinary exact-reference original AED retailer/manufacturer response or a licensed local retail feed. No contact messages sent."
+}
