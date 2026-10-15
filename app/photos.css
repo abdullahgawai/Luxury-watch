@@ -10,3 +10,5 @@
 .prose.coverage-page{max-width:1320px}.coverage-page>.page-intro,.coverage-page>p{max-width:800px}
 
 .retail-gap-review{border-left:2px solid var(--line,#d8d5cb);padding:.5rem 0 .5rem .75rem;margin:.75rem 0}.retail-gap-review p{margin:.5rem 0}.retail-gap-review a{text-decoration:underline;text-underline-offset:3px}
+
+.operational-checks{padding:1.5rem;border:1px solid var(--border);margin:2rem 0}.operational-checks ul{padding-left:1.5rem}.operational-checks li{margin:.75rem 0}

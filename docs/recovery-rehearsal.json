@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-15T19:43:29.606Z",
+  "scope": "Synthetic local D1 only; no hosted backup or restore verified",
+  "tables": [
+    {
+      "name": "audit",
+      "rows": 1
+    },
+    {
+      "name": "corrections",
+      "rows": 1
+    },
+    {
+      "name": "fx_rates",
+      "rows": 1
+    },
+    {
+      "name": "images",
+      "rows": 1
+    },
+    {
+      "name": "imports",
+      "rows": 1
+    },
+    {
+      "name": "limits",
+      "rows": 1
+    },
+    {
+      "name": "listings",
+      "rows": 1
+    },
+    {
+      "name": "observations",
+      "rows": 1
+    },
+    {
+      "name": "records",
+      "rows": 1
+    },
+    {
+      "name": "revisions",
+      "rows": 1
+    },
+    {
+      "name": "sources",
+      "rows": 1
+    },
+    {
+      "name": "spec_evidence",
+      "rows": 1
+    }
+  ],
+  "sourceDigest": "2de115d9bb1341315776e6172ef58565cb6d8fb36ea53001733df62e950e6691",
+  "restoredDigest": "2de115d9bb1341315776e6172ef58565cb6d8fb36ea53001733df62e950e6691",
+  "sqlDigest": "6c4e136bb4442f6074f59071b99f36a19ea46aaa56010656bdb29de98b69df6f",
+  "checks": [
+    "Wrangler local SQL export/import",
+    "AES-256-GCM round trip",
+    "Tampering rejected",
+    "Wrong key rejected",
+    "All application rows identical",
+    "SQLite integrity check",
+    "Foreign-key check",
+    "Source database unchanged"
+  ],
+  "keyHandling": "Ephemeral rehearsal key; synthetic archives removed after verification",
+  "hostedRecovery": "not_verified"
+}

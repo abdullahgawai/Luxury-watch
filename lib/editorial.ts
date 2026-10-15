@@ -1,6 +1,7 @@
 import { env } from 'cloudflare:workers';
 import { canEdit, validateRecord, nextState } from './domain.mjs';
 import { evaluateTheWatchAPI } from './provider';
+import {operationalHealth} from './operations';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
@@ -35,6 +36,9 @@ export async function editorialApi(req:Request,path:string[]){
    if(!await limit(req.headers.get('cf-connecting-ip')||'local'))return json({error:'Submission limit reached. Try again in an hour.'},429);
    const ref=id();await db().prepare('INSERT INTO corrections(id,page,field,claim,contact,created_at) VALUES(?,?,?,?,?,?)').bind(ref,b.page,b.field,b.claim,b.contact||null,new Date().toISOString()).run();
    return json({id:ref,message:'Received for editorial review. No public record has been changed.'},201);
+  }
+  if(admin&&req.method==='GET'&&path[1]==='health'){
+   try{return json(await operationalHealth(db()));}catch{return json({error:'Database checks unavailable. No readiness result is confirmed.'},503);}
   }
   if(admin&&req.method==='GET'){
    const [records,corrections,audit,revisions]=await Promise.all([db().prepare('SELECT id,brand,reference,state,revision,updated_at,payload FROM records ORDER BY updated_at DESC LIMIT 100').all(),db().prepare('SELECT * FROM corrections ORDER BY created_at DESC LIMIT 100').all(),db().prepare('SELECT * FROM audit ORDER BY at DESC LIMIT 100').all(),db().prepare('SELECT id,record_id,revision,actor,at FROM revisions ORDER BY at DESC LIMIT 300').all()]);
@@ -78,7 +82,7 @@ export async function editorialApi(req:Request,path:string[]){
    validateRecord(payload,true);if(payload.id!==recordId)return json({error:'Stable ID cannot change'},400);
    const oldPayload=JSON.parse(current.payload);
    if(['brand','reference','dial','bracelet','material','size'].some(k=>payload[k]!==oldPayload[k]))return json({error:'Variant identity cannot change. Import a new configuration and withdraw the incorrect record.'},400);
-   payload.status=state;payload.demo=false;payload.prices=payload.prices.map((p:any)=>({...p,status:state}));
+   payload.status=state;payload.demo=false;payload.prices=payload.prices.map((p:any)=>({...p,status:p.status==='archived_research'?'archived_research':state}));
    const at=new Date().toISOString(),revision=current.revision+1,serialized=JSON.stringify(payload);
    // A conditional update + uniqueness of revision prevents concurrent overwrites;
    // D1 batch rolls back all statements on a constraint failure.

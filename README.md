@@ -39,12 +39,13 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 - Boutique homepage with original forest/ivory/champagne composition and responsive search.
 - Brand/model/reference/alias search; exact-reference ranking; brand, size, material, movement, collection and original local retail filters; URL search state and helpful empty results.
 - Stable configuration pages, sourced specifications, plain-language glossary, brand pages, methodology and field/source disclosures.
-- Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. Thirty-four original local retail research snapshots cover twenty exact configurations (14 India, 20 UAE), with two older Cartier records excluded from current pricing; no live feed is claimed. Cached checks disclose unknown price-effective dates and never become historical trends.
+- Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. Forty-three original local retail research observations (19 India, 24 UAE) are eligible, with three archived Cartier observations excluded from current pricing; no live feed is claimed. Cached checks disclose unknown price-effective dates and never become historical trends.
 - Deterministic comparable asking ranges, freshness, minor-unit money and provenance-preserving FX logic; no active FX feed.
 - 2–3 configuration comparison with contained mobile horizontal scrolling; device-local favourites and market persistence.
 - Source-bound history plot and accessible table when at least two comparable actual observations exist; no invented preview history.
 - D1 schema/migration, validated idempotent drafts, review/publication/withdrawal, immutable configuration identity, snapshots, audit history and rollback to draft.
 - Server-side authenticated editor allowlist, same-origin mutation checks, bounded inputs and correction rate limits. Working correction receipt and moderation workflow.
+- Editor-only system checks for database readiness, stale price checks and correction backlog; repeatable encrypted synthetic D1 recovery rehearsal (hosted backup/alerts remain unconfigured).
 - Disabled-by-default server TheWatchAPI evaluation adapter with timeout, quota guard and unresolved candidates; no credentials or claimed live integration.
 - Metadata, canonical paths, production catalogue sitemap, preview no-index policy, graceful error and 404 handling, reduced-motion support and basic security response headers.
 
@@ -52,7 +53,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 
 ```powershell
 node node_modules/typescript/bin/tsc --noEmit
-node --test tests/domain.test.mjs tests/editorial.test.mjs
+node --test tests/*.test.mjs
 node scripts/run-framework.mjs build
 ```
 
@@ -60,6 +61,6 @@ The integration suite runs the actual editorial handler against transactional SQ
 
 ## Honest launch status
 
-This is a functional private development release, **not ready for public launch**. It has 38 distinct researched references / 39 configurations, ten openly licensed photos covering nine configurations, and 34 original local retail research snapshots for twenty exact configurations, plus two separately archived Cartier source records. Other price/photo gaps stay unavailable. Production mode starts empty and cannot serve the preview catalogue. No subscriptions were purchased; no watch images were copied from brand websites. See [photography rights](docs/PHOTOGRAPHY.md) and [catalogue research](docs/CATALOGUE-RESEARCH.md) for evidence and connection requirements.
+This is a functional private development release, **not ready for public launch**. It has 38 distinct researched references / 39 configurations, ten openly licensed photos covering nine configurations, and 43 eligible original local retail research observations (19 India,24 UAE), plus three separately archived Cartier source records. Other price/photo gaps stay unavailable. Production mode starts empty and cannot serve the preview catalogue. No subscriptions were purchased; no watch images were copied from brand websites. See [photography rights](docs/PHOTOGRAPHY.md) and [catalogue research](docs/CATALOGUE-RESEARCH.md) for evidence and connection requirements.
 
 See [provider feasibility and connection requirements](docs/PROVIDER-FEASIBILITY.md), [editorial record format](docs/IMPORT-FORMAT.md) and [operations/launch runbook](docs/RUNBOOK.md). P1 accounts/enquiries and P2 professional tools are deliberately left for later roadmap stages.

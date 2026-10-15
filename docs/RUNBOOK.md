@@ -18,9 +18,24 @@ Corrections use a bounded, validated, same-origin JSON endpoint and durable hour
 
 ## Backup and restoration
 
-Local D1: export using Wrangler `d1 export DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --output backups/<dated-file>.sql`. Keep backups outside the source repository and access-restricted because they contain optional correction contact details. Verify restoration in a fresh disposable database using `d1 execute ... --file <backup>`. Never restore over the only live copy.
+Run the repeatable isolated rehearsal with Node 22.13+ and the locked dependencies:
 
+```powershell
+node scripts/rehearse-recovery.mjs
+```
+
+The script creates two disposable local D1 databases with a random test ID and synthetic rows across all 12 application tables. It exports schema and data separately, creates every referenced table before row insertion, and defers foreign-key checks during import. It encrypts the SQL using AES-256-GCM with a fresh ephemeral key, checks wrong-key/tamper rejection, restores the decrypted archive and compares every application row. Read-only SQLite checks validate the restored local database's integrity and foreign keys; D1's SQL authorizer does not expose integrity_check. It also verifies the source was unchanged. Temporary files and the rehearsal key are removed. This is a recovery test, **not a durable backup command or hosted recovery verification**.
+
+The checked-in sanitized result is `docs/recovery-rehearsal.json`. To refresh it, pass `--report` followed by its absolute JSON path. The report contains counts/digests and check outcomes, never SQL, correction contacts or keys. Real backups must remain outside Git, encrypted and access-restricted; `/backups/` is ignored as an additional precaution. Durable encryption-key custody and recovery access still need an operating owner. Do not use the ephemeral rehearsal key for real backups.
+
+For operator-managed D1 exports, use the installed Wrangler's documented `d1 export` flags; export does not accept `--persist-to`. Export schema/data separately and restore into a disposable database before any live recovery. Match the original migration/schema version. Never restore over the only live copy. Wrangler `--local` commands select local state only.
 Hosted D1 is provisioned by Sites. Identify the actual hosted database and operator-managed backup facility before launch; local `--local` commands do not back up hosted data. Configure a daily encrypted backup/retention policy through the chosen host facilities, record an operator and rehearse restore. Scheduled hosted backups, monitoring alerts and the hosted restore rehearsal are **not configured** in this preview; no supplied operations account/budget exists.
+
+## Protected system checks
+
+An allowlisted editor can run System checks in `/admin`, backed by read-only `GET /api/admin/health`. Missing/unauthorised identity gets 403, and unavailable database checks get a sanitized 503. It reports record counts, pending correction count/oldest date, published price freshness (30 days retail, 7 days other types) and hourly provider evaluation count. Archived prices are excluded; malformed/future check dates require review. At most 5000 observation rows are scanned, with an explicit partial-result warning above that limit. Only counts/configuration booleans are returned, never provider credentials, contacts or full audit payloads. The request check date does not refresh any catalogue source date.
+
+These manual checks are not scheduled monitoring. Alerts remain unconfigured and hosted recovery remains unverified even when database checks pass. Research mode is explicitly flagged; published database rows are not a validation of data rights. Publishing/reviewing/withdrawing a record now preserves archived_research observation status throughout the workflow.
 
 ## Incidents and rollback
 
