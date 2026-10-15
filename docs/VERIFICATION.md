@@ -5,7 +5,7 @@ Verified locally on 14–15 October 2026 (India time). Hosted deployment status 
 ## Automated checks
 
 - TypeScript: `node node_modules/typescript/bin/tsc --noEmit` — passed.
-- Domain/editorial/catalogue/retail: `node --test tests/*.test.mjs` — **28 tests passed**, including asset checksum/licence/configuration validation, primary/gallery metadata consistency, original local amounts, regional source matching, cached-history exclusion, public observation filtering and production research isolation.
+- Domain/editorial/catalogue/retail: `node --test tests/*.test.mjs` — **32 tests passed**, including asset checksum/licence/configuration validation, primary/gallery metadata consistency, original local amounts, regional source matching, cached-history exclusion, public observation filtering and production research isolation.
 - Deployable Vinext/Sites Worker: `node scripts/run-framework.mjs build` — passed. The Sites starter's build integration is retained. A middleware convention deprecation was noted; it does not fail this locked build.
 - Local D1 migration — all 14 schema statements applied successfully.
 - Local homepage — HTTP 200.
@@ -59,3 +59,12 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - Coverage page reports36 references/37 configurations, nine configurations with ten licensed photos,13 India and14 UAE retail observations; per-brand unavailable states agree with underlying records.
 - Addressed observed initial-load interaction failures by disabling photo/source/market controls until hydration; save/compare controls wait for device preferences. Comparison initial render reads URL identifiers rather than briefly claiming the selection is empty. The saved Cartier entry persisted across navigation.
 - Desktop screenshot: `docs/screenshots/cartier-licensed-photo.png`. Full-page screenshot API failed on this host; native viewport capture succeeded. Desktop visual review and mobile DOM measurements are recorded; no field performance or full WCAG compliance is claimed.
+
+## Remaining-market pass — 15 October 2026
+
+- 32 tests pass, including six new Tudor UAE exact-SKU amounts, one Omega India original-INR list price, separate older Cartier evidence, URL-to-variant source bindings and the existing editorial persistence/access controls. Original source dates remain unchanged after failed requests.
+- Coverage:38 references/39 configurations;34 eligible local retail research observations (14 India,20 UAE) across20 configurations; two archived Cartier amounts excluded from those counts. Ten licensed photos remain across nine configurations; no new asset was approved under an uncertain commercial-reference mapping.
+- Browser verified Tudor Black Bay54 AED16920 with its own black steel product URL and Tudor retailer-group locator. India switch preserves INR437200 and the separate Exclusive Lines source. Omega Diver300M India shows INR690300 as regular/list retail, with its manufacturer's older/conflicting authority-cache limitation visible in the evidence dialog.
+- Cartier WSTA0108 current retail is unavailable. Its expandable older evidence shows AED14600, five-month source-cache age, reviewed date, unknown publisher-effective date and manufacturer source link. It does not become a current-price filter result. WSSA0086 likewise retains AED17500/nine-month evidence separately; neither inherits another Cartier's photograph.
+- A three-watch mobile comparison immediately renders URL-selected Tudor/Omega/Cartier configurations. UAE prices are16920/27450/unavailable; the archived Cartier amount is absent. At390px document width375px and670px table stays within334px scroll region. Omega detail also has no document overflow at390px.
+- Source dialogs are keyboard-dismissable with Escape and now show the formatted amount and exact watch reference before the source narrative. Older source records remain excluded from freshness, premiums and history as well as headline retail and comparisons.

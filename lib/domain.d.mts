@@ -4,6 +4,7 @@ export const MARKET_CURRENCY:Record<string,string>;
 export function fresh(p:any,now?:number):boolean;
 export function publishedObservations(w:{id:string,prices:any[]},country?:string,now?:number):any[];
 export function observationStatus(p:any,now?:number):string;
+export function archivedResearchObservations(w:{id:string,prices:any[]},country:string,now?:number):any[];
 export function reliableHistoryObservations(w:{id:string,prices:any[]},country:string,type:string):any[];
 export function percentile(values:number[],q:number):number;
 export function askingRange(prices:any[],match:any,now?:number):{count:number,range:{low:number,median:number,high:number}|null,observations:any[],reviewOutliers?:string[]};

@@ -17,7 +17,21 @@
         "method": "Opened and read manufacturer locator page.",
         "evidence": "Tudor manufacturer locator identifies Exclusive Lines Kolkata Quest Mall as an Official Tudor watch retailer at Quest Mall, Kolkata, India.",
         "title": "Tudor official retailer locator · Exclusive Lines"
-      }
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://exclusivelinesindia.com/tudor/product/M79000N-0001",
+          "variantId": "tudor-79000n-black-steel",
+          "reference": "M79000N-0001",
+          "configurationId": "m79000n-0001"
+        },
+        {
+          "sourceUrl": "https://exclusivelinesindia.com/tudor/product/M25600TN-0001",
+          "variantId": "tudor-25600tn-black-titanium",
+          "reference": "M25600TN-0001",
+          "configurationId": "m25600tn-0001"
+        }
+      ]
     },
     {
       "id": "omega-rivoli-ae",
@@ -35,7 +49,27 @@
         "title": "Omega official retailer locator · Rivoli Dubai",
         "evidence": "Omega's own retailer locator identifies Dubai Rivoli, Al Fahidi Street, Dubai, United Arab Emirates, with watches among products and phone +97143536216. The manufacturer HK locale returns the same store identity in a newer cached retrieval. Newer manufacturer locator cache: two weeks old. Rivoli Group's Omega brand page points visitors to Rivoli stores, Omega boutiques and RivoliShop.com.",
         "checkedAt": "2026-10-15T04:42:43Z"
-      }
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.rivolishop.com/en-ae/product/00OMEGA-MOONWATCH-PROFESSIONAL-31030425001001",
+          "variantId": "omega-31030425001001-black-steel",
+          "reference": "310.30.42.50.01.001",
+          "configurationId": "watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001"
+        },
+        {
+          "sourceUrl": "https://www.rivolishop.com/en-ae/product/00OMEGA-DIVER-300M-21030422001001",
+          "variantId": "omega-21030422001001-black-steel",
+          "reference": "210.30.42.20.01.001",
+          "configurationId": "watch-omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm-21030422001001"
+        },
+        {
+          "sourceUrl": "https://www.rivolishop.com/en-ae/product/00OMEGA-PLANET-OCEAN-600M-21530442103001",
+          "variantId": "omega-21530442103001-blue-steel",
+          "reference": "215.30.44.21.03.001",
+          "configurationId": "watch-omega-seamaster-planet-ocean-600m-co-axial-master-chronometer-43-5-mm-21530442103001"
+        }
+      ]
     }
   ],
   "observations": [

@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-10-15T05:03:52.846Z",
+  "scope": "Bounded second asset pass. Evidence candidates only; no publication approval. Four originals visually reviewed from TEMP. No prices added.",
+  "candidates": [
+    {
+      "id": "cartier-santos-dumont-4240",
+      "fileTitle": "File:Cartier Santos Dumont al quarzo ref. 4240.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Santos_Dumont_al_quarzo_ref._4240.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Cartier_Santos_Dumont_al_quarzo_ref._4240.jpg",
+      "author": "EMore98",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:EMore98",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "photographDate": "2024-05-20",
+      "actualPhotoVerified": true,
+      "visualEvidence": "Actual wrist with skin/hairs and natural reflections; steel case/bezel with eight screws, silver sunray Roman dial, two blued hands, dark alligator-pattern strap. Not printed artwork.",
+      "sourceReference": "4240",
+      "candidateCommercialReference": "WSSA0022",
+      "commercialCrosswalkVerified": false,
+      "status": "hold_commercial_reference_and_strap_colour_confirmation",
+      "manufacturerSources": [
+        {
+          "url": "https://int.cartier.com/de-eu/kollektionen/watches/herrenuhren/santos-de-cartier/santos-dumont/wssa0022-santos-dumont.html",
+          "evidence": "Cached manufacturer product description WSSA0022 LARGE43.5x31.4mm/Steel/Quartz/silveredsunrayRoman/navyalligator/30m. No4240identifier."
+        },
+        {
+          "url": "https://www.cartier.com/en-kw/watches/collections/santos-de-cartier/santos-dumont-watch-CRWSSA0023.html",
+          "evidence": "WSSA0023 SMALL38x27.5mm otherwisevisuallysimilar; cannotinfercasewidthfromwristimagealone."
+        }
+      ],
+      "notes": "A manufacturer development page for two-toneW2SA0037 lists4240 andlarge43.5x31.4; it doesnotuniquelycrosswalksteelWSSA0022. Do not attach to WSSA0023orSantosWSSA0029."
+    },
+    {
+      "id": "cartier-tank-solo-3800",
+      "fileTitle": "File:Cartier Tank Solo XL ref. 3800.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartier_Tank_Solo_XL_ref._3800.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Cartier_Tank_Solo_XL_ref._3800.jpg",
+      "author": "EMore98",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:EMore98",
+      "license": "CC BY-SA4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "photographDate": "2025-02-17",
+      "actualPhotoVerified": true,
+      "visualEvidence": "Actual wrist/skin/tattoo photo; TankSolo flatbrancards, silverRoman, central seconds anddate6,AUTOMATIC, darkalligator-patternstrap. Not printed artwork.",
+      "sourceReference": "3800",
+      "candidateCommercialReference": "WSTA0029",
+      "commercialCrosswalkVerified": false,
+      "status": "hold_exact_commercial_mapping_and_strap_confirmation",
+      "manufacturerSources": [
+        {
+          "url": "https://www.userguide.cartier.com/WSTA0029.html",
+          "evidence": "Primary userguide confirmsTankSolo interchangeableleatherstrapmodel,secondsstop,datefunctions."
+        },
+        {
+          "url": "https://www.cartier.com/ar-sa/الساعات/المجموعات/تانك/ساعة-من-مجموعة-%22تانك-سولو%22-CRWSTA0029.html",
+          "evidence": "Cached primary exactWSTA0029 page confirms Steel31mmcasewidth/Automatic/30m. Descriptionlength40.85mmthickness7.65mm conflicts technicaltable40.6mmthickness7.78mm; do notselectonewithoutclarification."
+        }
+      ],
+      "notes": "No primary3800commercialcrosswalk located. Do not assignoldTankSolophoto tocurrentTankMust."
+    },
+    {
+      "id": "omega-speedmaster-schumacher-351850",
+      "fileTitle": "File:Omega Speedmaster Schumacher Edition10 36 22 158000.jpeg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_Speedmaster_Schumacher_Edition10_36_22_158000.jpeg",
+      "author": "Pittigrilli~commonswiki",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:Pittigrilli",
+      "license": "CC BY-SA4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "photographDate": "2020-05-27",
+      "actualPhotoVerified": true,
+      "visualEvidence": "Companionbackphoto originalwasvisuallyinspected; actualheldwatch steelbracelet withengravedSchumacherWorldChampion2000. Frontsamewatch original linkedbyphotographer, currentfrontversionbrightnessimproved2022 sochangesmustdisclosed.",
+      "sourceReference": "3518.50",
+      "candidateCommercialReference": null,
+      "commercialCrosswalkVerified": false,
+      "status": "viable_licensed_exact_photographer_reference_pending_manufacturer_archive",
+      "manufacturerSources": [],
+      "notes": "Commons primaryphotographerexplicitly3518.50. Manufacturerarchive searchblockedrobots; noverifiedmanufacturer specifications, full.00suffixnotassumed. Do not mistake reference3518.50 for movementcalibre despiteCommonscaptioncallingitCal."
+    },
+    {
+      "id": "omega-ck2915",
+      "fileTitle": "File:OMEGA Speedmaster CK2915.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:OMEGA_Speedmaster_CK2915.JPG",
+      "actualPhotoVerified": true,
+      "visualEvidence": "Actual stilllife/vintagewatch blackdial broadarrowhands steelbezel onolivewovenfabricstrap.",
+      "sourceReference": "CK2915",
+      "status": "hold_subreference_and_strap_configuration_unknown",
+      "notes": "Notsteelbracelet; noexactCK2915-1/-2/-3subreferenceconfirmed. Licence notfullyre-reviewedthispass; do notpublishcandidatefromfilenamealone."
+    }
+  ],
+  "tudorSearchAudit": {
+    "method": "One nativeCommonsAPIpass only, namespace6,exact79230G/79030N/79030B andBlackBaybitmap.",
+    "result": "No new watchphotos.79230G/79030Nzero;79030Bunrelatedcoin;BlackBaybitmaponlyexisting54andknownrejectedgoldprintedartplusunrelatedlandscape."
+  },
+  "boundary": "Manufacturer data and reference crosswalk gaps remain explicit. No guessed prices, bracelet identity, calibre, size or stock."
+}
