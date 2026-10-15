@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-15T09:00:30.517Z",
+  "scope": "Bounded exact-reference Flickr/Commons/manufacturer archive pass. No app edits, publication or price import.",
+  "exactCartier": {
+    "searched": [
+      "Flickr WSSA0029",
+      "Flickr WSTA0040",
+      "Flickr WSTA0041",
+      "Flickr WSSA0022",
+      "Flickr CartierTankMustCreativeCommons"
+    ],
+    "result": "No indexed full commercial-reference author captions with verified commercial-compatible licences found. No upgrade of existing visual-inference matching. Prior4240/3800 mappingsremainheld.",
+    "acceptedNew": 0
+  },
+  "omega351850": {
+    "reference": "3518.50",
+    "manufacturerReferenceConfirmed": false,
+    "manufacturerEvidence": "Searches3518.50 catalogue/Omegawatchesdomain/brochure found no manufacturer primary entry. No.00suffix inferred.",
+    "photos": [
+      {
+        "fileTitle": "File:Omega Speedmaster Schumacher Edition10 36 22 158000.jpeg",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_Speedmaster_Schumacher_Edition10_36_22_158000.jpeg",
+        "author": "Pittigrilli~commonswiki",
+        "authorUrl": "https://commons.wikimedia.org/wiki/User:Pittigrilli",
+        "license": "CC BY-SA4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceReference": "3518.50",
+        "captionEvidence": "Photographer identifies SpeedmasterRacingMichaelSchumacherEdition3518.50; steelbracelet category; originalactualwatchphoto. Current2022versionbrightnessimproved so retainalterationnotice."
+      },
+      {
+        "fileTitle": "File:Omega Speedmaster Schumacher Edition .jpeg",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Omega_Speedmaster_Schumacher_Edition_.jpeg",
+        "author": "Pittigrilli~commonswiki",
+        "authorUrl": "https://commons.wikimedia.org/wiki/User:Pittigrilli",
+        "license": "CC BY-SA4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "visualEvidence": "Previouslyinspected actualheldwatchback, steelbracelet, engravedWorldChampion2000 andSchumacher signature. Samephotographerlinksfront/backofsameexample."
+      }
+    ],
+    "independentPrimaryInspection": {
+      "type": "auction_house_first_hand_cataloguing",
+      "authority": "Sotheby's (notmanufacturer)",
+      "sourceUrl": "https://www.sothebys.com/en/buy/auction/2021/fine-watches-11/speedmaster-racing-michael-schumacher-world",
+      "title": "FineWatches2021 lot8225",
+      "retrieved": "Opened fullprimarydescription duringthispass. No loginwallbypass; auctionresultandconditionreportrestrictedandnotused.",
+      "facts": {
+        "brand": "Omega",
+        "model": "SpeedmasterRacingMichaelSchumacherWorldChampion2000",
+        "reference": "3518.50",
+        "dial": "Black",
+        "caseMaterial": "Stainless steel",
+        "bracelet": "Stainless steel Omega bracelet, folding clasp",
+        "movement": "Automatic",
+        "calibre": "3220",
+        "size": null,
+        "powerReserve": null,
+        "waterResistance": null,
+        "bezel": null
+      },
+      "evidence": "First-handlotcatalogueexpresslystatesreference3518.50, blackdial, stainlesssteelcase/Omegabracelet/automatic3220. Photograph and thisindependentlotnot same physical watch; factory originalitynotguaranteed.",
+      "conflicts": "Sotheby's gives40mmdiameter; Bonhams2021search-indexedprimarylot136gives39mm. Keepdiameterunavailableuntilmanufacturerresolution. Do not borrow40hours/30mfromReduced3510.50 sharedcalibre."
+    },
+    "alternativePrimaryInspection": {
+      "authority": "Bonhams",
+      "sourceUrl": "https://images2.bonhams.com/original?src=Images%2Flive%2F2021-08%2F20%2FS-26685-0-2.pdf",
+      "retrieval": "Search-indexedprimarycataloguetextonly; directPDFinaccessible.",
+      "evidence": "lot136reference3518.50,39mm,3220automatic,blackdial, brushed1469Omegalinkbracelet. ExcludedpriceestimatesinGBP/EUR/USD are notIndia/UAEretail."
+    },
+    "recommendation": "Manufacturer-onlygate: remainheld. Ifeditorialpolicypermitsclearlyattributedprimaryauctioninspectionresearch, newexact3518.50 black/steelbracelet recordcouldretainunknownsize,reserve,waterresistance,bezelandallretailpricesnull. Do notmisclassifyauctionrecordasmanufacturer."
+  },
+  "outcome": "No newly accepted factory reference photo. Existinglicensed3518.50 candidate gained independentfirst-handreference/configurationcorroboration, notmanufacturerapproval."
+}

@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "scope": "Isolated research preview. Current direct retailer observations and separately verified Cartier-specific manufacturer authority. All publication rights pending; old manufacturer snapshots unchanged.",
+  "reviewedSources": [
+    {
+      "id": "cartier-calibre88-ae-current",
+      "brand": "Cartier",
+      "country": "AE",
+      "category": "authorised_retailer",
+      "title": "Calibre88 UAE · Cartier displayed catalogue retail",
+      "productUrls": [
+        "https://www.calibre88.com/products/wssa0029",
+        "https://www.calibre88.com/products/wsta0108",
+        "https://www.calibre88.com/products/wssa0086"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=Dubai&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Calibre 88 Dubai",
+        "checkedAt": "2026-10-15T09:04:38Z",
+        "httpStatus": 200,
+        "responseSha256": "a5e659f9904a413c04c7b2cf4378cd46004bf9227ffc74a97e0f51bf5296b5c1",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary HTTPS GET of manufacturer public watch-retailer search; matched named retailer and Products Available Watches.",
+        "evidence": "Manufacturer search names Dubai - Calibre 88, Building 4 Sheikh Zayed RD Shop No.45, Dubai UAE, telephone 04 341 8285, with Products Available Watches. This Cartier-specific evidence independently corroborates the retailer at the address stated on calibre88.com. Physical retailer authorisation is established; this does not imply platform seller verification, online checkout approval or data publication rights."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.calibre88.com/products/wssa0029",
+          "variantId": "cartier-wssa0029-silver-steel",
+          "reference": "WSSA0029",
+          "configurationId": "wssa0029-santos-de-cartier-watch.html"
+        },
+        {
+          "sourceUrl": "https://www.calibre88.com/products/wsta0108",
+          "variantId": "cartier-wsta0108-black-leather",
+          "reference": "WSTA0108",
+          "configurationId": "tank-must-de-cartier-watch-CRWSTA0108.html"
+        },
+        {
+          "sourceUrl": "https://www.calibre88.com/products/wssa0086",
+          "variantId": "cartier-wssa0086-silver-leather",
+          "reference": "WSSA0086",
+          "configurationId": "santos-dumont-watch-CRWSSA0086.html"
+        }
+      ]
+    },
+    {
+      "id": "cartier-kapoor-in-current",
+      "brand": "Cartier",
+      "country": "IN",
+      "category": "authorised_retailer",
+      "title": "Kapoor Watch India · Cartier displayed catalogue retail",
+      "productUrls": [
+        "https://www.kapoorwatch.com/watches/cartier-santos-women-wssa0029"
+      ],
+      "authorisation": {
+        "url": "https://stores.cartier.com/search?q=New%20Delhi&category=storeLocatorSearch&watches=true",
+        "title": "Cartier manufacturer locator · Kapoor Watch Co. Delhi",
+        "checkedAt": "2026-10-15T09:04:37Z",
+        "httpStatus": 200,
+        "responseSha256": "76a876deb143f70086dff9e9ccf90757dba3c2c4e9497b034f3d528619d845c4",
+        "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+        "method": "Ordinary HTTPS GET of manufacturer public watch-retailer search; matched named retailer and Products Available Watches.",
+        "evidence": "Manufacturer search names Kapoor Watch Co. Delhi at D-10 South Extension-II, New Delhi110049, telephone01141658888, Products Available Watches; also Kapoor Watch Co. Gurgaon Ambience Mall, telephone01244665500. Physical retailer authorisation is established, not platform seller verification or data publication rights."
+      },
+      "configurationBindings": [
+        {
+          "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-santos-women-wssa0029",
+          "variantId": "cartier-wssa0029-silver-steel",
+          "reference": "WSSA0029",
+          "configurationId": "wssa0029-santos-de-cartier-watch.html"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "cartier-wssa0029-silver-steel-retail-ae-current-20261015",
+      "variantId": "cartier-wssa0029-silver-steel",
+      "reference": "WSSA0029",
+      "dial": "Silvered opaline",
+      "bracelet": "Steel SmartLink; additional calfskin strap",
+      "material": "Steel",
+      "size": 35.1,
+      "configurationId": "wssa0029-santos-de-cartier-watch.html",
+      "reviewedSourceId": "cartier-calibre88-ae-current",
+      "sourceUrl": "https://www.calibre88.com/products/wssa0029",
+      "country": "AE",
+      "currency": "AED",
+      "amountMinor": 3090000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer RRP not independently established; no checkout or promotion price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:04:07Z",
+      "observedAt": "2026-10-15T09:04:07Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "72ac24aa5bf6ad2076e84c5d12d10d6d446a855cbb8eca1bcd866676082de5a6",
+      "method": "Ordinary direct HTTPS GET returned HTTP200. Original response contained the displayed amount and local currency; SHA-256 fingerprints the UTF-8 decoded HTML response. Point-in-time source check only; no guarantee of current checkout amount or stock.",
+      "evidence": "Current retailer product page names WSSA0029, automatic steel Santos and leather/steel bracelet combination. Product JSON-LD original priceCurrencyAED and price30900.00. Manufacturer exact reference maps silvered-opaline35.1mm configuration; optional additional leather strap colour not used to define a new variant.",
+      "matchingNotes": "Full Cartier commercial reference matches the existing exact configuration. No specification, photo permission, availability or sale inference from price."
+    },
+    {
+      "id": "cartier-wsta0108-black-leather-retail-ae-current-20261015",
+      "variantId": "cartier-wsta0108-black-leather",
+      "reference": "WSTA0108",
+      "dial": "Black lacquered",
+      "bracelet": "Semi-matte black alligator leather",
+      "material": "Steel",
+      "size": 25.5,
+      "configurationId": "tank-must-de-cartier-watch-CRWSTA0108.html",
+      "reviewedSourceId": "cartier-calibre88-ae-current",
+      "sourceUrl": "https://www.calibre88.com/products/wsta0108",
+      "country": "AE",
+      "currency": "AED",
+      "amountMinor": 1500000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer RRP not independently established; no checkout or promotion price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:02:01Z",
+      "observedAt": "2026-10-15T09:02:01Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "cached_web_research",
+      "retrievalCacheAgeLabel": "Original product HTML returned HTTP200 on 15 October 2026 at09:02:01Z; later fingerprint-only retry rate-limited. Original successful check retained.",
+      "method": "Original ordinary product HTML GET returned HTTP200 at09:02:01Z and confirmed price15000.00, priceCurrencyAED and Taxes included. The response was not fingerprinted then. Later request was429; it does not refresh the successful check. No cached manufacturer price was reused.",
+      "evidence": "Current retailer product page names WSTA0108, Quartz, Large, Steel, Black leather, and JSON-LD AED15000.00 with Taxes included. This is a distinct retailer observation, not a refreshed AED14600 manufacturer snapshot. Exact dial/alligator/width remain sourced to existing manufacturer record.",
+      "matchingNotes": "Full Cartier commercial reference matches the existing exact configuration. No specification, photo permission, availability or sale inference from price."
+    },
+    {
+      "id": "cartier-wssa0086-silver-leather-retail-ae-current-20261015",
+      "variantId": "cartier-wssa0086-silver-leather",
+      "reference": "WSSA0086",
+      "dial": "Satin-brushed silver, sunray effect",
+      "bracelet": "Navy blue alligator leather",
+      "material": "Steel",
+      "size": 27.5,
+      "configurationId": "santos-dumont-watch-CRWSSA0086.html",
+      "reviewedSourceId": "cartier-calibre88-ae-current",
+      "sourceUrl": "https://www.calibre88.com/products/wssa0086",
+      "country": "AE",
+      "currency": "AED",
+      "amountMinor": 1750000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer RRP not independently established; no checkout or promotion price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Taxes included according to product page; breakdown not stated",
+      "checkedAt": "2026-10-15T09:04:06Z",
+      "observedAt": "2026-10-15T09:04:06Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "2409bbdf66c3e6bf8a8f5953fae76ffdac1adb65971ada81c2d2b4f6c511fd15",
+      "method": "Ordinary direct HTTPS GET returned HTTP200. Original response contained the displayed amount and local currency; SHA-256 fingerprints the UTF-8 decoded HTML response. Point-in-time source check only; no guarantee of current checkout amount or stock.",
+      "evidence": "Current retailer product page names WSSA0086, Quartz, Steel, Blue leather and JSON-LD AED17500.00 with Taxes included. Exact small27.5mm silver sunray/alligator configuration comes from the manufacturer reference; old manufacturer price is not refreshed.",
+      "matchingNotes": "Full Cartier commercial reference matches the existing exact configuration. No specification, photo permission, availability or sale inference from price."
+    },
+    {
+      "id": "cartier-wssa0029-silver-steel-retail-in-current-20261015",
+      "variantId": "cartier-wssa0029-silver-steel",
+      "reference": "WSSA0029",
+      "dial": "Silvered opaline",
+      "bracelet": "Steel SmartLink; additional calfskin strap",
+      "material": "Steel",
+      "size": 35.1,
+      "configurationId": "wssa0029-santos-de-cartier-watch.html",
+      "reviewedSourceId": "cartier-kapoor-in-current",
+      "sourceUrl": "https://www.kapoorwatch.com/watches/cartier-santos-women-wssa0029",
+      "country": "IN",
+      "currency": "INR",
+      "amountMinor": 87000000,
+      "type": "official_retail",
+      "sellerType": "authorised_retailer",
+      "retailBasis": "Authorised retailer displayed catalogue/list price; manufacturer RRP not independently established; no checkout or promotion price inferred",
+      "condition": "New (authorised retailer catalogue basis)",
+      "boxPapers": "Not stated",
+      "taxStatus": "Tax status not confirmed",
+      "checkedAt": "2026-10-15T09:04:04Z",
+      "observedAt": "2026-10-15T09:04:04Z",
+      "publisherEffectiveAt": null,
+      "rights": "pending",
+      "reviewDecision": "published",
+      "retrievalMethod": "direct_source_snapshot",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "httpStatus": 200,
+      "responseSha256": "1af3854608acd908cadaa2a6c73867e90f3be28dbc4c5d49adcfc1f527ef6e03",
+      "method": "Ordinary direct HTTPS GET returned HTTP200. Original response contained the displayed amount and local currency; SHA-256 fingerprints the UTF-8 decoded HTML response. Point-in-time source check only; no guarantee of current checkout amount or stock.",
+      "evidence": "Current retailer product page names WSSA0029, silver dial, steel35.1mm case and stainless steel strap, displaying INR870000. Extra strap details retain manufacturer specification evidence; seller power-reserve claim not imported. Image filename WSSA0010 is inconsistent and is not used as photograph or configuration evidence.",
+      "matchingNotes": "Full Cartier commercial reference matches the existing exact configuration. No specification, photo permission, availability or sale inference from price."
+    }
+  ],
+  "additionalAuthority": [
+    {
+      "url": "https://stores.cartier.com/search?q=Kolkata&category=storeLocatorSearch",
+      "title": "Cartier manufacturer locator · Exclusive Lines Kolkata",
+      "checkedAt": "2026-10-15T09:04:39Z",
+      "httpStatus": 200,
+      "responseSha256": "bf18ebed234fc152e498769cf13eb422059897a3007f00f8f9ad9a3d17f829d1",
+      "retrievalCacheAgeLabel": "Not applicable — direct HTTP response",
+      "method": "Ordinary HTTPS GET of manufacturer public watch-retailer search; matched named retailer and Products Available Watches.",
+      "evidence": "Manufacturer search identifies Exclusive Lines Kolkata at LUXE PLATINA17 Shakespeare Sarani Kolkata700071, phone08336916220, with Products Available Watches; embedded locator flags isRetail true and isTimepieces true. No current exact-reference price added from this retailer in this bounded pass."
+    }
+  ],
+  "held": [
+    {
+      "reference": "WSTA0040",
+      "url": "https://www.calibre88.com/products/wsta0040.js",
+      "checkedAt": "2026-10-15T09:01:35Z",
+      "httpStatus": 200,
+      "amountMinor": 2080000,
+      "reason": "Public product JSON current amount2080000 and exactSKU WSTA0040; response omits explicit currency. Product HTML request429 and boundedretrylocal_rate_limited. No current observation admitted until AED confirmed for this exact successful source response."
+    },
+    {
+      "references": [
+        "WSTA0041",
+        "WSTA0056"
+      ],
+      "reason": "Public retailer product JSON404. No missing price invented."
+    }
+  ],
+  "retrievalFailures": [
+    {
+      "url": "https://www.calibre88.com/products/wsta0108",
+      "error": "Response status code does not indicate success: 429 (Too Many Requests).",
+      "consequence": "Does not supersede or refresh any earlier successful check."
+    }
+  ],
+  "launchRequirement": "Obtain permission for production data reuse from retailer/manufacturer as applicable; independent retailer authorisation does not license photographs, specifications or prices."
+}

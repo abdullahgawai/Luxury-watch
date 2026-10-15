@@ -50,3 +50,13 @@ The reviewed assembly is `source-evidence/retail-gap-expansion.json`. All record
 ## Connecting production
 
 For TheWatchAPI: obtain a server API key, authenticated endpoint/schema, commercial storage/display terms and written coverage of photos, technical fields and price-history geography. Test with the existing protected provider evaluator before writing an adapter mapping. Keep `THEWATCHAPI_ENABLED=false` until that test succeeds. Separately obtain original India/UAE retail observations, dealer-listing consent and documented sale evidence. Rights-approved records must be imported as drafts through the editor, reviewed, then published; switching DATA_MODE alone never promotes this research catalogue.
+
+## Current Cartier pass — 15 October 2026, 09:02–09:04 UTC
+
+Four new exact-reference local retail observations are in `source-evidence/cartier-current-pass3.json`: WSSA0029 India INR870000 at Kapoor, WSSA0029 UAE AED30900, WSTA0108 UAE AED15000 and WSSA0086 UAE AED17500 at Calibre88. Cartier's own public watch-retailer locator returned HTTP200 and independently names these retailers, their addresses and watches. This establishes the retailer relationship, not seller verification or data/photo publication permission.
+
+Three price responses have decoded-response SHA-256 fingerprints and direct-source snapshot labels. WSTA0108 retains its earlier successful HTTP200 check after a rate-limited fingerprint retry, with that limitation visible. All amounts are authorised-retailer displayed catalogue/list prices; manufacturer RRP, future checkout, stock, publisher effective dates and INR tax inclusion remain unconfirmed. UAE pages state taxes included without a breakdown. Existing manufacturer archives remain separate, unchanged and excluded from current pricing. Direct snapshots cannot create history charts.
+
+Coverage is now38 references/39 configurations and38 eligible retail observations (15 India,23 UAE). No new exact Cartier licensed photo qualified. The two existing Cartier photos retain visual-inference disclosures; case4240/3800 and auction-only Omega3518.50 mappings remain held. Ten licensed photos across nine configurations remain. No retailer photographs were copied. Additional held India candidates and authority research are retained in `cartier-india-pass3.json` and photo review in `photo-pass3.json`.
+
+All new data remains isolated research, with production rights pending. Public launch still requires rights-approved production data, broader exact photography and the operational acceptance items in the runbook.

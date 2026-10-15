@@ -68,3 +68,10 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - Cartier WSTA0108 current retail is unavailable. Its expandable older evidence shows AED14600, five-month source-cache age, reviewed date, unknown publisher-effective date and manufacturer source link. It does not become a current-price filter result. WSSA0086 likewise retains AED17500/nine-month evidence separately; neither inherits another Cartier's photograph.
 - A three-watch mobile comparison immediately renders URL-selected Tudor/Omega/Cartier configurations. UAE prices are16920/27450/unavailable; the archived Cartier amount is absent. At390px document width375px and670px table stays within334px scroll region. Omega detail also has no document overflow at390px.
 - Source dialogs are keyboard-dismissable with Escape and now show the formatted amount and exact watch reference before the source narrative. Older source records remain excluded from freshness, premiums and history as well as headline retail and comparisons.
+
+## Current Cartier pass — 15 October 2026
+
+- 35 automated tests pass, including four exact Cartier amounts, current manufacturer retailer-locator evidence, fingerprint validation, failed-retry date preservation, archive separation, source/country/configuration binding and production isolation. Existing editorial access and correction-handler tests pass.
+- TypeScript and production build pass. Browser verified Santos UAE AED30900, its price evidence dialog and Cartier retailer locator, India switch INR870000, and the black Tank UAE AED15000 with a separate older-evidence disclosure.
+- At390px, the Cartier page document width and scroll width both measure375px. No document overflow. Source modal closes with Escape. Screenshot: `screenshots/cartier-current-source.png`.
+- No new photo was approved without adequate exact-configuration evidence. Photos, cache limitations and unavailable data retain their existing disclosures. This is a private research preview; no full WCAG audit, field performance validation or public-launch readiness is claimed.
