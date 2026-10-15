@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import reviews from '../docs/source-evidence/cartier-two-gaps-pass8.json' with {type:'json'};
 import current from '../docs/source-evidence/cartier-uae-pass7.json' with {type:'json'};
 import {researchWatches} from '../lib/research-catalogue.mjs';
-import {attachCoverageReviews,validateCoverageReview} from '../lib/retail-reviews.mjs';
+import {attachCoverageReviews,validateCoverageReview,coverageSnapshot} from '../lib/retail-reviews.mjs';
 import {attachRetailResearch} from '../lib/retail-research.mjs';
 import {publishedObservations,reliableHistoryObservations,validateRecord,searchWatches} from '../lib/domain.mjs';
 
@@ -22,4 +22,12 @@ test('coverage checks reject price fields, wrong configurations, future dates an
 test('known priced source SKU mismatches block research assembly and protected record validation',()=>{
  const p=current.observations[0],original=researchWatches.find(w=>w.id===p.variantId),w={...original,prices:[],sources:original.sources.filter(s=>s.id!==p.id+'-source')};assert.throws(()=>attachRetailResearch([w],[{...p,sourceProductReference:'WSTA0109'}],current.reviewedSources),/Priced source reference mismatch/);
  const good=attachRetailResearch([w],[{...p,sourceProductReference:w.reference}],current.reviewedSources)[0];assert.equal(good.prices[0].sourceProductReference,w.reference);assert.doesNotThrow(()=>validateRecord(good,false));good.prices[0].sourceProductReference='WSTA0109';assert.throws(()=>validateRecord(good,false),/Priced source reference mismatch/);
+});
+
+test('Worker startup needs no wall clock and request snapshots still hide future reviews',async()=>{
+ const originalNow=Date.now;let startup;
+ try{Date.now=()=>0;startup=await import('../lib/research-catalogue.mjs?zero-clock-startup');assert.equal(startup.researchWatches.length,researchWatches.length);}finally{Date.now=originalNow;}
+ const r=reviews.gapReviews[0],w=startup.researchWatches.find(w=>w.id===r.variantId),before=Date.parse(r.reviewedAt)-1,after=Date.parse(r.reviewedAt)+1;
+ assert.equal(coverageSnapshot([w],0)[0].retailCoverageReviews.length,0);assert.equal(coverageSnapshot([w],before)[0].retailCoverageReviews.length,0);assert.equal(coverageSnapshot([w],after)[0].retailCoverageReviews.length,1);assert.equal(w.retailCoverageReviews.length,1);
+ assert.throws(()=>validateCoverageReview({...r,reviewedAt:'2999-01-01'},w),/review date/);
 });

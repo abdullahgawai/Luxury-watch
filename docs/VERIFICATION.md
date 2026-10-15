@@ -109,3 +109,9 @@ No credentialed provider coverage/latency/quota test, public local-price accepta
 - Browser verified WSTA0041 UAE unavailable with16October coverage-review date and offeredWSTA0109 explanation; India switch shows the originalINR404000 and15October price check with no UAE gap note. WSTA0056 UAE likewise remains unavailable and identifies the pricedWSTA0115 conflict. Its existing photographic matching caveat is unchanged.
 - Mobile coverage shows both dated notes and source links in the correct UAE column. At390px document width375px;880px table remains in334px container. No document overflow. Temporary viewport reset. Screenshot: `screenshots/cartier-wsta0041-gap-evidence.png`.
 - No current price, licence check date or photo approval was inferred from successful HTTP responses. Public launch still requires rights-approved production data and operational acceptance.
+
+### Hosted startup repair
+
+The first deployment of the gap notes failed at module initialisation because production Workers can report Date.now()=0 before request I/O, unlike the local preview. Static research attachment now validates structure without relying on a wall clock. Each catalogue request filters future-dated reviews using its request clock; protected import validation still rejects future dates and production review promotion. A regression test loads the full catalogue with Date.now mocked to0, then verifies before/after request snapshots.47 tests pass. No source dates, prices or licence decisions were changed by this repair.
+
+Runtime reference: https://developers.cloudflare.com/workers/runtime-apis/performance/ and https://github.com/cloudflare/workerd/issues/6839 .
