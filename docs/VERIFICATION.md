@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Editorial write confirmation and draft preservation — 17 October 2026
+
+- All118 automated tests pass; TypeScript and the production build pass. Four new tests cover stable/changing import attempt keys, exact ID/state/revision/import replay confirmation, mismatched/ambiguous success rejection, forwarded retry key and one-request behavior, fetch/parsing deadlines, pre-cancelled requests and controlled HTTP-error messages. Existing server-side revision/import idempotency, source rights, correction receipts and access-control tests remain passing.
+- Browser-tested the actual editor in a labelled loopback simulation: JSON textarea is disabled during a delayed write; an ambiguous200 leaves the draft intact with an uncertainty message; keyboard retry uses the same key (enforced by the mock) and only matching confirmation clears it. A separate confirmed synthetic review->published transition preserves unrelated JSON draft text. Desktop1440 and mobile360/document345 show no page overflow. Screenshots editor-write-uncertain-desktop.png and editor-write-preserved-mobile.png contain synthetic records only. Viewport reset, owned tab closed and both local servers stopped.
+- Actual built-site import, revision and moderation requests each return403 for anonymous callers. Some sequential local POST checks encountered Wrangler's explicit worker-restarted-mid-request503; fresh single requests returned the expected denial. No hosted failure or authorized production mutation was induced. Public traversal remains39 configurations,43 eligible observations, three archives and nine licensed configurations. WSTA0041 UAE retail/photo remain unavailable; India retains amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check.
+- No source data/dates, rights, assets, hosted roles or migrations changed. No real provider request was made. Hosted role verification, licensed production data, monitoring/backups and full public-launch acceptance remain open. Confirmation guards do not prove a timed-out write never committed and do not persist private drafts across reloads.
+
+
 ## Editorial queue loading and JSON recovery — 17 October 2026
 
 - All114 automated tests pass; TypeScript and the production build pass. Four new tests cover valid record/correction/audit/revision envelopes,3000-character corrections, malformed/duplicate/oversized rows and invalid pagination, JSON-safe stored recovery, deadlines during fetch and parsing, no automatic retry, cancelled reads before/during requests, and sanitized transport/JSON failures. Existing server-side editorial authorization, receipts, public price/source projection and route regressions remain passing.

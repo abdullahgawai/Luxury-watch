@@ -1,7 +1,8 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useEffect,useState,useRef} from 'react';
 import OperationalChecks from './operational-checks';
 import {editorialQueueRequest,verifiedQueuePage,storedJSON} from '../lib/editorial-client.mjs';
+import {editorialWrite,importAttempt} from '../lib/editorial-write.mjs';
 
 type Row=Record<string,any>;
 type Page={rows:Row[];hasMore:boolean;nextCursor:string|null;pageSize:number};
@@ -57,15 +58,27 @@ function AuditQueue({busy}:{busy:boolean}){
 }
 export default function EditorialWorkspace(){
  const [user,setUser]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[refresh,setRefresh]=useState(0),[recordState,setRecordState]=useState('all'),[correctionState,setCorrectionState]=useState('pending');
- const [draft,setDraft]=useState(''),[editing,setEditing]=useState<Row|null>(null),[key,setKey]=useState(''),[provider,setProvider]=useState<any>(null),[providerRef,setProviderRef]=useState('124060');
+ const [draft,setDraft]=useState(''),[editing,setEditing]=useState<Row|null>(null),[provider,setProvider]=useState<any>(null),[providerRef,setProviderRef]=useState('124060');
+ const attempt=useRef<{signature:string,key:string}|null>(null),writing=useRef(false),writes=useRef(new Set<AbortController>());
  async function access(){setError('');try{const response=await fetch('/api/admin',{cache:'no-store'}),body:any=await response.json();if(!response.ok)throw new Error(body.error);setUser(body.userId);}catch(e){setError(e instanceof Error?e.message:'Editorial service unavailable.');}}
- useEffect(()=>{access();setKey(crypto.randomUUID());},[]);
- async function post(url:string,body:unknown,importing=false){setBusy(true);setError('');try{const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...(importing?{'Idempotency-Key':key}:{})},body:JSON.stringify(body)}),result:any=await response.json();if(!response.ok)throw new Error(result.error||'Operation failed.');setRefresh(n=>n+1);setEditing(null);setDraft('');if(importing)setKey(crypto.randomUUID());setError('Operation recorded. Queues returned to their newest pages.');}catch(e){setError(e instanceof Error?e.message:'Connection failed. Check audit history before retrying.');}finally{setBusy(false);}}
+ useEffect(()=>{access();return()=>{for(const controller of writes.current)controller.abort();};},[]);
+ async function post(url:string,body:any,importing=false){
+  if(writing.current)return;writing.current=true;setBusy(true);setError('');const controller=new AbortController();writes.current.add(controller);
+  try{
+   let key;if(importing){attempt.current=importAttempt(attempt.current,JSON.stringify(body));key=attempt.current.key;}
+   await editorialWrite(url,body,{key,signal:controller.signal});if(controller.signal.aborted)return;
+   setRefresh(n=>n+1);
+   if(importing||(body.action==='revise'&&body.record?.id===editing?.id)){setEditing(null);setDraft('');}
+   if(importing)attempt.current=null;
+   setError('Operation confirmed. Queues returned to their newest pages.');
+  }catch(e){if(!controller.signal.aborted)setError(e instanceof Error?e.message:'Check queues and audit history before retrying.');}
+  finally{writes.current.delete(controller);writing.current=false;if(!controller.signal.aborted)setBusy(false);}
+ }
  async function evaluateProvider(){setBusy(true);try{const response=await fetch('/api/admin/provider',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reference:providerRef})});setProvider(await response.json());}catch{setProvider({status:'provider_unavailable'});}finally{setBusy(false);setRefresh(n=>n+1);}}
  if(!user)return <div className="admin-gate"><h2>Protected editorial access</h2><p role="status">{error||'Checking your editor role…'}</p><p className="small">Sign-in alone does not grant editorial permission. The operator must allowlist your stable authenticated user ID.</p><a className="button" target="_top" href="/signin-with-chatgpt?return_to=%2Fadmin">Sign in with ChatGPT ↗</a><button onClick={access}>Check access again</button></div>;
  return <><p className="small">Authenticated editor · {user}</p><p role="status">{error}</p><button disabled={busy} onClick={()=>setRefresh(n=>n+1)}>Refresh queues</button><p className="small">Each queue shows 25 entries at a time. Newer and Older keep earlier records reachable. Refresh returns to the newest entries.</p><OperationalChecks/>
  <section className="provider-evaluation"><h2>Provider feasibility</h2><p className="small">Requests are server-side, bounded to three evaluations per editor per hour. Candidates require exact-variant mapping and rights review before import. No upstream price becomes a local observation.</p><label>Reference to evaluate<input value={providerRef} onChange={e=>setProviderRef(e.target.value)} maxLength={60}/></label><button disabled={busy} onClick={evaluateProvider}>Evaluate TheWatchAPI</button>{provider&&<pre>{JSON.stringify(provider,null,2)}</pre>}</section>
- <div className="admin-grid"><section><h2>{editing?'Revise draft':'Import to draft'}</h2><p>Production records only. Source rights, field evidence, configuration and price metadata are validated.</p><form onSubmit={e=>{e.preventDefault();try{post(editing?'/api/admin/records/'+encodeURIComponent(editing.id):'/api/admin/imports',editing?{action:'revise',revision:editing.revision,record:JSON.parse(draft)}:{record:JSON.parse(draft)},!editing);}catch{setError('Invalid JSON.');}}}><label>Record JSON<textarea className="json-editor" rows={16} value={draft} onChange={e=>setDraft(e.target.value)} required spellCheck={false}/></label><button className="button" disabled={busy}>{busy?'Validating…':editing?'Save draft revision':'Validate & import'}</button>{editing&&<button type="button" disabled={busy} onClick={()=>{setEditing(null);setDraft('');}}>Cancel revision</button>}</form></section>
+ <div className="admin-grid"><section><h2>{editing?'Revise draft':'Import to draft'}</h2><p>Production records only. Source rights, field evidence, configuration and price metadata are validated.</p><p className="small">Unconfirmed writes keep your draft. Retry unchanged imports with the same key; changed content starts a new attempt. Check queues and audit history before repeating a revision or publication.</p><form onSubmit={e=>{e.preventDefault();try{post(editing?'/api/admin/records/'+encodeURIComponent(editing.id):'/api/admin/imports',editing?{action:'revise',revision:editing.revision,record:JSON.parse(draft)}:{record:JSON.parse(draft)},!editing);}catch{setError('Invalid JSON.');}}}><label>Record JSON<textarea disabled={busy} className="json-editor" rows={16} value={draft} onChange={e=>setDraft(e.target.value)} required spellCheck={false}/></label><button className="button" disabled={busy}>{busy?'Validating…':editing?'Save draft revision':'Validate & import'}</button>{editing&&<button type="button" disabled={busy} onClick={()=>{setEditing(null);setDraft('');}}>Cancel revision</button>}</form></section>
  <section id="publication-queue"><h2>Publication queue</h2><label>Record state<select value={recordState} disabled={busy} onChange={e=>setRecordState(e.target.value)}>{['all','draft','review','published'].map(state=><option key={state}>{state}</option>)}</select></label><RecordQueue key={refresh+recordState} state={recordState} busy={busy} post={post} revise={row=>{setEditing(row);setDraft(JSON.stringify(JSON.parse(row.payload),null,2));}}/></section></div>
  <section className="section" id="correction-queue"><h2>Correction moderation</h2><label>Correction state<select value={correctionState} disabled={busy} onChange={e=>setCorrectionState(e.target.value)}>{['pending','accepted','rejected','resolved','all'].map(state=><option key={state}>{state}</option>)}</select></label><p className="small">Acceptance does not edit the catalogue. Apply a supported correction through draft, review and publication before marking it resolved.</p><CorrectionQueue key={refresh+correctionState} state={correctionState} busy={busy} post={post}/></section>
  <section id="audit-queue"><h2>Audit history</h2><AuditQueue key={refresh} busy={busy}/></section></>;
