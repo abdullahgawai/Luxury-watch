@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Customer-facing catalogue pagination — 17 October 2026
+
+- All96 automated tests pass, TypeScript passes and the production build passes. Four new tests cover complete39-configuration traversal,151 synthetic configurations beyond the old100-result cap, invalid/out-of-range pages, reduced/empty matches, original data immutability, price eligibility, encoded share links, fixed brand scope and actual server-rendered12-card pages/native navigation before hydration. Existing public API, source/price projection, correction and access-control regressions remain passing.
+- Final built Worker: desktop1440px/document1425px, mobile390px/document375px and narrow360px/document345px have no document overflow. Native links navigate through ranges1–12,13–24,25–36,37–39. Last page has three cards and no Next. Reload retains page two; browser Back returns to page one. Enter activates page links and moves focus to the result region. Brand filtering from page four resets to six Cartier results on page one. Market switching from page three resets page and URL while preserving the selected market.
+- A temporary Pelagos favourite persists across page two -> page three, reload and Saved watches navigation after hydration. It was removed through Unsave afterward; zero test favourites remain. Shared WSTA0041/AE/page3 clamps to its sole result and retains local retail/photo Unavailable. No watch data, source dates, licence approvals or assets changed. Screenshots: screenshots/customer-pagination-desktop.png and screenshots/customer-pagination-mobile.png. Viewport reset, owned QA tab closed and local Worker stopped.
+- Hosted editor verification, licensed production data, monitoring/backups and full accessibility/public-launch acceptance remain open. This change bounds rendered cards; it does not replace the existing1000-record public catalogue read limit or prove field performance.
+
+
 ## Validated, paginated public catalogue API — 17 October 2026
 
 - All92 automated tests pass, including five new tests of query validation, pagination traversal, more than100 configurations, local price eligibility, provenance preservation and actual handler/database behavior. TypeScript and the production build pass. Existing source/public projection, exact configuration, price arithmetic, history, correction, editorial authorization and UI server-rendering regressions remain passing.
