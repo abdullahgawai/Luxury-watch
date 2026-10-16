@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./photos.css";
+import "./search.css";
 import {env} from 'cloudflare:workers';
 
 export async function generateMetadata():Promise<Metadata>{return {

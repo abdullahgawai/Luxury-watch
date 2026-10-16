@@ -39,6 +39,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 
 - Boutique homepage with original forest/ivory/champagne composition and responsive search.
 - Brand/model/reference/alias search; exact-reference ranking; brand, size, material, movement, collection and original local retail filters; URL search state and helpful empty results.
+- Keyboard and touch configuration suggestions on homepage and catalogue search, with separate dial/bracelet labels, preserved market links and punctuation-free reference matching. Suggestions use the existing filtered catalogue and never imply stock or pricing.
 - Stable configuration pages, sourced specifications, plain-language glossary, brand pages, methodology and field/source disclosures.
 - Separate India/INR and UAE/AED panels for retail, dealer/private asks, estimates, verified sales and dealer purchase offers. Forty-three original local retail research observations (19 India, 24 UAE) are eligible, with three archived Cartier observations excluded from current pricing; no live feed is claimed. Cached checks disclose unknown price-effective dates and never become historical trends.
 - Deterministic comparable asking ranges, freshness, minor-unit money and provenance-preserving FX logic; no active FX feed.
