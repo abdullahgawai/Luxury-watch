@@ -1,8 +1,18 @@
 'use client';
-import {useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
+import {operationalCheckRequest} from '../lib/operational-client.mjs';
 export default function OperationalChecks(){
  const [report,setReport]=useState<any>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
- async function check(){setBusy(true);setError('');setReport(null);try{const r=await fetch('/api/admin/health',{cache:'no-store'}),j:any=await r.json();if(!r.ok)setError(j.error||'System checks unavailable.');else setReport(j);}catch{setError('System checks unavailable. Retry when the connection returns.');}finally{setBusy(false);}}
+ const active=useRef<AbortController|null>(null);
+ useEffect(()=>()=>{active.current?.abort();},[]);
+ async function check(){
+  if(active.current)return;
+  const controller=new AbortController();active.current=controller;
+  setBusy(true);setError('');setReport(null);
+  try{const result=await operationalCheckRequest({signal:controller.signal});if(!controller.signal.aborted)setReport(result);}
+  catch(e){if(!controller.signal.aborted)setError(e instanceof Error?e.message:'System checks unavailable. Run the check again.');}
+  finally{if(active.current===controller)active.current=null;if(!controller.signal.aborted)setBusy(false);}
+ }
  const rows=report?[
   ['Database',report.database],['Data mode',report.dataMode],
   ['Published / review / draft',`${report.records.published} / ${report.records.review} / ${report.records.draft}`],

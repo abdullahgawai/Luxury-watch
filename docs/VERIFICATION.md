@@ -1,5 +1,12 @@
 # Verification evidence
 
+## Operational check recovery — 17 October 2026
+
+- All 122 automated tests, TypeScript and the production build pass. New checks cover valid and malformed health reports, contradictory totals/status, invalid dates/types, stalled fetch and parsing, cancellation, no automatic retry, controlled errors and explicit recovery. Existing publication rights, source/date and access-control regressions remain passing.
+- Browser-tested the actual OperationalChecks component in a labelled loopback simulation at desktop 1440 and mobile 360. A valid report renders; a malformed response removes previous results and shows verification failure; a subsequent HTTP failure hides its private error; keyboard Enter recovers to a valid report. No document overflow (1440/1440 desktop, 345/360 mobile). Evidence: operational-recovery-desktop.png and operational-recovery-mobile.png. Viewport reset, owned tab closed and local servers stopped. These are synthetic reports, not hosted editor access verification.
+- Built-Worker catalogue traversal still yields 39 unique configurations, 43 eligible retail observations, three archived observations and nine licensed configurations. Anonymous health access remains denied. WSTA0041 UAE retail/photo remain unavailable; its India amountMinor40400000, Art Of Time source and original 2026-10-15T09:24:18.4406753Z check remain unchanged.
+- No catalogue data, source dates, photo rights, migrations or hosted roles changed. Hosted editorial access verification, licensed production data, monitoring, hosted backup/restore and final launch acceptance remain open. The read-only check does not configure these services or refresh price evidence.
+
 ## Editorial write confirmation and draft preservation — 17 October 2026
 
 - All118 automated tests pass; TypeScript and the production build pass. Four new tests cover stable/changing import attempt keys, exact ID/state/revision/import replay confirmation, mismatched/ambiguous success rejection, forwarded retry key and one-request behavior, fetch/parsing deadlines, pre-cancelled requests and controlled HTTP-error messages. Existing server-side revision/import idempotency, source rights, correction receipts and access-control tests remain passing.

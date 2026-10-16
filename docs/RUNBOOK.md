@@ -142,6 +142,12 @@ Unreadable stored record JSON displays an explicit recovery message and withhold
 
 For local UI verification, run `node scripts/preview-editor-queue-qa.mjs` after building. Its explicitly labelled synthetic loopback workspace returns one malformed record-queue response, then an unreadable synthetic record on retry, plus a synthetic unreadable audit snapshot. The mock identity exists only in this local helper; it grants no hosted role and forwards no request. All mutation/unsupported API routes are denied by the helper. Its generated bundle is outside dist and is not deployed. Stop it after QA.
 
+## Operational check recovery
+
+The protected system-check read has a 15-second deadline covering fetch and parsing, cancellation on unmount and an immediate duplicate-request guard. Each attempt clears previous results. Only a validated health report with consistent bounded counts, warning/status agreement, valid dates and explicit service states is rendered. Unverified or failed responses show controlled retry text; raw server errors are withheld. Retry is explicit and read-only. Report timestamps never refresh source evidence dates. These checks do not configure alerts or backups, and server editor authorization remains required.
+
+After building, `node scripts/preview-publication-qa.mjs` serves a labelled loopback-only component simulation: valid report, malformed report, HTTP failure, then recovery. No hosted identity, database or watch evidence is used or modified. Generated QA assets remain outside dist. Stop the helper after testing.
+
 ## Confirmed editorial writes
 
 Import, record-transition/revision/rollback and correction-moderation writes have a15-second deadline including JSON parsing, unmount cancellation and an immediate in-flight write guard. They are never automatically repeated. An import clears its draft only after a matching created-record response or matching idempotent replay; record operations must confirm the same ID, expected state and next revision; moderation must confirm the requested state. Ambiguous2xx, failed parsing, transport failures or timeouts keep the draft and warn that the outcome is uncertain. Check queues/audit history before repeating a revision or publication. A cancelled browser request does not undo an already committed server operation.
