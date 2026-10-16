@@ -148,3 +148,28 @@ test('protected publication preserves editorial fields while public reads exclud
  const raw=JSON.parse(sqlite.prepare('SELECT payload FROM records WHERE id=?').get(record.id).payload),published=publicWatch(raw);assert.ok(JSON.stringify(raw).includes(marker));assert.ok(!JSON.stringify(published).includes(marker));assert.equal(published.sources[0].historyPermissionRecorded,true);assert.equal(historySeries(published,'IN','official_retail').find(g=>g.available).rows.length,3);
  const queue=await call(['admin','queues','records'],undefined,true,{},'state=published');assert.equal(queue.status,200);assert.ok(JSON.stringify(queue.data.rows.find(r=>r.id===record.id)).includes(marker));assert.equal((await call(['admin','queues','records'],undefined,false,{},'state=published')).status,403);
 });
+
+test('publication health uses production evidence gates and reports aggregates only',async()=>{
+ const before=(await call(['admin','health'])).data.publication;
+ const valid=structuredClone(demoWatches[0]);valid.id='health-visible';valid.status='published';valid.demo=false;valid.sources.forEach(s=>s.rights='approved');
+ valid.prices=[];valid.privateNote='PRIVATE-PUBLICATION-SENTINEL';
+ valid.prices.push({id:'health-price',status:'published',amountMinor:123,country:'AE',currency:'AED',type:'official_retail',sourceId:'missing'});valid.image={url:'/unsupported.jpg',rights:'pending'};
+ const records=[['health-visible',JSON.stringify(valid)],['health-demo',JSON.stringify({...valid,id:'health-demo',demo:true})],['health-unsourced',JSON.stringify({...valid,id:'health-unsourced',evidence:{}})],['health-unreadable','{PRIVATE-PUBLICATION-SENTINEL']];
+ for(const [id,payload] of records)sqlite.prepare('INSERT INTO records VALUES(?,?,?,?,?,?,?,?)').run(id,'Synthetic health',id,'fixture',payload,'published',1,new Date().toISOString());
+ const dataMode=globalThis.testEnv.DATA_MODE;
+ try{
+  for(const mode of ['production','research']){
+   globalThis.testEnv.DATA_MODE=mode;
+   const {status,data}=await call(['admin','health']);assert.equal(status,200);
+   assert.deepEqual(data.publication,{checked:before.checked+4,visible:before.visible+1,withheld:before.withheld+3,invalidPayloads:before.invalidPayloads+1,withheldPrices:before.withheldPrices+1,withheldPhotos:before.withheldPhotos+1,truncated:false});
+   assert.equal(data.status,'needs_attention');assert.ok(data.warnings.some(w=>w.includes('records are withheld')));assert.ok(data.warnings.some(w=>w.includes('price entries')));assert.ok(data.warnings.some(w=>w.includes('Primary photos')));
+   assert.ok(!JSON.stringify(data).includes('PRIVATE-PUBLICATION-SENTINEL'));
+  }
+ }finally{globalThis.testEnv.DATA_MODE=dataMode;for(const [id] of records)sqlite.prepare('DELETE FROM records WHERE id=?').run(id);}
+});
+
+test('publication health bounds its scan to the production catalogue limit',async()=>{
+ const db=globalThis.testEnv.DB;
+ globalThis.testEnv.DB={prepare(sql){if(sql.startsWith("SELECT payload FROM records WHERE state='published'"))return {bind(n){assert.equal(n,1001);return {async all(){return {results:Array.from({length:1001},()=>({payload:'{}'}))};}};}};return db.prepare(sql);}};
+ try{const {status,data}=await call(['admin','health']);assert.equal(status,200);assert.deepEqual(data.publication,{checked:1000,visible:0,withheld:1000,invalidPayloads:0,withheldPrices:0,withheldPhotos:0,truncated:true});assert.ok(data.warnings.some(w=>w.includes('first 1000')));}finally{globalThis.testEnv.DB=db;}
+});

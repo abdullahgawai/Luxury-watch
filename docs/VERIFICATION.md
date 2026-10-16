@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Publication readiness checks — 16 October 2026
+
+- All 87 automated tests pass; TypeScript and the production build pass. SQLite/editorial-handler coverage verifies production gates in both production and research mode, malformed JSON, unsupported price/photo withholding, aggregate-only responses and the 1000-record bound. Existing access checks reject anonymous and unallowlisted identities. No private payloads, provider tokens or contacts are returned.
+- Desktop 1440px/document1425px and mobile390px/document375px have no page overflow. The actual component was tested in the loopback-only synthetic harness: successful report, second-request503 clears the report, keyboard Enter retry restores it, readable mobile warnings and status announcement markup. Screenshots publication-checks-desktop.png and publication-checks-mobile.png contain synthetic operational counts, not production readiness evidence. Local tabs closed, viewport reset and owned servers stopped.
+- Final built Worker denies anonymous /api/admin/health with403/no-store. WSTA0041 UAE price response remains empty; India keeps amountMinor40400000, Art Of Time provenance and the original 2026-10-15T09:24:18.4406753Z check date. Browser verification retains UAE Unavailable, licensed photo Unavailable and the original dated16Oct exact-reference conflict explanation with source link.
+- No watch data, photo assets, source dates, rights decisions, database migrations or hosted roles changed. Hosted editor-role verification, licensed production data, monitoring/backups and public-launch acceptance remain open. This check is read-only and is not automated monitoring.
+
+
 ## Public catalogue data boundary — 16 October 2026
 
 - All 85 automated tests pass; TypeScript and the final production build pass. Public reads now project explicit nested fields for pages/client props and watch APIs. Injected private markers at watch, source, history-permission, observation, configuration-match, photo and retailer-authorisation levels never appear in public results. Unknown fields, draft/review/removed/excluded/converted/future/malformed/duplicate/mismatched observations, unsafe source URLs and unsupported claims are withheld. Production imports and reads require explicit demo=false. Existing price, licence, correction, access and history tests remain passing.
