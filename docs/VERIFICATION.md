@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Approved photograph delivery and recovery — 16 October 2026
+
+- All 64 automated tests pass; TypeScript and the final production build pass. New tests cover same-photograph derivative order, approval requirements, absent/duplicate paths and rejection of remote, malformed, traversal and control-character paths. Existing pricing, source, licence, production-isolation and editorial-access checks remain passing.
+- Built Worker browser tests physically withheld only two generated local photo derivatives. A missing catalogue thumbnail recovered using that same approved photograph's full-size derivative. With both missing, the gallery and homepage showed honest unavailable states while keeping author, source, licence and original check date visible. Failed gallery enlargement was disabled; the separately registered alternative appeared only after explicit selection. Missing responses were image-decode failures, not assumed HTTP 404s.
+- Explicit retry while files were absent remained unavailable. After restoring the exact SHA-256-matched files and restarting the same local server, retry from the already loaded page recovered both the main photograph (1050px natural width) and thumbnail (450px). This exposed and fixed a thumbnail reset defect before the final build. Gallery enlargement, Escape dismissal and returned trigger focus passed afterward.
+- Mobile 390px/document 375px and desktop 1440px/document 1425px showed no document overflow. Evidence: screenshots/image-failure-home-desktop.png, screenshots/image-failure-gallery-mobile.png and screenshots/image-recovery-desktop.png. Both generated assets were restored exactly; fault backup is empty, viewport reset and owned preview server stopped.
+- No prices, specifications, photographs, licence decisions or source dates were added or refreshed. Unsupported data stays unavailable. Hosted monitoring/backups, production rights, provider credentials and full accessibility/public-launch acceptance remain open.
+
 Verified locally on 14–15 October 2026 (India time). Hosted deployment status is recorded separately by the Sites tools.
 
 ## Automated checks

@@ -43,6 +43,8 @@ These manual checks are not scheduled monitoring. Alerts remain unconfigured and
 
 ## Incidents and rollback
 
+Image delivery failures preserve the recorded source, licence and check date. A thumbnail may fall back only to the same approved photograph's local full-size derivative. No unrelated watch, original remote file or unapproved image is substituted. Full failure shows an unavailable panel; gallery enlargement is disabled until explicit retry succeeds. Retry resets the main image and thumbnails together. A different registered gallery photograph requires explicit selection. Coverage counts describe approved records, not current asset delivery health. Delivery retries do not refresh licence or source dates.
+
 Withdraw an inaccurate record immediately through the protected editor control, retaining audit/history. Investigate the original evidence, stage a correction and re-review. A failed provider fetch never updates existing records or checked dates. Keep provider evaluation disabled if rights, quotas or upstream behaviour are uncertain.
 
 For a UI/server regression, redeploy the last successful saved Sites version using its returned opaque version ID. Do not assume database migrations reverse with code rollback: schema changes are append-only, and failed deployments may already have applied migrations. Data rollback uses the record revision workflow; disaster recovery uses a separately verified backup.

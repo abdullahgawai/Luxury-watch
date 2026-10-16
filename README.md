@@ -53,6 +53,8 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 
 ## Validate
 
+Approved photographs handle delivery failures across the homepage, catalogue, gallery and credits. A missing thumbnail can use the same photograph's full-size derivative; failed gallery images show an unavailable state with retained attribution and a working explicit retry.
+
 ```powershell
 node node_modules/typescript/bin/tsc --noEmit
 node --test tests/*.test.mjs
