@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Bounded provider evaluation — 17 October 2026
+
+- All102 automated tests pass; TypeScript and the production build pass. Six new simulated-response adapter tests cover disabled/missing credentials and invalid references without calls, a single timeout-bounded/redirect-denying request, explicit candidate fields, malformed/oversized/invalidly encoded bodies, advertised and streamed cancellation,25-row truncation, rejected rows/fields, token echoes, numeric quota metadata, empty results, authentication failures, throttling and sanitized transport errors. There are no automatic retries. Existing editorial/source/price/correction/access regressions remain passing. No live provider request was made.
+- Final built Worker: anonymous provider POST returns403/no-store. Six public API pages still return39 unique configurations,43 eligible retail observations, three archives and nine licensed configurations. WSTA0041 UAE retail/photo remain unavailable; its India amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check remain intact. Local Worker stopped. No public layout code, watch data, source dates, photo assets, rights, migrations or hosted roles changed.
+- The provider document's outdated catalogue-count paragraph was corrected using tested existing data. This is not an upstream documentation refresh or live API validation. Actual field coverage, source permissions, credentials, quota cost and latency remain unverified. No candidates are automatically mapped, imported or published; price/photo arrays stay empty/null and geographic scope stays GLOBAL.
+- Hosted editor verification, licensed production data, monitoring/backups and full public-launch acceptance remain open. Backend-only work does not claim a new visual or accessibility audit.
+
+
 ## Customer-facing catalogue pagination — 17 October 2026
 
 - All96 automated tests pass, TypeScript passes and the production build passes. Four new tests cover complete39-configuration traversal,151 synthetic configurations beyond the old100-result cap, invalid/out-of-range pages, reduced/empty matches, original data immutability, price eligibility, encoded share links, fixed brand scope and actual server-rendered12-card pages/native navigation before hydration. Existing public API, source/price projection, correction and access-control regressions remain passing.
