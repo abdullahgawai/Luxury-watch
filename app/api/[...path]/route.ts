@@ -2,6 +2,7 @@ import { editorialApi } from '../../../lib/editorial';
 import { catalogue, settings } from '../../../lib/catalogue';
 import { searchWatches } from '../../../lib/domain.mjs';
 import {historyResponse} from '../../../lib/history.mjs';
+import {publicPrices} from '../../../lib/public-catalogue.mjs';
 export const dynamic='force-dynamic';
 export async function GET(req:Request,{params}:{params:Promise<{path:string[]}>}){
  const {path}=await params;
@@ -13,8 +14,9 @@ export async function GET(req:Request,{params}:{params:Promise<{path:string[]}>}
    const w=path[1]?all.find(x=>x.id===path[1]):null;
    if(path[1]&&!w)return Response.json({error:'Watch not found'},{status:404});
    if(w&&path[2]==='history'){const response=historyResponse(w,new URL(req.url).searchParams);return Response.json({data:response.body,mode:settings().demo?'demo':'production'},{status:response.status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});}
+   if(w&&path[2]==='prices'){const response=publicPrices(w,new URL(req.url).searchParams);return Response.json({data:response.body,mode:settings().demo?'demo':'production'},{status:response.status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});}
    const q=Object.fromEntries(new URL(req.url).searchParams);
-   const value=w?(path[2]==='prices'?w.prices:w):searchWatches(all,q,all.flatMap(x=>x.prices));
+   const value=w||searchWatches(all,q,all.flatMap(x=>x.prices));
    return Response.json({data:value,mode:settings().demo?'demo':'production'});
   }
   return Response.json({error:'Not found'},{status:404});

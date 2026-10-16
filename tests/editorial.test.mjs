@@ -7,6 +7,7 @@ import {demoWatches} from '../lib/demo.mjs';
 import {publishedObservations} from '../lib/domain.mjs';
 import {historyFixture} from './fixtures/history.mjs';
 import {historySeries} from '../lib/history.mjs';
+import {publicWatch} from '../lib/public-catalogue.mjs';
 const sqlite=new DatabaseSync(':memory:');
 for(const f of readdirSync('drizzle').filter(f=>f.endsWith('.sql')).sort())sqlite.exec(readFileSync('drizzle/'+f,'utf8'));
 const statement=(sql,values=[])=>({bind(...v){return statement(sql,v);},async first(){return sqlite.prepare(sql).get(...values)||null;},async all(){return {results:sqlite.prepare(sql).all(...values)};},async run(){return sqlite.prepare(sql).run(...values);},sql,values});
@@ -138,4 +139,12 @@ test('history permission and observation review survive protected import, public
  assert.equal(stored().sources[0].historyAllowed,true);assert.equal(historySeries(stored(),'IN','official_retail').find(g=>g.available).rows.length,3);
  const observations=sqlite.prepare('SELECT payload FROM observations WHERE record_id=?').all(record.id).map(row=>JSON.parse(row.payload));assert.ok(observations.every(p=>p.historyEligible===true));
  assert.equal((await call(['admin','records',record.id],{action:'withdraw',revision:3})).status,200);assert.equal(historySeries(stored(),'IN','official_retail').length,0);
+});
+
+test('protected publication preserves editorial fields while public reads exclude them',async()=>{
+ const record=historyFixture(),marker='PRIVATE_EDITORIAL_QA_ONLY';record.id='public-boundary-qa';record.reference='QA-002';record.prices=record.prices.map(p=>({...p,variantId:record.id,internalCost:marker}));record.internalNotes=marker;record.sources[0].historyPermission=marker;
+ assert.equal((await call(['admin','imports'],{record},true,{'idempotency-key':'public-boundary-import-001'})).status,201);
+ assert.equal((await call(['admin','records',record.id],{action:'review',revision:1})).status,200);assert.equal((await call(['admin','records',record.id],{action:'publish',revision:2})).status,200);
+ const raw=JSON.parse(sqlite.prepare('SELECT payload FROM records WHERE id=?').get(record.id).payload),published=publicWatch(raw);assert.ok(JSON.stringify(raw).includes(marker));assert.ok(!JSON.stringify(published).includes(marker));assert.equal(published.sources[0].historyPermissionRecorded,true);assert.equal(historySeries(published,'IN','official_retail').find(g=>g.available).rows.length,3);
+ const queue=await call(['admin','queues','records'],undefined,true,{},'state=published');assert.equal(queue.status,200);assert.ok(JSON.stringify(queue.data.rows.find(r=>r.id===record.id)).includes(marker));assert.equal((await call(['admin','queues','records'],undefined,false,{},'state=published')).status,403);
 });
