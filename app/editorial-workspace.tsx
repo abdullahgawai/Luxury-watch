@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import OperationalChecks from './operational-checks';
+import {editorialQueueRequest,verifiedQueuePage,storedJSON} from '../lib/editorial-client.mjs';
 
 type Row=Record<string,any>;
 type Page={rows:Row[];hasMore:boolean;nextCursor:string|null;pageSize:number};
@@ -12,7 +13,7 @@ function usePage(url:string){
  const cursor=cursors.at(-1),request=url+(cursor?'&cursor='+encodeURIComponent(cursor):'');
  useEffect(()=>{
   const controller=new AbortController();setError('');setResult(null);
-  (async()=>{try{const response=await fetch(request,{cache:'no-store',signal:controller.signal}),body:any=await response.json();if(!response.ok)throw new Error(body.error||'Queue unavailable.');if(!controller.signal.aborted)setResult({url:request,page:body});}catch(e){if(!controller.signal.aborted)setError(e instanceof Error?e.message:'Queue unavailable.');}})();
+  (async()=>{try{const kind=url.includes('/revisions/')?'revisions':url.split('/queues/')[1]?.split('?')[0],body=verifiedQueuePage(await editorialQueueRequest(request,{signal:controller.signal}),kind||'');if(!controller.signal.aborted)setResult({url:request,page:body});}catch(e){if(!controller.signal.aborted)setError(e instanceof Error?e.message:'Queue unavailable.');}})();
   return ()=>controller.abort();
  },[request,retry]);
  const page=result?.url===request?result.page:null;
@@ -40,11 +41,11 @@ function RevisionPages({record,busy,post}:{record:Row;busy:boolean;post:Post}){
 }
 function RecordQueue({state,busy,post,revise}:{state:string;busy:boolean;post:Post;revise:(row:Row)=>void}){
  const page=usePage('/api/admin/queues/records?state='+state);
- return <><PageControls page={page} label="Records" disabled={busy}/>{page.page&&!page.page.rows.length&&<p>No records in this queue.</p>}{page.page?.rows.map(row=><article key={row.id} className="admin-record"><h3>{row.brand} · {row.reference}</h3><p>{row.state} · revision {row.revision} · {stamp(row.updated_at)}</p><details><summary>Inspect complete record</summary><pre>{JSON.stringify(JSON.parse(row.payload),null,2)}</pre></details><div className="actions">
+ return <><PageControls page={page} label="Records" disabled={busy}/>{page.page&&!page.page.rows.length&&<p>No records in this queue.</p>}{page.page?.rows.map(row=>{const decoded=storedJSON(row.payload),readable=decoded.ok&&decoded.value&&typeof decoded.value==='object'&&!Array.isArray(decoded.value);return <article key={row.id} className="admin-record"><h3>{row.brand} · {row.reference}</h3><p>{row.state} · revision {row.revision} · {stamp(row.updated_at)}</p>{!readable&&<p role="status">Stored record is unreadable. Publication and revision controls are disabled. Review audit history and use the operator recovery procedure.</p>}<details><summary>Inspect complete record</summary><pre>{readable?JSON.stringify(decoded.value,null,2):'Record JSON unavailable.'}</pre></details>{readable&&<div className="actions">
   {row.state==='draft'&&<><button disabled={busy} onClick={()=>revise(row)}>Revise draft</button><button disabled={busy} onClick={()=>post('/api/admin/records/'+encodeURIComponent(row.id),{action:'review',revision:row.revision})}>Submit to review</button></>}
   {row.state==='review'&&<button disabled={busy} onClick={()=>post('/api/admin/records/'+encodeURIComponent(row.id),{action:'publish',revision:row.revision})}>Publish reviewed record</button>}
   {row.state==='published'&&<button disabled={busy} onClick={()=>post('/api/admin/records/'+encodeURIComponent(row.id),{action:'withdraw',revision:row.revision})}>Withdraw to draft</button>}
- </div><RevisionHistory record={row} busy={busy} post={post}/></article>)}</>;
+ </div>}<RevisionHistory record={row} busy={busy||!readable} post={post}/></article>;})}</>;
 }
 function CorrectionQueue({state,busy,post}:{state:string;busy:boolean;post:Post}){
  const page=usePage('/api/admin/queues/corrections?state='+state);
@@ -52,7 +53,7 @@ function CorrectionQueue({state,busy,post}:{state:string;busy:boolean;post:Post}
 }
 function AuditQueue({busy}:{busy:boolean}){
  const page=usePage('/api/admin/queues/audit?state=all');
- return <><PageControls page={page} label="Audit events" disabled={busy}/><div className="audit-list">{page.page&&!page.page.rows.length&&<p>No audit events.</p>}{page.page?.rows.map(row=><details key={row.id}><summary>{stamp(row.at)} · {row.action} · {row.entity_id}</summary><p className="small">Actor: {row.actor}</p><pre>{JSON.stringify({before:JSON.parse(row.old_value),after:JSON.parse(row.new_value)},null,2)}</pre></details>)}</div></>;
+ return <><PageControls page={page} label="Audit events" disabled={busy}/><div className="audit-list">{page.page&&!page.page.rows.length&&<p>No audit events.</p>}{page.page?.rows.map(row=>{const before=storedJSON(row.old_value),after=storedJSON(row.new_value);return <details key={row.id}><summary>{stamp(row.at)} · {row.action} · {row.entity_id}</summary><p className="small">Actor: {row.actor}</p>{!before.ok||!after.ok?<p>Stored audit JSON is unreadable. Use the operator recovery procedure; no history has been changed.</p>:<pre>{JSON.stringify({before:before.value,after:after.value},null,2)}</pre>}</details>;})}</div></>;
 }
 export default function EditorialWorkspace(){
  const [user,setUser]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[refresh,setRefresh]=useState(0),[recordState,setRecordState]=useState('all'),[correctionState,setCorrectionState]=useState('pending');

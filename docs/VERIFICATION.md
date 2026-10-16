@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Editorial queue loading and JSON recovery — 17 October 2026
+
+- All114 automated tests pass; TypeScript and the production build pass. Four new tests cover valid record/correction/audit/revision envelopes,3000-character corrections, malformed/duplicate/oversized rows and invalid pagination, JSON-safe stored recovery, deadlines during fetch and parsing, no automatic retry, cancelled reads before/during requests, and sanitized transport/JSON failures. Existing server-side editorial authorization, receipts, public price/source projection and route regressions remain passing.
+- The actual workspace was browser-tested in a labelled loopback-only synthetic harness. A malformed queue response shows Retry records; keyboard Enter recovers to an explicit unreadable-record state. Submit-to-review and Revise draft actions are absent. Earlier history can open, while restore remains disabled. Expanding a malformed synthetic audit snapshot shows recovery wording without a render crash. Desktop1440/document1425 and mobile360/document345 have no document overflow. Screenshots editor-queue-recovery-desktop.png and editor-queue-recovery-mobile.png show synthetic records, not hosted data. Viewport reset, owned tab closed and both local servers stopped.
+- Actual built-Worker anonymous record/audit/revision requests return403/no-store. Public traversal still returns39 unique configurations,43 eligible observations, three archives and nine licensed configurations. WSTA0041 UAE retail/photo remain unavailable; its India amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check are unchanged. No production data, source dates, roles, rights, assets or migrations changed.
+- Mock identity/data are confined to the local helper, never hosted settings or production bundles. Hosted role verification, licensed production data, monitoring/backups and full accessibility/public-launch acceptance remain open. Client guards do not repair or publish unreadable records.
+
+
 ## Route boundaries and catalogue recovery — 17 October 2026
 
 - All110 automated tests pass; TypeScript and the production build pass. Four new tests cover every known watch URL, supported sections/guides, malformed/extra segments, healthy missing-route lookup, encoded retry-state preservation, actual page/metadata rejection before database reads, and simulated database outages. Actual Site SSR verifies saved/comparison/coverage/market/catalogue outage views avoid false empty-state counts and preserve retry IDs/query. Database errors do not reach HTML/metadata.
