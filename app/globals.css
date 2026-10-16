@@ -9,3 +9,14 @@
 @media(min-width:641px) and (max-width:900px){.hero{grid-template-columns:55% 45%}.hero-copy h1{font-size:48px}.hero-copy>p:not(.eyebrow){font-size:14px;padding-right:24px}.hero-art{margin-left:0}.outer{width:325px;height:325px;top:145px}.inner{width:175px;height:175px;left:24%;top:270px}.inner:before{inset:18px}.art-caption{bottom:70px}}
 @media(max-width:640px){.hero-mobile-search{display:block;margin-top:26px}.hero-mobile-search input{font-size:12px}.search-band{display:none}.hero{min-height:830px}}
 @media(max-width:640px){.site-header{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.wordmark{grid-column:1/-1;max-width:none}.header-tools{grid-row:2;grid-column:1;justify-self:start}.mobile-menu{grid-row:2;grid-column:2;justify-self:end}.site-header nav.open{grid-column:1/-1;grid-row:3}.hero-mobile-search .search-form>svg{color:#53614f}}
+/* Narrow-screen filters use the native modal focus boundary and Escape handling. */
+.catalogue-filter-dialog{padding:0;border:1px solid var(--border);color:var(--ink);background:var(--ivory);width:min(430px,100%);max-width:100%;max-height:100dvh;height:100dvh;margin:0 0 0 auto;overflow:auto;overscroll-behavior:contain}
+.catalogue-filter-dialog::backdrop{background:#082b24a6}
+.filter-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 20px;border-bottom:1px solid var(--border);background:var(--ivory)}
+.filter-drawer-head h2{font-size:28px;margin:0}
+.catalogue-filter-dialog .filters{display:block;padding:24px 20px 8px;margin:0;background:transparent}
+.filter-drawer-footer{padding:18px 20px 24px;border-top:1px solid var(--border);background:var(--ivory)}
+.filter-drawer-footer p{margin:0 0 12px}
+.filter-drawer-footer .button{width:100%}
+.filter-chips button{max-width:100%;text-align:left}
+@media(max-width:640px){.desktop-filters{display:none!important}.catalogue-filter-dialog .filters{display:block}}

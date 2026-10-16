@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Responsive catalogue filter drawer — 16 October 2026
+
+- The previously blocked tested commit204d0c3 deployed successfully before this work. New catalogue changes pass all87 automated regression tests, TypeScript and the final production build. Existing price eligibility, source provenance, production isolation, correction and editorial access-control tests remain passing. No watch data, rights decisions, photo assets or source dates changed.
+- Final built-Worker browser checks at360,390,768,1024 and1440px show no document overflow. At360px the dialog is360px wide with343px internal content and vertical scrolling. At390px the native modal initially focuses Close; native Shift+Tab wraps to View results and Tab wraps back to Close. Escape and View results close it, restore trigger focus and release background scrolling. Resizing an open mobile drawer to768px closes it and focuses the desktop rail select. Temporary viewport reset, owned tab closed and local Worker stopped.
+- UAE Cartier with maximumAED20000 gives exactly WSTA0108/AED15000 and WSSA0086/AED17500, sorted ascending, with original15Oct source dates and price qualifications. WSTA0041 with that maximum gives zero results; removing the price chip reveals its single configuration with local retail and photo unavailable. Removing the search chip restores six Cartier configurations. Reload retains brand/maximum/market query state. Switching toIndia retains numeric20000 under INR and yields zero configurations, with no currency conversion. Cartier brand-page case-width25.5 filter yields three configurations; Clear all restores six while retaining Cartier scope. Quartz selection yields four, and View results closes normally.
+- Evidence: screenshots/catalogue-filter-drawer-mobile.png and screenshots/catalogue-filter-desktop.png. No synthetic fixture was added to the release. Hosted roles, licensed production data, monitoring/backups and full public-launch acceptance remain open.
+
+
 ## Publication readiness checks — 16 October 2026
 
 - All 87 automated tests pass; TypeScript and the production build pass. SQLite/editorial-handler coverage verifies production gates in both production and research mode, malformed JSON, unsupported price/photo withholding, aggregate-only responses and the 1000-record bound. Existing access checks reject anonymous and unallowlisted identities. No private payloads, provider tokens or contacts are returned.
