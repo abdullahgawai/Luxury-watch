@@ -5,6 +5,8 @@ import {build} from 'esbuild';
 import {readFileSync,readdirSync} from 'node:fs';
 import {demoWatches} from '../lib/demo.mjs';
 import {publishedObservations} from '../lib/domain.mjs';
+import {historyFixture} from './fixtures/history.mjs';
+import {historySeries} from '../lib/history.mjs';
 const sqlite=new DatabaseSync(':memory:');
 for(const f of readdirSync('drizzle').filter(f=>f.endsWith('.sql')).sort())sqlite.exec(readFileSync('drizzle/'+f,'utf8'));
 const statement=(sql,values=[])=>({bind(...v){return statement(sql,v);},async first(){return sqlite.prepare(sql).get(...values)||null;},async all(){return {results:sqlite.prepare(sql).all(...values)};},async run(){return sqlite.prepare(sql).run(...values);},sql,values});
@@ -123,4 +125,17 @@ test('parallel identical corrections deduplicate, malformed keys fail and receip
  for(let i=0;i<28;i++)assert.equal((await call(['corrections'],body,false,headers)).status,201);
  assert.equal((await call(['corrections'],body,false,headers)).status,429);
  const errors=await call(['corrections'],{...body,field:'x',contact:{}},false,{'cf-connecting-ip':'validation-test'});assert.equal(errors.status,400);assert.ok(errors.data.fields.field&&errors.data.fields.contact);
+});
+
+test('history permission and observation review survive protected import, publication and withdrawal',async()=>{
+ const record=historyFixture(),key={'idempotency-key':'history-qa-import-001'};
+ assert.equal((await call(['admin','imports'],{record},false,key)).status,403);
+ const invalid={...record,sources:record.sources.map(s=>({...s,historyAllowed:false}))};assert.equal((await call(['admin','imports'],{record:invalid},true,key)).status,400);
+ assert.equal((await call(['admin','imports'],{record},true,key)).status,201);
+ assert.equal((await call(['admin','records',record.id],{action:'review',revision:1})).status,200);
+ assert.equal((await call(['admin','records',record.id],{action:'publish',revision:2})).status,200);
+ const stored=()=>JSON.parse(sqlite.prepare('SELECT payload FROM records WHERE id=?').get(record.id).payload);
+ assert.equal(stored().sources[0].historyAllowed,true);assert.equal(historySeries(stored(),'IN','official_retail').find(g=>g.available).rows.length,3);
+ const observations=sqlite.prepare('SELECT payload FROM observations WHERE record_id=?').all(record.id).map(row=>JSON.parse(row.payload));assert.ok(observations.every(p=>p.historyEligible===true));
+ assert.equal((await call(['admin','records',record.id],{action:'withdraw',revision:3})).status,200);assert.equal(historySeries(stored(),'IN','official_retail').length,0);
 });

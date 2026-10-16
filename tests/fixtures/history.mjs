@@ -1,0 +1,8 @@
+// SYNTHETIC TEST DATA ONLY. Never import from application code or publish as watch data.
+export const historyNow=Date.parse('2026-10-16T12:00:00Z');
+export function historyFixture(){
+ const record={id:'synthetic-history-qa',brand:'Synthetic QA',model:'Test record only',reference:'QA-001',dial:'Test dial',bracelet:'Test bracelet',material:'Test material',size:null,movement:null,calibre:null,powerReserve:null,waterResistance:null,bezel:null,description:'Synthetic component and integration test record. Not a watch or market quote.',aliases:[],collections:[],demo:false,status:'published',image:null,prices:[],sources:[{id:'synthetic-source',title:'Synthetic QA source — not market data',url:'https://history-fixture.invalid/test',category:'manufacturer',rights:'approved',permission:'Synthetic tests only',method:'Synthetic test fixture; no external request',checkedAt:'2026-10-16T10:00:00Z',historyAllowed:true,historyPermission:'Synthetic history testing only; no real licence is asserted.'}],evidence:{}};
+ for(const key of ['brand','model','reference','dial','bracelet','material','description'])record.evidence[key]='synthetic-source';
+ record.prices=[0,1,2].map(i=>({id:'synthetic-'+i,variantId:record.id,type:'official_retail',country:'IN',currency:'INR',amountMinor:1000025+i*10000,status:'published',condition:'New',boxPapers:'Full set',sellerType:'manufacturer',taxStatus:'Tax included',retailBasis:'Synthetic manufacturer test basis',sourceId:'synthetic-source',observedAt:`2026-10-${10+i}T21:30:00Z`,checkedAt:'2026-10-16T09:00:00Z',evidence:'Synthetic QA evidence. This is not a real watch price.',historyEligible:true}));
+ return record;
+}

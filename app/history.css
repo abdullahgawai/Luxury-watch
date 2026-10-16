@@ -1,0 +1,9 @@
+.history-scroll{overflow-x:auto;max-width:100%;border:1px solid var(--border);overscroll-behavior-x:contain}
+.history-scroll .history-plot{width:100%;min-width:780px;max-height:none;margin:0}
+.history-table{min-width:780px;background:#faf8f3}
+.history-table caption{padding:18px;text-align:left;font-size:14px;background:#e9ece2}
+.history-table th,.history-table td{padding:18px!important;width:25%!important;vertical-align:top}
+.history-table details p{font-size:13px;line-height:1.6}
+.history-review-note{border-left:2px solid #80551b;padding:12px 16px;background:#f5ebd9;color:#664114}
+.history>label{max-width:100%}.history>label select{max-width:100%}
+@media(max-width:640px){.history>label{width:100%}.history>label select{width:100%}}

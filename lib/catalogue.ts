@@ -1,7 +1,7 @@
 import { env } from 'cloudflare:workers';
 import { researchWatches } from './research-catalogue.mjs';
 import {coverageSnapshot} from './retail-reviews.mjs';
-export type Source = {id:string,title:string,url:string,category:string,rights:string,permission:string,checkedAt:string,method:string,authorisation?:{url:string,title:string,evidence:string,checkedAt:string}};
+export type Source = {id:string,title:string,url:string,category:string,rights:string,permission:string,checkedAt:string,method:string,historyAllowed?:boolean,historyPermission?:string,authorisation?:{url:string,title:string,evidence:string,checkedAt:string}};
 export type Photo = {id:string,url:string,thumbnail?:string,originalUrl?:string,sourceUrl:string,alt:string,rights:string,permission:string,holder:string,license:string,licenseUrl:string,changes:string,width:number,height:number,variantId:string,reference:string,matchStatus:string,checkedAt?:string,configurationNote?:string};
 export type RetailCoverageReview = {variantId:string,reference:string,country:string,reviewedAt:string,sourceUrl:string,outcome:string,reason:string,offeredReference?:string};
 export type Watch = {id:string,brand:string,model:string,reference:string,configurationId?:string,dial:string,bracelet:string,material:string,size:number|null,movement:string|null,calibre:string|null,powerReserve:number|null,waterResistance:number|null,bezel:string|null,description:string,aliases:string[],collections:string[],sources:Source[],prices:any[],retailCoverageReviews?:RetailCoverageReview[],image:Photo|null,images?:Photo[],evidence:Record<string,string>,demo:boolean,status:string};
