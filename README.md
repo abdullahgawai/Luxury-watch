@@ -46,7 +46,7 @@ Local `/signin-with-chatgpt?return_to=/admin` simulates the supplied starter's l
 - Source-bound history plot and accessible table when at least two comparable actual observations exist; no invented preview history.
 - D1 schema/migration, validated idempotent drafts, review/publication/withdrawal, immutable configuration identity, snapshots, audit history and rollback to draft.
 - Paginated editorial queues, pending-correction filters and per-record revision history with explicit restore to draft; older entries stay reachable beyond the previous limits.
-- Server-side authenticated editor allowlist, same-origin mutation checks, bounded inputs and correction rate limits. Working correction receipt and moderation workflow.
+- Server-side authenticated editor allowlist, same-origin mutation checks, bounded inputs and correction rate limits. Working correction receipt and moderation workflow, with shared field validation, accessible inline errors and retry-safe UUID receipts.
 - Editor-only system checks for database readiness, stale price checks and correction backlog; repeatable encrypted synthetic D1 recovery rehearsal (hosted backup/alerts remain unconfigured).
 - Disabled-by-default server TheWatchAPI evaluation adapter with timeout, quota guard and unresolved candidates; no credentials or claimed live integration.
 - Metadata, canonical paths, production catalogue sitemap, preview no-index policy, graceful error and 404 handling, reduced-motion support and basic security response headers.

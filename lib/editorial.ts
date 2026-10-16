@@ -3,6 +3,7 @@ import { canEdit, validateRecord, nextState } from './domain.mjs';
 import { evaluateTheWatchAPI } from './provider';
 import {operationalHealth} from './operations';
 import {editorialPage,EditorialPageError} from './editorial-pages';
+import {validateCorrection} from './correction-input.mjs';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
@@ -30,13 +31,19 @@ export async function editorialApi(req:Request,path:string[]){
    if(Number(req.headers.get('content-length')||0)>150000)return json({error:'Payload too large'},413);
   }
   if(path[0]==='corrections'&&req.method==='POST'){
-   const b=await body(req);
-   if(typeof b.page!=='string'||!b.page.startsWith('/')||b.page.startsWith('//')||b.page.length>300||typeof b.field!=='string'||b.field.length<2||b.field.length>100||typeof b.claim!=='string'||b.claim.trim().length<10||b.claim.length>3000||b.contact&&(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.contact)||b.contact.length>200))return json({error:'Please provide a page, field and a correction of 10–3000 characters; email is optional.'},400);
-   if(b.contact&&typeof b.contact!=='string')return json({error:'Email must be text'},400);
-   if(b.website)return json({error:'Submission rejected'},400);
+   const checked=validateCorrection(await body(req));if(!checked.valid)return json({error:'Please correct the highlighted fields.',fields:checked.errors},400);
+   const b=checked.values,key=req.headers.get('idempotency-key');
+   if(key&&!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(key))return json({error:'A valid submission key is required.'},400);
+   if(!await limit('correction-attempt:'+(req.headers.get('cf-connecting-ip')||'local'),30))return json({error:'Submission retry limit reached. Try again in an hour.'},429);
+   const ref=key?.toLowerCase()||id();
+   const receipt=()=>db().prepare('SELECT page,field,claim,contact FROM corrections WHERE id=?').bind(ref).first<{page:string,field:string,claim:string,contact:string|null}>();
+   const matches=(row:{page:string,field:string,claim:string,contact:string|null})=>row.page===b.page&&row.field===b.field&&row.claim===b.claim&&(row.contact||'')===b.contact;
+   const response=(row:{page:string,field:string,claim:string,contact:string|null})=>matches(row)?json({id:ref,message:'Received for editorial review. No public record has been changed.'},201):json({error:'This submission key was already used for different text. Refresh before starting another correction.'},409);
+   if(key){const prior=await receipt();if(prior)return response(prior);}
    if(!await limit(req.headers.get('cf-connecting-ip')||'local'))return json({error:'Submission limit reached. Try again in an hour.'},429);
-   const ref=id();await db().prepare('INSERT INTO corrections(id,page,field,claim,contact,created_at) VALUES(?,?,?,?,?,?)').bind(ref,b.page,b.field,b.claim,b.contact||null,new Date().toISOString()).run();
-   return json({id:ref,message:'Received for editorial review. No public record has been changed.'},201);
+   await db().prepare('INSERT INTO corrections(id,page,field,claim,contact,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING').bind(ref,b.page,b.field,b.claim,b.contact||null,new Date().toISOString()).run();
+   const stored=await receipt();if(!stored)return json({error:'Receipt unavailable. Keep your text and retry with the same submission key.'},503);
+   return response(stored);
   }
   if(admin&&req.method==='GET'&&path[1]==='health'){
    try{return json(await operationalHealth(db()));}catch{return json({error:'Database checks unavailable. No readiness result is confirmed.'},503);}

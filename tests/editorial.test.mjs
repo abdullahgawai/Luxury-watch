@@ -106,3 +106,21 @@ test('per-record history reaches revisions older than the global 300 cutoff and 
   const restored=await call(['admin','records',record.id],{action:'rollback',revision:306,targetRevision:1});assert.equal(restored.status,200);assert.equal(restored.data.state,'draft');assert.equal(restored.data.revision,307);
  }finally{sqlite.prepare('DELETE FROM revisions WHERE record_id=?').run(record.id);sqlite.prepare('DELETE FROM audit WHERE entity_id=?').run(record.id);sqlite.prepare('DELETE FROM records WHERE id=?').run(record.id);}
 });
+
+test('correction retries return one receipt after moderation and do not consume a new-submission slot',async()=>{
+ const key=crypto.randomUUID(),headers={'idempotency-key':key,'cf-connecting-ip':'retry-test'},body={page:'/test?market=AE',field:'Synthetic test',claim:'Synthetic retry test only; no public correction.',contact:'test@example.invalid'};
+ const first=await call(['corrections'],body,false,headers);assert.equal(first.status,201);assert.equal(first.data.id,key);
+ assert.equal((await call(['admin','corrections',key],{state:'resolved'})).status,200);
+ for(let i=0;i<4;i++)assert.equal((await call(['corrections'],{...body,claim:body.claim+i},false,{...headers,'idempotency-key':crypto.randomUUID()})).status,201);
+ const retry=await call(['corrections'],body,false,headers);assert.equal(retry.status,201);assert.equal(retry.data.id,key);assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM corrections WHERE id=?').get(key).n,1);assert.equal(sqlite.prepare('SELECT state FROM corrections WHERE id=?').get(key).state,'resolved');assert.ok(!JSON.stringify(retry.data).includes(body.contact));
+ assert.equal((await call(['corrections'],{...body,claim:'Different valid correction text'},false,headers)).status,409);
+ assert.equal((await call(['corrections'],body,false,{...headers,'idempotency-key':crypto.randomUUID()})).status,429);
+});
+test('parallel identical corrections deduplicate, malformed keys fail and receipt attempts remain limited',async()=>{
+ const key=crypto.randomUUID(),headers={'idempotency-key':key,'cf-connecting-ip':'parallel-retry-test'},body={page:'/test',field:'Synthetic test',claim:'Synthetic concurrent receipt verification only'};
+ const results=await Promise.all([call(['corrections'],body,false,headers),call(['corrections'],body,false,headers)]);assert.ok(results.every(r=>r.status===201&&r.data.id===key));assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM corrections WHERE id=?').get(key).n,1);
+ assert.equal((await call(['corrections'],body,false,{...headers,'idempotency-key':'invalid'})).status,400);
+ for(let i=0;i<28;i++)assert.equal((await call(['corrections'],body,false,headers)).status,201);
+ assert.equal((await call(['corrections'],body,false,headers)).status,429);
+ const errors=await call(['corrections'],{...body,field:'x',contact:{}},false,{'cf-connecting-ip':'validation-test'});assert.equal(errors.status,400);assert.ok(errors.data.fields.field&&errors.data.fields.contact);
+});
