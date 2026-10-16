@@ -173,3 +173,42 @@ test('publication health bounds its scan to the production catalogue limit',asyn
  globalThis.testEnv.DB={prepare(sql){if(sql.startsWith("SELECT payload FROM records WHERE state='published'"))return {bind(n){assert.equal(n,1001);return {async all(){return {results:Array.from({length:1001},()=>({payload:'{}'}))};}};}};return db.prepare(sql);}};
  try{const {status,data}=await call(['admin','health']);assert.equal(status,200);assert.deepEqual(data.publication,{checked:1000,visible:0,withheld:1000,invalidPayloads:0,withheldPrices:0,withheldPhotos:0,truncated:true});assert.ok(data.warnings.some(w=>w.includes('first 1000')));}finally{globalThis.testEnv.DB=db;}
 });
+
+async function rawEditorial(path,body,headers={}){
+ const req=new Request('https://test.local/api/'+path.join('/'),{method:'POST',headers:{'content-type':'application/json',origin:'https://test.local','oai-authenticated-user-id':'editor',...headers},body,duplex:'half'});
+ const response=await editorialApi(req,path);return {status:response.status,data:await response.json(),headers:response.headers};
+}
+test('malformed JSON, primitive roots and invalid UTF-8 return safe client errors without writes',async()=>{
+ const sentinel='PRIVATE_REQUEST_SENTINEL',before=sqlite.prepare('SELECT COUNT(*) n FROM corrections').get().n;
+ for(const raw of ['{"claim":"'+sentinel, 'null','[]','"'+sentinel+'"','123',new Uint8Array([255])]){
+  const r=await rawEditorial(['corrections'],raw);assert.equal(r.status,400);assert.equal(r.headers.get('cache-control'),'no-store');assert.ok(!JSON.stringify(r.data).includes(sentinel));assert.ok(!JSON.stringify(r.data).includes('Unexpected'));
+ }
+ assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM corrections').get().n,before);
+ assert.equal((await rawEditorial(['corrections'],'{}',{'content-type':'application/jsonx'})).status,415);
+ assert.equal((await rawEditorial(['corrections'],'{}',{'content-type':'Application/JSON; charset=utf-8'})).status,400);
+});
+test('advertised and streamed request limits consistently return 413 and cancel excess bodies',async()=>{
+ assert.equal((await rawEditorial(['corrections'],'{}',{'content-length':'150001'})).status,413);
+ let cancelled=false;
+ const stream=new ReadableStream({start(controller){controller.enqueue(new Uint8Array(100000));controller.enqueue(new Uint8Array(50001));},cancel(){cancelled=true;}});
+ const r=await rawEditorial(['corrections'],stream);assert.equal(r.status,413);assert.equal(cancelled,true);assert.equal(r.data.error,'Payload too large');
+});
+test('unexpected public/editor storage failures never expose SQL, paths, payloads or secrets',async()=>{
+ const database=globalThis.testEnv.DB,sentinel='PRIVATE_STORAGE_SENTINEL',claim={page:'/watches',field:'size',claim:'Synthetic correction for failure handling verification'};
+ try{
+  for(const error of [new Error('SQLITE_ERROR SELECT contact FROM private_table '+sentinel),new Error('DATABASE unavailable C:/private/'+sentinel),sentinel]){
+   globalThis.testEnv.DB={prepare(){throw error;}};
+   const r=await call(['corrections'],claim,false);assert.equal(r.status,503);assert.ok(!JSON.stringify(r.data).includes(sentinel));assert.ok(!JSON.stringify(r.data).includes('SELECT'));
+  }
+  globalThis.testEnv.DB={prepare(){throw new Error('SQLITE_CONSTRAINT '+sentinel);}};
+  const conflict=await call(['corrections'],claim,false);assert.equal(conflict.status,409);assert.ok(!JSON.stringify(conflict.data).includes(sentinel));
+  const record=structuredClone(demoWatches[0]);record.id='storage-failure-fixture';record.reference='QA-ERROR';record.demo=false;record.sources.forEach(s=>s.rights='approved');record.prices=[];record.image=null;record.images=[];
+  globalThis.testEnv.DB={prepare:database.prepare,async batch(){throw new Error(sentinel+' transaction failure');}};
+  const r=await call(['admin','imports'],{record},true,{'idempotency-key':'storage-failure-test'});assert.equal(r.status,503);assert.ok(!JSON.stringify(r.data).includes(sentinel));assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM records WHERE id=?').get(record.id).n,0);
+ }finally{globalThis.testEnv.DB=database;}
+});
+test('invalid provider input is rejected before quota/storage and invalid imports keep a safe validation response',async()=>{
+ const database=globalThis.testEnv.DB;globalThis.testEnv.DB={prepare(){throw new Error('Unexpected quota access');}};
+ try{for(const reference of ['', ' ', 'https://unsafe.invalid', 'x'.repeat(61)])assert.equal((await call(['admin','provider'],{reference})).status,400);}finally{globalThis.testEnv.DB=database;}
+ const invalid=await call(['admin','imports'],{record:{id:'PRIVATE_PAYLOAD_SENTINEL'}},true,{'idempotency-key':'invalid-import-test'});assert.equal(invalid.status,400);assert.match(invalid.data.error,/Record validation failed/);assert.ok(!JSON.stringify(invalid.data).includes('PRIVATE_PAYLOAD_SENTINEL'));
+});

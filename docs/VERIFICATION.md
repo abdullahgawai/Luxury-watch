@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Safe editorial errors and request bodies — 17 October 2026
+
+- All106 automated tests pass; TypeScript and the production build pass. Four new actual-handler/SQLite tests cover malformed JSON containing private sentinels, null/array/primitive roots, invalid UTF-8, misleading media types, consistent advertised/streamed413 limits and stream cancellation. Injected public storage errors containing SQL/paths/uppercase database messages/non-Error values return sanitized503, constraints return static409, and an injected import batch failure exposes no private text or inserted record. Bad imports return a fixed validation400; invalid provider references are rejected before quota/storage. Existing retry-safe correction receipts, audit/revision access and price/source tests remain passing.
+- Final built Worker confirms malformed/primitive corrections400, oversized corrections413, no input echo/no-store, and anonymous import403. An initial anonymous POST encountered Wrangler's explicit worker-restarted-mid-request503; a fresh request returned the expected403. This local infrastructure restart was not an application error or successful mutation. Backend-only scope: no new visual-layout or full accessibility acceptance is claimed. Owned local Worker stopped.
+- Public built-API traversal still yields39 unique configurations,43 eligible retail observations, three archives and nine licensed configurations. WSTA0041 UAE retail/photo remain unavailable; its India amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check remain unchanged. No watch data, source dates, rights, photos, migrations or hosted roles changed.
+- Hosted editor verification, licensed production data, monitoring/backups and full public-launch acceptance remain open. Unexpected503 does not establish whether an earlier write committed; receipt/import idempotency and revision checks remain the recovery mechanism.
+
+
 ## Bounded provider evaluation — 17 October 2026
 
 - All102 automated tests pass; TypeScript and the production build pass. Six new simulated-response adapter tests cover disabled/missing credentials and invalid references without calls, a single timeout-bounded/redirect-denying request, explicit candidate fields, malformed/oversized/invalidly encoded bodies, advertised and streamed cancellation,25-row truncation, rejected rows/fields, token echoes, numeric quota metadata, empty results, authentication failures, throttling and sanitized transport errors. There are no automatic retries. Existing editorial/source/price/correction/access regressions remain passing. No live provider request was made.

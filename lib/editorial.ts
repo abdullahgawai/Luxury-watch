@@ -7,12 +7,18 @@ import {validateCorrection} from './correction-input.mjs';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
+class RequestError extends Error{constructor(message:string,public status=400){super(message);}}
+function reviewedRecord(value:unknown){try{return validateRecord(value,true);}catch{throw new RequestError('Record validation failed. Check the import format, exact configuration, source evidence and publication rights.');}}
 async function digest(value:string){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)))].map(x=>x.toString(16).padStart(2,'0')).join('');}
 async function body(req:Request){
- const reader=req.body?.getReader();if(!reader)throw new Error('JSON body required');
- let raw='',bytes=0;const decoder=new TextDecoder();
- while(true){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>150000){await reader.cancel();throw new Error('Payload too large');}raw+=decoder.decode(value,{stream:true});}
- raw+=decoder.decode();return JSON.parse(raw);
+ const reader=req.body?.getReader();if(!reader)throw new RequestError('A JSON object is required.');
+ let raw='',bytes=0;const decoder=new TextDecoder('utf-8',{fatal:true});
+ try{
+  while(true){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>150000){await reader.cancel().catch(()=>{});throw new RequestError('Payload too large',413);}raw+=decoder.decode(value,{stream:true});}
+  raw+=decoder.decode();let value;try{value=JSON.parse(raw);}catch{throw new RequestError('Malformed JSON. Check the request format and retry.');}
+  if(!value||typeof value!=='object'||Array.isArray(value))throw new RequestError('A JSON object is required.');
+  return value;
+ }catch(error){if(error instanceof RequestError)throw error;throw new RequestError('Request body could not be read as UTF-8 JSON. Retry the same submission.');}finally{reader.releaseLock();}
 }
 async function limit(key:string,max=5){
  const bucket=Math.floor(Date.now()/3600000),hash=await digest(key+bucket);
@@ -27,7 +33,7 @@ export async function editorialApi(req:Request,path:string[]){
   if(admin&&!canEdit(userId,env.EDITOR_USER_IDS||''))return json({error:'Editor access denied. Sign in and request an editor role.'},403);
   if(req.method!=='GET'){
    const origin=req.headers.get('origin');if(origin!==new URL(req.url).origin)return json({error:'Same-origin requests required'},403);
-   if(!req.headers.get('content-type')?.includes('application/json'))return json({error:'JSON required'},415);
+   if(!/^application\/json(?:\s*;|$)/i.test(req.headers.get('content-type')||''))return json({error:'JSON required'},415);
    if(Number(req.headers.get('content-length')||0)>150000)return json({error:'Payload too large'},413);
   }
   if(path[0]==='corrections'&&req.method==='POST'){
@@ -56,7 +62,7 @@ export async function editorialApi(req:Request,path:string[]){
    }catch(e){return e instanceof EditorialPageError?json({error:e.message},400):json({error:'Editorial queue unavailable. Retry without repeating any mutation.'},503);}
   }
   if(admin&&req.method==='POST'&&path[1]==='imports'){
-   const b=await body(req),r=validateRecord(b.record,true),key=req.headers.get('idempotency-key');
+   const b=await body(req),r=reviewedRecord(b.record),key=req.headers.get('idempotency-key');
    if(!key||!/^[a-zA-Z0-9-]{8,100}$/.test(key))return json({error:'Idempotency-Key of 8–100 characters required'},400);
    const payload=JSON.stringify(r),hash=await digest(payload),prior=await db().prepare('SELECT * FROM imports WHERE key=?').bind(key).first<{hash:string,record_id:string}>();
    if(prior)return prior.hash===hash?json({id:prior.record_id,idempotent:true}):json({error:'Idempotency key already used for different content'},409);
@@ -72,7 +78,7 @@ export async function editorialApi(req:Request,path:string[]){
    return json({id:r.id,state:'draft'},201);
   }
   if(admin&&req.method==='POST'&&path[1]==='provider'){
-   const b=await body(req);if(typeof b.reference!=='string')return json({error:'A reference is required'},400);
+   const b=await body(req);if(typeof b.reference!=='string'||!/^[A-Za-z0-9. -]{2,60}$/.test(b.reference)||!b.reference.trim())return json({error:'A reference of 2–60 letters, numbers, dots, spaces or hyphens is required'},400);
    if(!await limit('provider:'+userId,3))return json({error:'Evaluation limit reached; retry after one hour'},429);
    const result=await evaluateTheWatchAPI(b.reference);
    await auditStatement(userId!,'thewatchapi','evaluate',null,{status:result.status}).run();
@@ -88,9 +94,9 @@ export async function editorialApi(req:Request,path:string[]){
     const target=await db().prepare('SELECT payload FROM revisions WHERE record_id=? AND revision=?').bind(recordId,b.targetRevision).first<{payload:string}>();
     if(!target)return json({error:'Prior revision not found'},404);
     payload=JSON.parse(target.payload);state='draft';
-   }else if(b.action==='revise')payload=validateRecord(b.record,true);
+   }else if(b.action==='revise')payload=reviewedRecord(b.record);
    if(!state)return json({error:'Invalid editorial transition'},400);
-   validateRecord(payload,true);if(payload.id!==recordId)return json({error:'Stable ID cannot change'},400);
+   reviewedRecord(payload);if(payload.id!==recordId)return json({error:'Stable ID cannot change'},400);
    const oldPayload=JSON.parse(current.payload);
    if(['brand','reference','dial','bracelet','material','size'].some(k=>payload[k]!==oldPayload[k]))return json({error:'Variant identity cannot change. Import a new configuration and withdraw the incorrect record.'},400);
    payload.status=state;payload.demo=false;payload.prices=payload.prices.map((p:any)=>({...p,status:p.status==='archived_research'?'archived_research':state}));
@@ -113,5 +119,9 @@ export async function editorialApi(req:Request,path:string[]){
    await db().batch([db().prepare('UPDATE corrections SET state=? WHERE id=?').bind(b.state,path[2]),auditStatement(userId!,path[2],'moderate',old,b.state)]);return json({state:b.state});
   }
   return json({error:'Endpoint not found'},404);
- }catch(e){const m=e instanceof Error?e.message:'Request failed';return json({error:m.includes('constraint')?'Conflicting update; refresh and retry':m.includes('database')?'Persistent service temporarily unavailable. Please retry.':m},m.includes('database')?503:400);}
+ }catch(error){
+  if(error instanceof RequestError)return json({error:error.message},error.status);
+  if(error instanceof Error&&/constraint/i.test(error.message))return json({error:'Conflicting update; refresh and retry'},409);
+  return json({error:'Persistent service temporarily unavailable. Please retry the same submission; no successful result is confirmed.'},503);
+ }
 }
