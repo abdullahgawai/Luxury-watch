@@ -8,7 +8,7 @@ export async function operationalHealth(database:D1Database,now=Date.now()){
   database.prepare("SELECT COUNT(*) AS count,MIN(created_at) AS oldest FROM corrections WHERE state='pending'").first<{count:number,oldest:string|null}>(),
   database.prepare("SELECT o.payload FROM observations o JOIN records r ON r.id=o.record_id WHERE r.state='published' LIMIT ?").bind(scanLimit+1).all<{payload:string}>(),
   database.prepare("SELECT COUNT(*) AS count FROM audit WHERE entity_id='thewatchapi' AND action='evaluate' AND at>=?").bind(new Date(now-3600000).toISOString()).first<{count:number}>(),
-  database.prepare("SELECT payload FROM records WHERE state='published' ORDER BY brand,reference LIMIT ?").bind(catalogueLimit+1).all<{payload:string}>()
+  database.prepare("SELECT payload FROM records WHERE state='published' ORDER BY brand,reference,id LIMIT ?").bind(catalogueLimit+1).all<{payload:string}>()
  ]);
  const counts=Object.fromEntries(records.results.map(r=>[r.state,r.count]));
  let stale=0,invalid=0,checkedCount=0;

@@ -1,25 +1,25 @@
-import { editorialApi } from '../../../lib/editorial';
-import { catalogue, settings } from '../../../lib/catalogue';
-import { searchWatches } from '../../../lib/domain.mjs';
+import {editorialApi} from '../../../lib/editorial';
+import {catalogue,settings} from '../../../lib/catalogue';
 import {historyResponse} from '../../../lib/history.mjs';
 import {publicPrices} from '../../../lib/public-catalogue.mjs';
+import {catalogueQuery,cataloguePage} from '../../../lib/catalogue-query.mjs';
 export const dynamic='force-dynamic';
+const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 export async function GET(req:Request,{params}:{params:Promise<{path:string[]}>}){
  const {path}=await params;
  if(path[0]==='admin')return editorialApi(req,path);
+ if(path[0]!=='watches'||path.length>3||(path[2]&&!['prices','history'].includes(path[2])))return json({error:'Not found'},404);
+ const search=new URL(req.url).searchParams;
+ const parsed=path.length<3?catalogueQuery(search,{detail:!!path[1]}):null;
+ if(parsed&&parsed.status!==200)return json({error:parsed.error},400);
  try{
-  const all=await catalogue();
-  if(path[0]==='watches'){
-   if(path.length>3||(path[2]&&!['prices','history'].includes(path[2])))return Response.json({error:'Not found'},{status:404});
-   const w=path[1]?all.find(x=>x.id===path[1]):null;
-   if(path[1]&&!w)return Response.json({error:'Watch not found'},{status:404});
-   if(w&&path[2]==='history'){const response=historyResponse(w,new URL(req.url).searchParams);return Response.json({data:response.body,mode:settings().demo?'demo':'production'},{status:response.status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});}
-   if(w&&path[2]==='prices'){const response=publicPrices(w,new URL(req.url).searchParams);return Response.json({data:response.body,mode:settings().demo?'demo':'production'},{status:response.status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});}
-   const q=Object.fromEntries(new URL(req.url).searchParams);
-   const value=w||searchWatches(all,q,all.flatMap(x=>x.prices));
-   return Response.json({data:value,mode:settings().demo?'demo':'production'});
-  }
-  return Response.json({error:'Not found'},{status:404});
- }catch{return Response.json({error:'Catalogue temporarily unavailable'},{status:503});}
+  const all=await catalogue(),mode=settings().demo?'demo':'production';
+  if(!path[1])return json({...cataloguePage(all,parsed!.query!),mode});
+  const w=all.find(x=>x.id===path[1]);
+  if(!w)return json({error:'Watch not found'},404);
+  if(path[2]==='history'){const response=historyResponse(w,search);return json({data:response.body,mode},response.status);}
+  if(path[2]==='prices'){const response=publicPrices(w,search);return json({data:response.body,mode},response.status);}
+  return json({data:w,mode});
+ }catch{return json({error:'Catalogue temporarily unavailable'},503);}
 }
 export async function POST(req:Request,{params}:{params:Promise<{path:string[]}>}){return editorialApi(req,(await params).path);}

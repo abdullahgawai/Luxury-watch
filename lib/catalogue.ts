@@ -10,6 +10,6 @@ export function settings(){return {name:env.SITE_NAME||'Luxury Watch Explorer',d
 export async function catalogue():Promise<Watch[]>{
  if(settings().demo) return publicCatalogue(coverageSnapshot(researchWatches),{production:false});
  if(!env.DB) throw new Error('Catalogue database unavailable');
- const {results}=await env.DB.prepare("SELECT payload FROM records WHERE state='published' ORDER BY brand,reference LIMIT 1000").all<{payload:string}>();
+ const {results}=await env.DB.prepare("SELECT payload FROM records WHERE state='published' ORDER BY brand,reference,id LIMIT 1000").all<{payload:string}>();
  return publicCatalogue(results.flatMap(x=>{try{return [JSON.parse(x.payload)];}catch{return [];} }));
 }

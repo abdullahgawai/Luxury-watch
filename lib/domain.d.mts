@@ -10,7 +10,7 @@ export function percentile(values:number[],q:number):number;
 export function askingRange(prices:any[],match:any,now?:number):{count:number,range:{low:number,median:number,high:number}|null,observations:any[],reviewOutliers?:string[]};
 export function premium(market:any,retail:any):number|null;
 export function convertPrice(p:any,fx:any,now?:number):any;
-export function searchWatches(watches:Watch[],query?:Record<string,string>,prices?:any[]):Watch[];
+export function searchWatches(watches:Watch[],query?:Record<string,string>,prices?:any[],limit?:number):Watch[];
 export function validateRecord(r:any,production?:boolean):any;
 export function canEdit(userId:string|null|undefined,allowlist?:string):boolean;
 export function nextState(current:string,action:string):string|null;

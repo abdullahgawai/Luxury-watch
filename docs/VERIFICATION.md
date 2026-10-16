@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Validated, paginated public catalogue API — 17 October 2026
+
+- All92 automated tests pass, including five new tests of query validation, pagination traversal, more than100 configurations, local price eligibility, provenance preservation and actual handler/database behavior. TypeScript and the production build pass. Existing source/public projection, exact configuration, price arithmetic, history, correction, editorial authorization and UI server-rendering regressions remain passing.
+- The actual built Worker was tested over loopback HTTP: six pages of up to seven configurations return39 unique IDs with43 eligible retail observations, three separate archives and nine licensed configurations. UAE Cartier underAED20000 sorts WSTA0108 before WSSA0086. Invalid page size, repeated market, zero page and unknown parameters return400/no-store. Unknown detail returns404/no-store; anonymous editor health returns403/no-store. Actual handler tests verify invalid list queries cause zero database reads, malformed input values are not echoed, backend failure is sanitized503 and public success/error responses are no-store/noindex.
+- WSTA0041 still has no licensed photo or qualifying UAE retail. Its dated UAE review remains present, price filtering excludes it, and India retains amountMinor40400000, original2026-10-15T09:24:18.4406753Z check and Art Of Time source. Automated tests preserve the entire catalogue's original source/observation dates and amounts. No fixtures, data, licensed assets, roles or rights changed.
+- Scope is the public API; desktop/mobile layout code is unchanged. Existing actual Site SSR regression still passes; no new visual-layout acceptance is claimed. Owned local Worker stopped. Hosted role verification, licensed production data, monitoring/backups and full public-launch acceptance remain open.
+
+
 ## Responsive catalogue filter drawer — 16 October 2026
 
 - The previously blocked tested commit204d0c3 deployed successfully before this work. New catalogue changes pass all87 automated regression tests, TypeScript and the final production build. Existing price eligibility, source provenance, production isolation, correction and editorial access-control tests remain passing. No watch data, rights decisions, photo assets or source dates changed.
