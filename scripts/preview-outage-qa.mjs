@@ -1,0 +1,11 @@
+// Loopback-only UI simulation. No production data, credentials or host settings.
+import {mkdir,writeFile,readFile,readdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createServer} from 'node:http';
+import {build} from 'esbuild';
+const directory=resolve('.sites-runtime/outage-qa');await mkdir(directory,{recursive:true});
+const entry=resolve(directory,'entry.jsx');await writeFile(entry,`import React from 'react';import{createRoot}from'react-dom/client';import Site from '../../app/site';createRoot(document.getElementById('qa')).render(<><p className="demo-banner">SIMULATED CATALOGUE OUTAGE — LOCAL QA ONLY</p><Site page={location.pathname==='/'?'/watches':location.pathname} watches={[]} config={{name:'Luxury Watch Explorer',demo:true}} unavailable={true} initialQuery={Object.fromEntries(new URLSearchParams(location.search))}/></>);`);
+await build({entryPoints:[entry],outfile:resolve(directory,'qa.js'),bundle:true,platform:'browser',format:'esm',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'}});
+const cssDirectory=resolve('dist/client/_next/static/css');const css=(await Promise.all((await readdir(cssDirectory)).filter(n=>n.endsWith('.css')).map(n=>readFile(resolve(cssDirectory,n),'utf8')))).join('\n');const js=await readFile(resolve(directory,'qa.js'));
+const html='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local simulated catalogue outage</title><link rel="stylesheet" href="/qa.css"></head><body><div id="qa"></div><script type="module" src="/qa.js"></script></body></html>';
+createServer((req,res)=>{const path=new URL(req.url,'http://127.0.0.1').pathname;if(path.startsWith('/api/')){res.writeHead(403,{'Content-Type':'application/json'});res.end('{"error":"No editor identity in this local simulation"}');return;}const response=path==='/qa.css'?['text/css',css]:path==='/qa.js'?['text/javascript',js]:['text/html',html];res.writeHead(200,{'Content-Type':response[0],'Cache-Control':'no-store','X-Robots-Tag':'noindex'});res.end(response[1]);}).listen(8797,'127.0.0.1',()=>console.log('Local outage simulation only: http://127.0.0.1:8797/watches?market=AE&q=Tank&page=2'));

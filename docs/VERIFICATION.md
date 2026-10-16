@@ -1,5 +1,13 @@
 # Verification evidence
 
+## Route boundaries and catalogue recovery — 17 October 2026
+
+- All110 automated tests pass; TypeScript and the production build pass. Four new tests cover every known watch URL, supported sections/guides, malformed/extra segments, healthy missing-route lookup, encoded retry-state preservation, actual page/metadata rejection before database reads, and simulated database outages. Actual Site SSR verifies saved/comparison/coverage/market/catalogue outage views avoid false empty-state counts and preserve retry IDs/query. Database errors do not reach HTML/metadata.
+- Built Worker HTTP checks: extra compare/brand/guide/admin paths, incomplete watch paths and unknown brands return404 with the real not-found page; valid Cartier brand, guide/reference and WSTA0041 detail return200. Public API traversal still returns39 configurations,43 eligible observations, three archives and nine licensed configurations. WSTA0041 UAE retail/photo remain unavailable; India retains amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check. No source dates, rights, data, assets, roles or migrations changed.
+- Browser checks use an explicitly labelled loopback simulation of the actual outage Site. Desktop1440/document1425 and mobile360/document345 have no document overflow. Keyboard Enter retry preserves market=AE,q=Tank,page=2; guide recovery loads the actual static guide view. Real built404 recovery link opens the catalogue. Screenshots catalogue-outage-desktop.png and catalogue-outage-mobile.png show simulated failure, not a hosted outage. Viewport reset, owned tab closed and both local servers stopped.
+- Hosted roles, licensed production data, monitoring/backups, real recovery rehearsal and full public-launch/accessibility acceptance remain open. Graceful outage rendering is not a claim of HTTP503 status for framework page transport. No hosted failure was induced.
+
+
 ## Safe editorial errors and request bodies — 17 October 2026
 
 - All106 automated tests pass; TypeScript and the production build pass. Four new actual-handler/SQLite tests cover malformed JSON containing private sentinels, null/array/primitive roots, invalid UTF-8, misleading media types, consistent advertised/streamed413 limits and stream cancellation. Injected public storage errors containing SQL/paths/uppercase database messages/non-Error values return sanitized503, constraints return static409, and an injected import batch failure exposes no private text or inserted record. Bad imports return a fixed validation400; invalid provider references are rejected before quota/storage. Existing retry-safe correction receipts, audit/revision access and price/source tests remain passing.
