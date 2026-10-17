@@ -1,5 +1,12 @@
 # Verification evidence
 
+## Evidence-date validity and chronology — 17 October 2026
+
+- All147 automated tests pass, TypeScript passes and the guarded production build/publication scan passes. New coverage includes leap years/calendar rollover, ambiguous/non-string/unzoned dates, explicit offsets, future checks, original seven-digit fractional timestamps and sub-millisecond chronology. Import/public projection rejects invalid source/price/photo evidence, current prices/freshness/ranges/FX do not accept invalid dates, coverage reviews omit bad dates, mocked provider updates remain null, and protected health classifies malformed/reversed/missing legacy observation dates as invalid. No live provider was called.
+- Built-Worker traversal remains39 unique configurations,43 eligible retail observations, three archives and nine licensed configurations. WSTA0041 UAE price/photo remain unavailable. Its India Art Of Time observation retains amountMinor40400000 and the exact2026-10-15T09:24:18.4406753Z check. GET/HEAD regression checks pass200/400/403/405/404 with empty HEAD bodies. Owned local server stopped. No UI layout changed; this is shared data-validation logic.
+- No source catalogue data, checked dates, photo rights/assets, hosted roles or migrations were changed. Legacy malformed evidence is withheld and flagged, never rewritten. A synthetic freshness fixture and health fixture were corrected to express valid chronology so their original test purposes remain meaningful; reviewed credential fixture values are unchanged.
+- Licensed production data/provider testing, real hosted editor verification, monitoring/backups, final identity/contact/retention and public-launch acceptance remain open. Date validation does not prove the underlying source claim is accurate or licensed.
+
 ## Publication credential-pattern and fixture checks — 17 October 2026
 
 - All140 automated tests pass; TypeScript and the guarded production build pass. New tests cover credential pattern categories/line reporting without matched values, explicit placeholders versus executable expressions, artifact-only local QA detection, sensitive filenames/template exceptions, exact private framework paths, retained scanning of other config fields, generated-secret exposure reporting and review callback boundaries.

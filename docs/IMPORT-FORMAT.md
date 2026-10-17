@@ -2,6 +2,10 @@
 
 Use the authenticated editorial import form or `POST /api/admin/imports`.
 
+Evidence dates must be valid ISO calendar dates (`YYYY-MM-DD`) or ISO timestamps with an explicit `Z` or numeric timezone offset. Impossible calendar dates, locale-dependent date strings and unzoned timestamps are rejected. Seconds may contain up to nine fractional digits; original strings are retained, including their precision. Do not invent a time or timezone when the source only establishes a date.
+
+Price `checkedAt` must not precede `observedAt` at the recorded precision, and neither may be in the future. Source checks, retailer-authorisation checks and image licence checks also require valid, non-future dates. Every approved photo needs its licence `checkedAt`; a missing date must remain unavailable until supported. Invalid legacy observations/photos are withheld by public projection; the reader never repairs or refreshes them. A privileged editor must correct them through draft, review and publication using original evidence.
+
 Top-level fields:
 
 | Field | Meaning |

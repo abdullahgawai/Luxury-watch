@@ -1,5 +1,6 @@
 // Server-only evaluation adapter. Customer page views never call the provider.
 import {env} from 'cloudflare:workers';
+import {validEvidenceDate} from './evidence-dates.mjs';
 const maxBytes=256*1024,maxCandidates=25;
 async function boundedPayload(response:Response):Promise<{payload?:any,status?:string}>{
  const length=response.headers.get('content-length');
@@ -29,8 +30,8 @@ export async function evaluateTheWatchAPI(reference:string){
   for(const row of payload.data.slice(0,maxCandidates)){
    const ref=row&&typeof row==='object'&&!Array.isArray(row)?text(row.reference_number,60):null;
    if(!ref){rejectedCandidates++;continue;}
-   const updated=text(row.last_updated,100),at=updated&&Date.parse(updated);
-   candidates.push({brand:text(row.brand,120),model:text(row.model,200),reference:ref,size:typeof row.case_diameter==='number'&&Number.isFinite(row.case_diameter)&&row.case_diameter>=10&&row.case_diameter<=70?row.case_diameter:text(row.case_diameter,80),material:text(row.case_material,200),movement:text(row.movement,100),providerUpdatedAt:updated&&/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(updated)&&Number.isFinite(at)&&Number(at)<=Date.now()?updated:null,variantMapping:'unresolved',scope:'GLOBAL',prices:[],image:null});
+   const updated=text(row.last_updated,100);
+   candidates.push({brand:text(row.brand,120),model:text(row.model,200),reference:ref,size:typeof row.case_diameter==='number'&&Number.isFinite(row.case_diameter)&&row.case_diameter>=10&&row.case_diameter<=70?row.case_diameter:text(row.case_diameter,80),material:text(row.case_material,200),movement:text(row.movement,100),providerUpdatedAt:updated&&updated.includes('T')&&validEvidenceDate(updated)?updated:null,variantMapping:'unresolved',scope:'GLOBAL',prices:[],image:null});
   }
   const quota=res.headers.get('X-UsageLimit-Limit');
   return {status:payload.data.length?'needs_review':'no_matches',candidates,examined:Math.min(payload.data.length,maxCandidates),rejectedCandidates,truncated:payload.data.length>maxCandidates,quota:quota&&/^\d{1,9}$/.test(quota)?Number(quota):null};

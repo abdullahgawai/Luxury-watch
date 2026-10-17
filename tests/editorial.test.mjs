@@ -69,7 +69,7 @@ test('health checks are protected, count freshness and never expose secrets or c
  const now=Date.now(),recordId=demoWatches[0].id;
  const before=(await call(['admin','health'])).data;
  const fixtures=[['stale','published',new Date(now-31*86400000).toISOString()],['invalid','published','bad-date'],['fresh','published',new Date(now-1000).toISOString()],['archive','archived_research','bad-date']];
- for(const [id,status,checkedAt] of fixtures)sqlite.prepare('INSERT INTO observations VALUES(?,?,?,?,?,?,?,?)').run('health-'+id,recordId,'official_retail','AE','AED',1,new Date(now).toISOString(),JSON.stringify({status,checkedAt,type:'official_retail'}));
+ for(const [id,status,checkedAt] of fixtures)sqlite.prepare('INSERT INTO observations VALUES(?,?,?,?,?,?,?,?)').run('health-'+id,recordId,'official_retail','AE','AED',1,new Date(now).toISOString(),JSON.stringify({status,checkedAt,observedAt:'2026-01-01T00:00:00Z',type:'official_retail'}));
  globalThis.testEnv.THEWATCHAPI_TOKEN='SECRET-TEST-SENTINEL';
  try{const response=await call(['admin','health']),r=response.data;assert.equal(response.status,200);assert.equal(r.database,'ok');assert.equal(r.prices.checked,before.prices.checked+3);assert.equal(r.prices.stale,before.prices.stale+1);assert.equal(r.prices.invalid,before.prices.invalid+1);assert.equal(r.provider.tokenConfigured,true);assert.equal(r.automation.hostedRestore,'not_verified');assert.ok(!JSON.stringify(r).includes('SECRET-TEST-SENTINEL'));assert.ok(!JSON.stringify(r).includes('contact'));assert.equal(r.corrections.pending,4);
  }finally{delete globalThis.testEnv.THEWATCHAPI_TOKEN;for(const [id] of fixtures)sqlite.prepare('DELETE FROM observations WHERE id=?').run('health-'+id);}
@@ -190,6 +190,13 @@ async function rawEditorial(path,body,headers={}){
  const req=new Request('https://test.local/api/'+path.join('/'),{method:'POST',headers:{'content-type':'application/json',origin:'https://test.local','oai-authenticated-user-id':'editor',...headers},body,duplex:'half'});
  const response=await editorialApi(req,path);return {status:response.status,data:await response.json(),headers:response.headers};
 }
+test('protected health marks impossible, missing and reversed legacy observation dates invalid',async()=>{
+ const recordId=sqlite.prepare("SELECT id FROM records WHERE state='published' LIMIT 1").get().id,before=(await call(['admin','health'])).data.prices;
+ const rows=[{observedAt:'2026-10-10T00:00:00Z',checkedAt:'2026-02-30'},{observedAt:'2026-10-10T00:00:00Z',checkedAt:'2026-10-09T00:00:00Z'},{checkedAt:'2026-10-10T00:00:00Z'}];
+ try{for(const [i,row] of rows.entries())sqlite.prepare('INSERT INTO observations VALUES(?,?,?,?,?,?,?,?)').run('qa-date-'+i,recordId,'official_retail','AE','AED',1,'2026-10-10T00:00:00Z',JSON.stringify({...row,status:'published',type:'official_retail'}));
+  const after=(await call(['admin','health'])).data.prices;assert.equal(after.checked,before.checked+3);assert.equal(after.invalid,before.invalid+3);assert.equal(after.stale,before.stale);
+ }finally{for(const [i] of rows.entries())sqlite.prepare('DELETE FROM observations WHERE id=?').run('qa-date-'+i);}
+});
 test('malformed JSON, primitive roots and invalid UTF-8 return safe client errors without writes',async()=>{
  const sentinel='PRIVATE_REQUEST_SENTINEL',before=sqlite.prepare('SELECT COUNT(*) n FROM corrections').get().n;
  for(const raw of ['{"claim":"'+sentinel, 'null','[]','"'+sentinel+'"','123',new Uint8Array([255])]){

@@ -1,5 +1,6 @@
 import {env} from 'cloudflare:workers';
 import {publicWatch} from './public-catalogue.mjs';
+import {validObservationDates} from './evidence-dates.mjs';
 const scanLimit=5000;
 const catalogueLimit=1000;
 export async function operationalHealth(database:D1Database,now=Date.now()){
@@ -14,7 +15,7 @@ export async function operationalHealth(database:D1Database,now=Date.now()){
  let stale=0,invalid=0,checkedCount=0;
  for(const row of observations.results.slice(0,scanLimit)){
   try{const p=JSON.parse(row.payload);if(p.status!=='published')continue;checkedCount++;const checked=Date.parse(p.checkedAt),window=(p.type==='official_retail'?30:7)*86400000;
-   if(!Number.isFinite(checked)||checked>now)invalid++;else if(now-checked>window)stale++;
+   if(!validObservationDates(p.observedAt,p.checkedAt,now))invalid++;else if(now-checked>window)stale++;
   }catch{checkedCount++;invalid++;}
  }
  // Match the production reader's first 1000 rows, regardless of research mode.

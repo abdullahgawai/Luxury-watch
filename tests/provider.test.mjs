@@ -8,6 +8,9 @@ const {evaluateTheWatchAPI}=await import('data:text/javascript;base64,'+Buffer.f
 const json=(data,headers={})=>new Response(JSON.stringify(data),{headers:{'content-type':'application/json',...headers}});
 async function mocked(implementation,check){const original=globalThis.fetch;globalThis.fetch=implementation;try{return await check();}finally{globalThis.fetch=original;}}
 const candidate={brand:'Synthetic brand',model:'Synthetic model',reference_number:'QA-001',case_diameter:40,case_material:'Steel',movement:'Automatic',last_updated:'2026-01-01T00:00:00Z'};
+test('provider update dates never normalize impossible or unzoned evidence',async()=>{
+ for(const last_updated of ['2026-02-30T12:00:00Z','2026-01-01T12:00:00','1'])await mocked(async()=>json({data:[{...candidate,last_updated}]}),async()=>{const result=await evaluateTheWatchAPI('QA-001');assert.equal(result.candidates[0].providerUpdatedAt,null);assert.deepEqual(result.candidates[0].prices,[]);assert.equal(result.candidates[0].image,null);});
+});
 test('disabled/missing credentials and invalid references make no provider request',async()=>{
  await mocked(()=>{throw new Error('Unexpected request');},async()=>{const env=globalThis.providerBoundaryEnv;env.THEWATCHAPI_ENABLED='false';assert.equal((await evaluateTheWatchAPI('QA-001')).status,'not_configured');env.THEWATCHAPI_ENABLED='true';delete env.THEWATCHAPI_TOKEN;assert.equal((await evaluateTheWatchAPI('QA-001')).status,'not_configured');env.THEWATCHAPI_TOKEN=token;for(const ref of ['', '  ','QA\n001','x'.repeat(61),'https://unsafe.invalid'])await assert.rejects(()=>evaluateTheWatchAPI(ref),/Invalid reference/);});
 });
