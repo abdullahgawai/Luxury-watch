@@ -6,6 +6,8 @@ An original, independent watch research application for India and the UAE. The w
 
 Requires Node >=22.13, Git for release checks and Sites source publication, and the locked dependencies in package-lock.json.
 
+`npm run build` also checks publication safety and client asset-size budgets. Run `npm run check:assets` against an existing build for measured gzip JavaScript/CSS totals and display-photo sizes. Limits live in `scripts/release-budgets.json`; see the runbook before changing them. These checks do not measure field loading performance.
+
 ```powershell
 cd 'C:\Users\abdul\OneDrive\文档\assessment\luxury-watch-explorer'
 npm run install:ci
