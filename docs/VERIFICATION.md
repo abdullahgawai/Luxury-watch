@@ -1,5 +1,12 @@
 # Verification evidence
 
+## Editor access and provider result recovery — 17 October 2026
+
+- All 126 automated tests pass, including new access identity validation, fetch/parse deadlines, cancellation, no automatic repeats, invalid-reference rejection before requests, controlled denial/quota/uncertainty, known-field provider projection and rejection of malformed/local-price/photo candidates. TypeScript and the final production build pass. Server authorization and publication tests remain passing.
+- Tested the actual workspace in the labelled loopback session harness: malformed identity keeps the gate closed; keyboard retry opens only after a valid synthetic identity; missing credentials show an explicit not-configured state; malformed provider output removes prior results; quota rejection is readable; explicit retry recovers to a valid empty result. Private sentinel fields never render. Desktop 1440/document1425 and mobile360/document345 have no overflow. Final wording rechecked after rebuilding. Screenshots editor-session-access-desktop.png, editor-session-provider-mobile.png and editor-session-unconfigured-mobile.png are synthetic QA only. Viewport reset, owned tab closed and helper stopped.
+- Built-Worker public traversal remains39 configurations,43 eligible local observations, three archives and nine licensed configurations. WSTA0041 UAE price/photo remain unavailable; India retains amountMinor40400000, Art Of Time source and original2026-10-15T09:24:18.4406753Z check. No catalogue data/dates, image rights, hosted roles or migrations changed. No live provider or hosted editor role was exercised. An additional direct local access/provider denial command was not executed because automatic permission review timed out; existing automated server denial tests passed.
+- Public launch still requires approved production data/rights and credentials, real hosted editor verification, monitoring and backup/restore verification, final identity/contact/retention and acceptance checks. Client validation and synthetic access do not satisfy those gates.
+
 ## Operational check recovery — 17 October 2026
 
 - All 122 automated tests, TypeScript and the production build pass. New checks cover valid and malformed health reports, contradictory totals/status, invalid dates/types, stalled fetch and parsing, cancellation, no automatic retry, controlled errors and explicit recovery. Existing publication rights, source/date and access-control regressions remain passing.

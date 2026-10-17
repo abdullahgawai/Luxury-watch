@@ -8,6 +8,12 @@ Production authentication is provided by Sites dispatch. `EDITOR_USER_IDS` must 
 
 ## Editorial workflow
 
+Editor access checks and provider evaluations have a 15-second browser deadline covering fetch and JSON parsing, immediate duplicate-request guards and cancellation on navigation. A valid bounded stable user ID is required before the editor workspace renders; every server endpoint independently checks the actual role. A failed/malformed access response keeps the gate closed with an explicit retry. Browser validation never grants a hosted role.
+
+Provider responses are validated and projected to known fields before display. Candidates remain unresolved GLOBAL evidence with empty prices and no photo; local-price or image payloads are rejected. Missing configuration is explicit. Failed or ambiguous evaluations clear prior results and warn that the attempt may still count toward the hourly quota/audit history. There is no automatic retry or catalogue import. Approved upstream rights, secure runtime credentials and live feasibility testing remain required.
+
+After building, `node scripts/preview-editor-session-qa.mjs` runs a labelled loopback-only simulation: malformed access, valid synthetic identity on retry, missing provider configuration, malformed provider result, quota rejection, then empty-result recovery. It does not use or forward an identity, call a provider, or write a database. Its generated assets remain outside dist and are not deployed. Stop it after QA.
+
 `POST /api/admin/imports`: sends `{record}` and an `Idempotency-Key` of 8–100 ASCII letters/digits/hyphens. Validated imports enter drafts. Exact brand/reference/dial/bracelet/material/size duplication is rejected. Inspect every source and claim before review.
 
 `POST /api/admin/records/:id`: sends `{action,revision}`. A draft goes to review, then to published. `revise` accepts `{record}` only on drafts. `withdraw` returns published records to draft. `rollback` accepts `{targetRevision}` and restores a previous snapshot as a new draft, which requires review again. Every action is audited with actor, before/after values and time. Revision mismatch rejects concurrent writes. Public queries return published records only.
