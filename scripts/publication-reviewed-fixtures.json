@@ -1,0 +1,14 @@
+[
+  {
+    "file": "tests/editorial.test.mjs",
+    "kind": "hardcoded_credential",
+    "sha256": "4da163433fef87179b716770f1d56a95870c5292aaf9905806c5b7a55b1ddf37",
+    "reason": "Intentional dummy provider token for protected health checks; no live request."
+  },
+  {
+    "file": "tests/public-catalogue.test.mjs",
+    "kind": "embedded_url_credentials",
+    "sha256": "093866188144b0216fb125431572e8ac2df8980dfeeb6ebeb3d9f3987d1e4c1d",
+    "reason": "Intentional invalid URL credential fixture testing public source rejection; no live request."
+  }
+]

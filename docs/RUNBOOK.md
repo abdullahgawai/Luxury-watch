@@ -65,6 +65,18 @@ Withdraw an inaccurate record immediately through the protected editor control, 
 
 For a UI/server regression, redeploy the last successful saved Sites version using its returned opaque version ID. Do not assume database migrations reverse with code rollback: schema changes are append-only, and failed deployments may already have applied migrations. Data rollback uses the record revision workflow; disaster recovery uses a separately verified backup.
 
+## Publication source and artifact checks
+
+`npm run build` uses scripts/build-release.mjs: a framework build must succeed, followed by scripts/check-publication.mjs. Either failure makes the release build fail. `npm run check:publication` rechecks without rebuilding. Git and complete build output are required; missing/unreadable data, unexpected file types, scan bounds or invalid fixture reviews fail closed. Do not bypass a failed check to publish.
+
+The check reads current tracked/non-ignored source text, all reachable Git text patches and dist text files. It looks for common credential formats, quoted credential assignments, private-key markers, credential-bearing URLs, sensitive filenames and local-only QA markers. Findings contain categories and locations only, not matched values. It does not inspect binary contents, ignored local files, dangling/unreachable Git objects, host secrets or external logs, and cannot identify every credential format. Research preview catalogue data remains deliberately labelled and separate; this gate checks local QA fixture leakage, not production catalogue publication approval.
+
+Two Vinext server-only configuration files legitimately contain a generated64-character hexadecimal prerender secret. Only that property at those exact private paths is excluded from generic assignment detection; other fields remain scanned. Its value is held only in process memory and checked for exposure in other scanned source/artifact files. Never move these files into public assets or add arbitrary config exceptions. No value is logged.
+
+The two reviewed security-test fixtures are described by exact file/category/SHA256 entries in scripts/publication-reviewed-fixtures.json. They are deliberate dummy values used to test denial/redaction, not live credentials. Reviews must remain limited to test paths and supported fixture categories and never apply to build output. Review each new finding without copying matched values into logs, issues or chat. If a real credential is exposed, stop publication, revoke/rotate it securely, identify affected history/artifacts/logs and coordinate any destructive history rewrite explicitly. Removing a current line does not revoke a leaked credential.
+
+This check does not complete hosted editor verification, real provider rights/coverage, runtime log review, monitoring, backup/restore or public-launch acceptance.
+
 ## Remaining before public launch
 
 - Approve brand/domain and operating owner/contact/retention policy.

@@ -4,7 +4,7 @@ An original, independent watch research application for India and the UAE. The w
 
 ## Start locally
 
-Requires Node >=22.13, Git for Sites source publication, and the locked dependencies in package-lock.json.
+Requires Node >=22.13, Git for release checks and Sites source publication, and the locked dependencies in package-lock.json.
 
 ```powershell
 cd 'C:\Users\abdul\OneDrive\文档\assessment\luxury-watch-explorer'
@@ -19,7 +19,7 @@ Apply both migrations once, in order, to a fresh local database. For a database 
 
 ```powershell
 node 'C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js' run install:ci
-node scripts/run-framework.mjs build
+node scripts/build-release.mjs
 node scripts/run-framework.mjs dev
 ```
 
@@ -61,8 +61,10 @@ Approved photographs handle delivery failures across the homepage, catalogue, ga
 ```powershell
 node node_modules/typescript/bin/tsc --noEmit
 node --test tests/*.test.mjs
-node scripts/run-framework.mjs build
+node scripts/build-release.mjs
 ```
+
+The normal build includes the read-only publication check. Run `npm run check:publication` (or `node scripts/check-publication.mjs`) to recheck current source, reachable Git text history and existing build output. It reports only finding types/locations, blocks local QA fixtures in deployable output and checks generated server-only framework secrets for exposure elsewhere. Reviewed test exceptions are limited to exact file/category/digest entries and never apply to artifacts. This is a pattern-based check, not proof that every possible secret is absent; it does not inspect ignored local files, binary contents, hosted settings or service logs. See the runbook for limitations and response steps.
 
 The integration suite runs the actual editorial handler against transactional SQLite with the D1 interface. It uses Node's experimental SQLite support only for tests; the application runtime uses D1. See [verification evidence](docs/VERIFICATION.md).
 
