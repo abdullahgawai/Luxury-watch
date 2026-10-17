@@ -192,3 +192,9 @@ For UI QA after building, `node scripts/preview-editor-write-qa.mjs` runs an exp
 # Conflicting retail summaries
 
 If newest retail observations disagree, cards, regional summaries and coverage show the retail summary as unavailable. Price filters exclude it. Details and comparison retain the individual sourced amounts and dates with an explicit conflict explanation. Resolve the discrepancy through the protected editorial review workflow; do not change timestamps merely to choose a preferred price. The summary compares the newest observation time, not the newest check time. Matching amounts also require matching currency, condition, box/papers, tax status and retail basis. Source observation counts remain evidence counts and do not imply an available summary.
+
+## Asking-range review
+
+Ranges require five distinct eligible local comparable offers. Converted amounts and non-local currencies cannot contribute. Within each comparable group, each listing contributes its newest eligible observation; conflicting newest amounts or tax bases with the same timestamp are withheld. Dates are compared at millisecond precision. The UI reports duplicate observations, conflicting listings and the actual observation window. Original evidence is retained separately. These calculations do not verify availability; source integrations must maintain offer removals and exclusions rather than import obsolete offers as live listings.
+
+Outliers outside the quartiles by more than 1.5 times the interquartile range are flagged for editorial review. They remain in the range, median and count until an explicit reviewed exclusion. The expandable evidence shows original amount, currency, observation/check dates, tax status and source. A statistical flag does not establish an erroneous price or a completed sale. No real asking dataset is connected in the research preview; unsupported ranges remain unavailable.

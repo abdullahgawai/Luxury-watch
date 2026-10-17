@@ -8,7 +8,7 @@ export function observationStatus(p:any,now?:number):string;
 export function archivedResearchObservations(w:{id:string,prices:any[]},country:string,now?:number):any[];
 export function reliableHistoryObservations(w:Watch,country:string,type:string,now?:number):any[];
 export function percentile(values:number[],q:number):number;
-export function askingRange(prices:any[],match:any,now?:number):{count:number,range:{low:number,median:number,high:number}|null,observations:any[],reviewOutliers?:string[]};
+export function askingRange(prices:any[],match:any,now?:number):{count:number,range:{low:number,median:number,high:number}|null,observations:any[],reviewOutliers:string[],duplicateObservations:number,conflictingListings:number,window:{from:string,to:string}|null};
 export function premium(market:any,retail:any):number|null;
 export function convertPrice(p:any,fx:any,now?:number):any;
 export function searchWatches(watches:Watch[],query?:Record<string,string>,prices?:any[],limit?:number):Watch[];
