@@ -15,7 +15,7 @@ test('unsupported-price coverage reviews retain truthful dates and exclude inval
  assert.equal(coverageSnapshot([{...watch,retailCoverageReviews:[review]}],now)[0].retailCoverageReviews[0].reviewedAt,review.reviewedAt);
 });
 test('ambiguous, impossible, unzoned and non-string dates fail rather than normalizing',()=>{
- for(const value of [null,undefined,0,2026,new Date(),{},'1','10/11/2026','2026-2-03','2026-02-29','2024-02-30','2026-04-31','2026-00-01','2026-13-01','2026-10-00','2026-10-15T24:00:00Z','2026-10-15T12:60:00Z','2026-10-15T12:00:60Z','2026-10-15T12:00:00','2026-10-15 12:00:00Z','2026-10-15T12:00:00+24:00','2026-10-15T12:00:00+05:60'])assert.equal(evidenceTimestamp(value),null,String(value));
+ for(const value of [null,undefined,0,2026,new Date(),{},'1','10/11/2026','2026-2-03','2026-02-29','2024-02-30','2026-04-31','2026-00-01','2026-13-01','2026-10-00','2026-10-15T24:00:00Z','2026-10-15T12:60:00Z','2026-10-15T12:00:60Z','2026-10-15T12:00:00','2026-10-15 12:00:00Z','2026-10-15T12:00:00+24:00','2026-10-15T12:00:00+05:60','2026-10-15\n','2026-10-15T12:00:00Z\r\n'])assert.equal(evidenceTimestamp(value),null,String(value));
  assert.equal(validEvidenceDate('2999-01-01',now),false);assert.equal(validObservationDates('2026-10-16T10:00:00Z','2026-10-16T09:59:59Z',now),false);
  assert.equal(validObservationDates('2026-10-16T10:00:00+04:00','2026-10-16T11:30:00+05:30',now),true);
  assert.equal(validObservationDates('2026-10-15T09:24:18.4406753Z','2026-10-15T09:24:18.4406752Z',now),false);
