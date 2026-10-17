@@ -3,6 +3,7 @@ export const PRICE_TYPES:string[];
 export const MARKET_CURRENCY:Record<string,string>;
 export function fresh(p:any,now?:number):boolean;
 export function publishedObservations(w:{id:string,prices:any[]},country?:string,now?:number):any[];
+export function retailSummary(w:{id:string,prices:any[]},country:string,now?:number):{observation:any|null,conflict:boolean,observations:any[]};
 export function observationStatus(p:any,now?:number):string;
 export function archivedResearchObservations(w:{id:string,prices:any[]},country:string,now?:number):any[];
 export function reliableHistoryObservations(w:Watch,country:string,type:string,now?:number):any[];
