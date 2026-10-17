@@ -7,7 +7,7 @@ export const dynamic='force-dynamic';
 const json=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 export async function GET(req:Request,{params}:{params:Promise<{path:string[]}>}){
  const {path}=await params;
- if(path[0]==='admin')return editorialApi(req,path);
+ if(path[0]==='admin'||path[0]==='corrections')return editorialApi(req,path);
  if(path[0]!=='watches'||path.length>3||(path[2]&&!['prices','history'].includes(path[2])))return json({error:'Not found'},404);
  const search=new URL(req.url).searchParams;
  const parsed=path.length<3?catalogueQuery(search,{detail:!!path[1]}):null;
@@ -23,3 +23,7 @@ export async function GET(req:Request,{params}:{params:Promise<{path:string[]}>}
  }catch{return json({error:'Catalogue temporarily unavailable'},503);}
 }
 export async function POST(req:Request,{params}:{params:Promise<{path:string[]}>}){return editorialApi(req,(await params).path);}
+export async function HEAD(req:Request,context:{params:Promise<{path:string[]}>}){
+ const response=await GET(new Request(req.url,{method:'GET',headers:req.headers,signal:req.signal}),context);
+ return new Response(null,{status:response.status,headers:response.headers});
+}

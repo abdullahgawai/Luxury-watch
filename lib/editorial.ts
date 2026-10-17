@@ -4,6 +4,7 @@ import { evaluateTheWatchAPI } from './provider';
 import {operationalHealth} from './operations';
 import {editorialPage,EditorialPageError} from './editorial-pages';
 import {validateCorrection} from './correction-input.mjs';
+import {editorialEndpoint,editorialQueryError} from './editorial-routes.mjs';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
@@ -31,6 +32,9 @@ export async function editorialApi(req:Request,path:string[]){
   const admin=path[0]==='admin';
   const userId=req.headers.get('oai-authenticated-user-id');
   if(admin&&!canEdit(userId,env.EDITOR_USER_IDS||''))return json({error:'Editor access denied. Sign in and request an editor role.'},403);
+  const endpoint=editorialEndpoint(path);if(!endpoint)return json({error:'Endpoint not found'},404);
+  if(req.method!==endpoint.method){const response=json({error:'Method not allowed'},405);response.headers.set('Allow',endpoint.method);return response;}
+  const queryError=editorialQueryError(new URL(req.url).searchParams,endpoint);if(queryError)return json({error:queryError},400);
   if(req.method!=='GET'){
    const origin=req.headers.get('origin');if(origin!==new URL(req.url).origin)return json({error:'Same-origin requests required'},403);
    if(!/^application\/json(?:\s*;|$)/i.test(req.headers.get('content-type')||''))return json({error:'JSON required'},415);

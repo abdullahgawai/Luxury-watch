@@ -1,5 +1,12 @@
 # Verification evidence
 
+## Exact API routes, query contracts and HEAD responses — 17 October 2026
+
+- All133 automated tests pass; TypeScript and the final production build pass. New endpoint/query tests cover exact route lengths, bounded IDs, unique known paging parameters and queue-specific states. Integration tests temporarily remove the database binding and confirm invalid paths, methods and unexpected/repeated query parameters return404/405/400 before persistence/rate limits; records, corrections, audit, imports and limit counts remain unchanged. Unauthorized editorial requests retain403 before route disclosure.
+- Actual built-Worker GET/HEAD pairs match200/400/403/405/404 for valid catalogue, invalid query, protected access, correction method rejection and unknown route. HEAD bodies are empty; no-store/no-index and Allow are preserved. The initial runtime Request-wrapper incompatibility was caught and fixed by constructing the read request from URL/headers before the final build. Isolated invalid POST checks return404 for extra correction segments,400 for an unexpected correction parameter and403 for anonymous editorial access. The combined multi-POST local run still encounters Wrangler's explicit worker-restarted-mid-request503; it is not counted as passing. Fresh individual cases passed. No production mutation/identity was used.
+- Built catalogue traversal remains39 unique configurations,43 eligible retail observations, three archives and nine licensed configurations. WSTA0041 UAE price/photo remain unavailable; India retains Art Of Time, amountMinor40400000 and original2026-10-15T09:24:18.4406753Z check. No catalogue data/dates, rights, assets, hosted roles or migrations changed. Owned local server stopped. No visual UI changed in this backend update.
+- Hosted editor-role verification, licensed production data/provider feasibility, monitoring and hosted backup/restore, final identity/contact/retention and public-launch acceptance remain open.
+
 ## Public correction response recovery — 17 October 2026
 
 - All 130 automated tests pass. New tests cover exact201 UUID receipt matching, ambiguous success rejection, bounded known field errors, safe local wording, controlled HTTP rejection/quota/conflict states, exact request body/key reuse, no automatic repeats, fetch/JSON deadlines, cancellation and private-error withholding. TypeScript and the final production build pass. Existing durable correction idempotency and access/publication tests remain passing.

@@ -16,6 +16,18 @@ const b=await build({entryPoints:['lib/editorial.ts'],bundle:true,write:false,pl
 const {editorialApi}=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));
 async function call(path,body,editor=true,extra={},query=''){const req=new Request('https://test.local/api/'+path.join('/')+(query?'?'+query:''),{method:body===undefined?'GET':'POST',headers:{'content-type':'application/json',origin:'https://test.local',...(editor?{'oai-authenticated-user-id':'editor'}:{}),...extra},body:body===undefined?undefined:JSON.stringify(body)});const r=await editorialApi(req,path);return {status:r.status,data:await r.json()};}
 test('server rejects logged-out editor access, cross-origin writes, and non-editor identity',async()=>{assert.equal((await call(['admin'],undefined,false)).status,403);assert.equal((await call(['admin'],undefined,true,{'oai-authenticated-user-id':'outsider'})).status,403);assert.equal((await call(['admin','imports'],{},true,{origin:'https://evil.test'})).status,403);});
+test('invalid editorial paths, methods and queries fail before touching persistence or limits',async()=>{
+ const tables=['records','corrections','audit','imports','limits'],before=tables.map(t=>sqlite.prepare('SELECT COUNT(*) n FROM '+t).get().n),database=globalThis.testEnv.DB;globalThis.testEnv.DB=undefined;
+ try{
+  for(const path of [['corrections','extra'],['admin','imports','extra'],['admin','provider','extra'],['admin','records','qa-id','extra'],['admin','corrections','qa-id','extra'],['admin','health','extra']])assert.equal((await call(path,{page:'/',field:'dial',claim:'Synthetic route rejection test only.'})).status,404);
+  for(const [path,query] of [[['corrections'],'unexpected=1'],[['admin'],'state=all'],[['admin','health'],'unknown=1'],[['admin','imports'],'state=all'],[['admin','queues','records'],'state=all&state=draft'],[['admin','queues','audit'],'cursor=a&cursor=b'],[['admin','revisions','qa-id'],'state=all&unknown=1'],[['admin','revisions','qa-id'],'cursor=%25']])assert.equal((await call(path,['corrections','imports'].includes(path.at(-1))?{}:undefined,true,{},query)).status,400);
+  for(const [path,method,allow] of [[['corrections'],'GET','POST'],[['admin','health'],'POST','GET'],[['admin','provider'],'GET','POST'],[['admin','records','qa-id'],'DELETE','POST']]){
+   const response=await editorialApi(new Request('https://test.local/api/'+path.join('/'),{method,headers:{'oai-authenticated-user-id':'editor'}}),path);assert.equal(response.status,405);assert.equal(response.headers.get('Allow'),allow);assert.equal(response.headers.get('Cache-Control'),'no-store');
+  }
+  assert.equal((await call(['admin','health','extra'],undefined,false)).status,403);
+ }finally{globalThis.testEnv.DB=database;}
+ assert.deepEqual(tables.map(t=>sqlite.prepare('SELECT COUNT(*) n FROM '+t).get().n),before);
+});
 test('imports are idempotent, publication requires review, revisions rollback and moderation persist',async()=>{
  const record=structuredClone(demoWatches[0]);record.demo=false;record.sources.forEach(s=>s.rights='approved');const key={'idempotency-key':'test-import-001'};
  assert.equal((await call(['admin','imports'],{record},true,key)).status,201);
