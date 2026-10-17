@@ -69,9 +69,20 @@ Withdraw an inaccurate record immediately through the protected editor control, 
 
 For a UI/server regression, redeploy the last successful saved Sites version using its returned opaque version ID. Do not assume database migrations reverse with code rollback: schema changes are append-only, and failed deployments may already have applied migrations. Data rollback uses the record revision workflow; disaster recovery uses a separately verified backup.
 
+### Saved-code recovery procedure
+
+1. Read the current site access policy and saved versions. Preserve the existing audience. Record the starting saved version, its source commit, successful deployment and environment revision before any redeployment.
+2. Select a previous successful saved artifact and compare its source with the current release, especially migrations, data contracts, hosting bindings and runtime configuration. Confirm compatibility with the current database and environment. A saved code version does not restore old data or old secrets. If compatibility is uncertain, diagnose or use a separately verified recovery procedure before redeploying it.
+3. Use the native saved-version deployment operation for the existing audience. For a verified owner-private site, use `deploy_private_site_version` with the exact returned project/version IDs. Do not upload another version or reset/force-push Git to perform a hosted rollback. Do not change sharing or tunnel bindings during recovery.
+4. If the operation is non-terminal, follow its returned deployment ID to a terminal status. For a failed or uncertain call, reconcile that deployment before retrying; never infer completion from the URL alone.
+5. After success, reload representative pages and verify configuration, selected market, supported/unavailable prices/photos and original evidence dates. Record the native deployment result as the build identity; identical page text cannot prove which build is running. Do not submit real corrections or edit catalogue data merely for a smoke check.
+6. In a rehearsal, restore the recorded starting version and repeat the smoke checks. In an incident, keep the compatible known-good release until the fix passes review and testing. Record results and any remaining database/environment recovery needs.
+
+The first same-schema hosted rehearsal passed on 17 October 2026: saved version 38 → 37 → 38, with unchanged environment revision and dated unavailable Cartier evidence. See [deployment evidence](DEPLOYMENT-REHEARSAL.md). This does not complete hosted database restore or qualify all older versions for rollback.
+
 ## Publication source and artifact checks
 
-`npm run build` uses scripts/build-release.mjs: a framework build must succeed, followed by scripts/check-publication.mjs. Either failure makes the release build fail. `npm run check:publication` rechecks without rebuilding. Git and complete build output are required; missing/unreadable data, unexpected file types, scan bounds or invalid fixture reviews fail closed. Do not bypass a failed check to publish.
+`npm run build` uses scripts/build-release.mjs: a framework build must succeed, followed by scripts/check-publication.mjs and scripts/check-asset-budgets.mjs. Any failure makes the release build fail. `npm run check:publication` rechecks publication safety without rebuilding. Git and complete build output are required; missing/unreadable data, unexpected file types, scan bounds or invalid fixture reviews fail closed. Do not bypass a failed check to publish.
 
 The check reads current tracked/non-ignored source text, all reachable Git text patches and dist text files. It looks for common credential formats, quoted credential assignments, private-key markers, credential-bearing URLs, sensitive filenames and local-only QA markers. Findings contain categories and locations only, not matched values. It does not inspect binary contents, ignored local files, dangling/unreachable Git objects, host secrets or external logs, and cannot identify every credential format. Research preview catalogue data remains deliberately labelled and separate; this gate checks local QA fixture leakage, not production catalogue publication approval.
 
@@ -90,7 +101,7 @@ This check does not complete hosted editor verification, real provider rights/co
 - Ten openly licensed photos now cover nine configurations, including two Cartier visual mappings with reference/strap limitations displayed. The remaining 30 configurations still need matched licensed photos; see PHOTOGRAPHY.md for attribution, licence and rejection evidence.
 - Configure actual hosted editor IDs; verify hosted role and anonymous denial through dispatch.
 - Set production mode and confirm fixtures absent; enable production sitemap/indexing only at launch. Canonical origin and brand-specific metadata need final approved identity.
-- Configure error/quota monitoring, spend limits, backups and rehearse a hosted restore and deployment rollback.
+- Configure error/quota monitoring, spend limits and backups; rehearse a hosted database restore. A same-schema saved-code rollback/restore passed on 17 October 2026; migration/environment recovery remains unverified.
 - Measure real mobile LCP/INP/CLS at the 75th percentile when field traffic exists. WCAG 2.2 AA requires a full accessibility audit beyond the keyboard, semantics, contrast and responsive checks documented here.
 - Review Vinext beta compatibility and production support against the eventual host workload. The supplied Sites starter is used and locked; a framework build alone does not establish production readiness.
 
