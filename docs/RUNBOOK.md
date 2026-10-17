@@ -76,6 +76,14 @@ For a UI/server regression, redeploy the last successful saved Sites version usi
 
 P1 customer accounts, cloud saves, alerts/enquiries and moderated dealers, and P2 tenant-isolated professional tools remain later roadmap stages. No active customer enquiry, checkout, verification or dealer-cost control is presented in this release.
 
+## Correction response recovery
+
+The public correction client enforces a15-second deadline through response JSON parsing, aborts on navigation and never automatically repeats a submission. Only a201 receipt matching the current UUID confirms storage and clears text. Unchanged normalized text keeps the same key across explicit retries within the mounted form. Private text/email and retry keys are not persisted to device storage. A timeout does not prove the server failed to commit; retry unchanged text to recover its existing durable receipt.
+
+Malformed receipts/errors preserve text and show uncertainty. Server field errors require bounded known keys and string values; the browser displays its own fixed help wording instead of arbitrary server error content. Known quota, conflict, size and rejection responses have controlled messages. Field focus moves after the fieldset is enabled, with the error summary and field associations available. Reload/navigation loses an unconfirmed in-memory draft, so retain a copy first if instructed to reload.
+
+For repeatable UI QA after building, run `node scripts/preview-correction-recovery-qa.mjs`. Its labelled loopback-only simulation rejects a malformed error, returns a safe field error and then confirms the same UUID; unchanged body/key reuse is enforced. It stores no submission and forwards nothing. Generated QA assets remain outside dist and are not deployed. Stop it after testing.
+
 ## Device preferences and shared comparisons
 
 Public pages, their serialized client props, metadata/sitemap reads and public watch APIs receive only the server-projected catalogue. The protected editorial queues and revision snapshots retain full stored records and still enforce the editor role. A record with invalid essential identity/source evidence is withheld; invalid optional claims remain unavailable. Malformed stored JSON is skipped without leaking its payload. This read boundary performs no database writes and does not replace draft/review/publication or source-rights review.
