@@ -5,6 +5,7 @@ import {operationalHealth} from './operations';
 import {editorialPage,EditorialPageError} from './editorial-pages';
 import {validateCorrection} from './correction-input.mjs';
 import {editorialEndpoint,editorialQueryError} from './editorial-routes.mjs';
+import {consumeHourlyLimit} from './hourly-limit.mjs';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
 const id=()=>crypto.randomUUID();
 function db(){if(!env.DB) throw new Error('Persistent database unavailable');return env.DB;}
@@ -22,9 +23,7 @@ async function body(req:Request){
  }catch(error){if(error instanceof RequestError)throw error;throw new RequestError('Request body could not be read as UTF-8 JSON. Retry the same submission.');}finally{reader.releaseLock();}
 }
 async function limit(key:string,max=5){
- const bucket=Math.floor(Date.now()/3600000),hash=await digest(key+bucket);
- const row=await db().prepare('INSERT INTO limits(key,count,expires_at) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count').bind(hash,Date.now()+3600000).first<{count:number}>();
- return !!row&&row.count<=max;
+ return consumeHourlyLimit(db(),key,max);
 }
 function auditStatement(actor:string,entity:string,action:string,oldValue:unknown,newValue:unknown){return db().prepare('INSERT INTO audit(id,actor,entity_id,action,old_value,new_value,at) VALUES(?,?,?,?,?,?,?)').bind(id(),actor,entity,action,JSON.stringify(oldValue),JSON.stringify(newValue),new Date().toISOString());}
 export async function editorialApi(req:Request,path:string[]){

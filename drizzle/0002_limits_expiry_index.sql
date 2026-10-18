@@ -1,0 +1,1 @@
+CREATE INDEX `limits_expiry_order` ON `limits` (`expires_at`,`key`);

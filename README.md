@@ -14,10 +14,11 @@ npm run install:ci
 npm run build
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_organic_micromax.sql
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_editorial_queue_indexes.sql
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0002_limits_expiry_index.sql
 npm run dev
 ```
 
-Apply both migrations once, in order, to a fresh local database. For a database already on 0000, apply only 0001; do not replay a migration that has succeeded. Development prints http://127.0.0.1:5173/. If this Windows npm shim fails, run its JavaScript entrypoint directly:
+Apply all three migrations once, in order, to a fresh local database. For an existing database, apply only migrations newer than its last successful migration; do not replay a migration that has succeeded. Development prints http://127.0.0.1:5173/. If this Windows npm shim fails, run its JavaScript entrypoint directly:
 
 ```powershell
 node 'C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js' run install:ci
