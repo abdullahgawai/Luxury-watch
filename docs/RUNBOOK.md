@@ -1,5 +1,11 @@
 # Operations and public launch gates
 
+## Long-text reflow checks
+
+Long unbroken source URLs, names and references inherit `overflow-wrap:anywhere` so they can wrap without widening the page or losing text. Do not clip evidence or truncate an identifier to resolve overflow. Comparison/history tables retain their contained horizontal scrolling where needed.
+
+After building, `node scripts/preview-reflow-qa.mjs` serves a labelled synthetic loopback-only fixture on port 8797. Its printed exact-configuration route includes a long model name, long source title and long supporting URL. Test it at 320 and 390 CSS pixels, expand the source disclosure with the keyboard, and verify document width stays within the viewport. The fixture also provides two configurations for `/compare?ids=qa-reflow-watch,qa-reflow-second&market=AE`; its table should scroll within its focusable region. The helper denies API routes, has no identity/provider/database access, and generates assets only under ignored `.sites-runtime`, outside deployment output. Stop it after testing. This is a targeted reflow check, not a full WCAG or screen-reader audit.
+
 ## Boundaries
 
 The hosted release is an owner-private development preview. `DATA_MODE=demo` returns researched preview records; `DATA_MODE=production` returns only database records with `state=published` and `demo=false`. Publishing records does not make the Site public. Do not change audience until the launch gates below pass. Robots and metadata block indexing throughout this initial release.
