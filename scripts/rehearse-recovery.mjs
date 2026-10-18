@@ -7,6 +7,7 @@ import {randomBytes,randomUUID,createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
+import {recoverySchema} from './recovery-schema.mjs';
 import {sealBackup,openBackup} from './recovery-archive.mjs';
 const project=fileURLToPath(new URL('../',import.meta.url)),wrangler=join(project,'node_modules/wrangler/bin/wrangler.js');
 const tables=['audit','corrections','fx_rates','images','imports','limits','listings','observations','records','revisions','sources','spec_evidence'];
@@ -49,14 +50,24 @@ try{
  const restoreFile=join(root,'restore.sql');writeFileSync(restoreFile,decrypted,{mode:0o600});
  process.stdout.write('Restoring into a second disposable D1 database…\n');run(restored,'execute',['--file',restoreFile,'--yes']);
  const after=snapshot(restored);assert.deepEqual(after,before);
- // D1's SQL authorizer blocks integrity_check. Inspect the stopped local file read-only.
- const state=join(restored,'.wrangler','state'),files=readdirSync(state,{recursive:true}).filter(f=>String(f).endsWith('.sqlite'));
- let inspected=0;
- for(const file of files){const inspection=new DatabaseSync(join(state,String(file)),{readOnly:true});
-  try{if(!inspection.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='records'").get())continue;inspected++;assert.equal(Object.values(inspection.prepare('PRAGMA integrity_check').get())[0],'ok');assert.equal(inspection.prepare('PRAGMA foreign_key_check').all().length,0);}finally{inspection.close();}
- }assert.equal(inspected,1);
+ // Inspect stopped local files read-only; D1's SQL authorizer blocks integrity_check.
+ function inspect(directory){
+  const state=join(directory,'.wrangler','state'),files=readdirSync(state,{recursive:true}).filter(f=>String(f).endsWith('.sqlite'));
+  const schemas=[];
+  for(const file of files){const db=new DatabaseSync(join(state,String(file)),{readOnly:true});
+   try{if(!db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='records'").get())continue;
+    assert.equal(Object.values(db.prepare('PRAGMA integrity_check').get())[0],'ok');
+    assert.equal(db.prepare('PRAGMA foreign_key_check').all().length,0);
+    schemas.push(recoverySchema(db,tables));
+   }finally{db.close();}
+  }
+  assert.equal(schemas.length,1);return schemas[0];
+ }
+ const sourceSchema=inspect(source),restoredSchema=inspect(restored);
+ assert.deepEqual(restoredSchema,sourceSchema,'Restored application schema differs');
+ assert.ok(restoredSchema.some(row=>row.type==='index'&&row.name==='limits_expiry_order'),'Current expiry index must survive recovery');
  assert.deepEqual(snapshot(source),before);
- const report={status:'passed',checkedAt:new Date().toISOString(),scope:'Synthetic local D1 only; no hosted backup or restore verified',tables:after.map(t=>({name:t.table,rows:t.rows.length})),sourceDigest:hash(JSON.stringify(before)),restoredDigest:hash(JSON.stringify(after)),sqlDigest:hash(sql),checks:['Wrangler local SQL export/import','AES-256-GCM round trip','Tampering rejected','Wrong key rejected','All application rows identical','SQLite integrity check','Foreign-key check','Source database unchanged'],keyHandling:'Ephemeral rehearsal key; synthetic archives removed after verification',hostedRecovery:'not_verified'};
+ const report={status:'passed',checkedAt:new Date().toISOString(),scope:'Synthetic local D1 only; no hosted backup or restore verified',tables:after.map(t=>({name:t.table,rows:t.rows.length})),sourceDigest:hash(JSON.stringify(before)),restoredDigest:hash(JSON.stringify(after)),sqlDigest:hash(sql),schema:{objects:sourceSchema.length,sourceDigest:hash(JSON.stringify(sourceSchema)),restoredDigest:hash(JSON.stringify(restoredSchema))},checks:['Wrangler local SQL export/import','AES-256-GCM round trip','Tampering rejected','Wrong key rejected','All application rows identical','Application table, index and trigger definitions identical','Current expiry index restored','SQLite integrity check','Foreign-key check','Source database unchanged'],keyHandling:'Ephemeral rehearsal key; synthetic archives removed after verification',hostedRecovery:'not_verified'};
  if(args.length)writeFileSync(args[1],JSON.stringify(report,null,2)+'\n');process.stdout.write(JSON.stringify(report,null,2)+'\n');
 }finally{
  key.fill(0);

@@ -1,5 +1,11 @@
 # Operations and public launch gates
 
+## Recovery schema verification
+
+The isolated `scripts/rehearse-recovery.mjs` rehearsal checks application schema definitions as well as rows. Read-only inspection compares exact SQLite table, index and attached trigger definitions for all 12 selected application tables, including automatic indexes. Missing tables fail the rehearsal; a missing expiry index or changed constraint cannot pass merely because the restored rows match. SQLite internal objects and unrelated tables/views are outside this scoped comparison. Exact SQL comparison intentionally fails closed on definition differences, including cosmetic changes that require review.
+
+The sanitized `docs/recovery-rehearsal.json` records row and schema digests and the actual check time. The rehearsal uses two disposable local databases and an ephemeral encryption key; it does not access hosted customer records or establish durable backups. Hosted backup storage, key recovery and a hosted restore rehearsal remain required before public launch.
+
 ## Long-text reflow checks
 
 Long unbroken source URLs, names and references inherit `overflow-wrap:anywhere` so they can wrap without widening the page or losing text. Do not clip evidence or truncate an identifier to resolve overflow. Comparison/history tables retain their contained horizontal scrolling where needed.

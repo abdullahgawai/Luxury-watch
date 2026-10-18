@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checkedAt": "2026-10-15T19:56:26.328Z",
+  "checkedAt": "2026-10-18T09:02:28.398Z",
   "scope": "Synthetic local D1 only; no hosted backup or restore verified",
   "tables": [
     {
@@ -52,15 +52,22 @@
       "rows": 1
     }
   ],
-  "sourceDigest": "e7df4e8864b8758db195267d3af2ccbf29c14c96a382b1fc661746144a135cc9",
-  "restoredDigest": "e7df4e8864b8758db195267d3af2ccbf29c14c96a382b1fc661746144a135cc9",
-  "sqlDigest": "97b17ee0118b0c7fc376c6fd05a7b26406ebde113685fb800fadb06c9a33f329",
+  "sourceDigest": "964e8c02e3ff51dd7e9cd4362eb547aa7af4b0a0ca42894dc8e1e96d163bf17e",
+  "restoredDigest": "964e8c02e3ff51dd7e9cd4362eb547aa7af4b0a0ca42894dc8e1e96d163bf17e",
+  "sqlDigest": "ca5b80140c32967ad8c3729db7db85a05cd170b34052b1811b50aabd15c72765",
+  "schema": {
+    "objects": 32,
+    "sourceDigest": "38075049cd5ed08f1df000dd908ab17bbaa5676d98329f6a2bec83e4c58f92f1",
+    "restoredDigest": "38075049cd5ed08f1df000dd908ab17bbaa5676d98329f6a2bec83e4c58f92f1"
+  },
   "checks": [
     "Wrangler local SQL export/import",
     "AES-256-GCM round trip",
     "Tampering rejected",
     "Wrong key rejected",
     "All application rows identical",
+    "Application table, index and trigger definitions identical",
+    "Current expiry index restored",
     "SQLite integrity check",
     "Foreign-key check",
     "Source database unchanged"
