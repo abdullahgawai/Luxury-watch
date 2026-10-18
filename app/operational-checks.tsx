@@ -30,7 +30,7 @@ export default function OperationalChecks(){
  ]:[];
  return <section className="operational-checks" aria-busy={busy}>
   <h2>System checks</h2>
-  <p>Run a read-only database, publication and source-freshness check. These checks do not configure automated alerts or hosted backups.</p>
+  <p>Run a read-only database, publication and source-freshness check. This is not public-launch approval. Unconfigured alerts and unverified hosted database restore require attention even when the database responds.</p>
   <button disabled={busy} onClick={check}>{busy?'Checking…':'Run system checks'}</button>
   <p role="status">{busy?'Checking database and publication evidence…':error|| (report?`${report.status==='ok'?'Checks passed':'Review required'} · ${new Date(report.checkedAt).toLocaleString('en-GB',{timeZone:'Asia/Kolkata'})} IST`:'')}</p>
   {report&&<>

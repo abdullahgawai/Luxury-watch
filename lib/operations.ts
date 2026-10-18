@@ -1,6 +1,7 @@
 import {env} from 'cloudflare:workers';
 import {publicWatch} from './public-catalogue.mjs';
 import {validObservationDates} from './evidence-dates.mjs';
+import {operationalWarnings} from './operational-warnings.mjs';
 const scanLimit=5000;
 const catalogueLimit=1000;
 export async function operationalHealth(database:D1Database,now=Date.now()){
@@ -30,16 +31,7 @@ export async function operationalHealth(database:D1Database,now=Date.now()){
   publication.withheldPrices+=record.prices.filter((p:any)=>p?.status==='published'&&!watch.prices.some(q=>q.id===p.id&&q.status==='published')).length;
   if(record.image&&!watch.image)publication.withheldPhotos++;
  }
- const warnings:string[]=[];
- if(env.DATA_MODE!=='production')warnings.push('Research mode is active; production data publication is not verified.');
- if(env.DATA_MODE==='production'&&!counts.published)warnings.push('The production catalogue has no published records.');
- if(stale)warnings.push('Published price observations need source rechecks.');
- if(invalid)warnings.push('Published price check dates or payloads need editorial review.');
- if(observations.results.length>scanLimit)warnings.push('Observation scan limit reached; counts describe a partial scan.');
- if(publication.withheld)warnings.push('Published records are withheld by production source, identity or rights checks; review them in the editorial queue.');
- if(publication.withheldPrices)warnings.push('Published price entries are withheld by public evidence checks; review exact configurations, sources and dates.');
- if(publication.withheldPhotos)warnings.push('Primary photos are withheld by publication checks; review licensing and exact configuration evidence.');
- if(publication.truncated)warnings.push('Production catalogue limit reached; only the first 1000 published records are checked and served.');
- if(env.THEWATCHAPI_ENABLED==='true'&&!env.THEWATCHAPI_TOKEN)warnings.push('Provider evaluation is enabled without a configured token.');
- return {status:warnings.length?'needs_attention':'ok',checkedAt:new Date(now).toISOString(),database:'ok',dataMode:env.DATA_MODE==='production'?'production':'research',records:{draft:counts.draft||0,review:counts.review||0,published:counts.published||0},publication,corrections:{pending:corrections?.count||0,oldestPendingAt:corrections?.oldest||null},prices:{checked:checkedCount,stale,invalid,truncated:observations.results.length>scanLimit},provider:{enabled:env.THEWATCHAPI_ENABLED==='true',tokenConfigured:!!env.THEWATCHAPI_TOKEN,evaluationsLastHour:evaluations?.count||0},automation:{alerts:'not_configured',hostedRestore:'not_verified'},warnings};
+ const report={checkedAt:new Date(now).toISOString(),database:'ok',dataMode:env.DATA_MODE==='production'?'production':'research',records:{draft:counts.draft||0,review:counts.review||0,published:counts.published||0},publication,corrections:{pending:corrections?.count||0,oldestPendingAt:corrections?.oldest||null},prices:{checked:checkedCount,stale,invalid,truncated:observations.results.length>scanLimit},provider:{enabled:env.THEWATCHAPI_ENABLED==='true',tokenConfigured:!!env.THEWATCHAPI_TOKEN,evaluationsLastHour:evaluations?.count||0},automation:{alerts:'not_configured',hostedRestore:'not_verified'}};
+ const warnings=operationalWarnings(report);
+ return {...report,status:warnings.length?'needs_attention':'ok',warnings};
 }

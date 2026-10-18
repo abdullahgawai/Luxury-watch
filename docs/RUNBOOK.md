@@ -195,6 +195,10 @@ For local UI verification, run `node scripts/preview-editor-queue-qa.mjs` after 
 
 ## Operational check recovery
 
+The server and browser share fixed warning rules derived from the report's own counters and service flags. Research mode, missing production records, stale/invalid prices, incomplete scans, withheld records/prices/photos and an enabled provider without its token require their corresponding warnings. Unconfigured alerts and an unverified hosted database restore always require attention in the current preview, including when database/publication counts are otherwise healthy. Saved-code rollback evidence does not qualify as database restore evidence. No runtime toggle falsely marks these unimplemented services as configured.
+
+The browser rejects a structurally valid report if it omits any required warning, including an `ok` report with an empty warning list while known issues remain. Rejected reports clear prior results and require explicit retry. An arbitrary status label cannot approve public launch. These checks are read-only and never configure monitoring, perform a backup/restore or refresh watch evidence dates.
+
 The protected system-check read has a 15-second deadline covering fetch and parsing, cancellation on unmount and an immediate duplicate-request guard. Each attempt clears previous results. Only a validated health report with consistent bounded counts, warning/status agreement, valid dates and explicit service states is rendered. Unverified or failed responses show controlled retry text; raw server errors are withheld. Retry is explicit and read-only. Report timestamps never refresh source evidence dates. These checks do not configure alerts or backups, and server editor authorization remains required.
 
 After building, `node scripts/preview-publication-qa.mjs` serves a labelled loopback-only component simulation: valid report, malformed report, HTTP failure, then recovery. No hosted identity, database or watch evidence is used or modified. Generated QA assets remain outside dist. Stop the helper after testing.

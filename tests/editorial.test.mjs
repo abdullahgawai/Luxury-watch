@@ -68,6 +68,9 @@ test('health checks are protected, count freshness and never expose secrets or c
  assert.equal((await call(['admin','health'],undefined,true,{'oai-authenticated-user-id':'outsider'})).status,403);
  const now=Date.now(),recordId=demoWatches[0].id;
  const before=(await call(['admin','health'])).data;
+ assert.equal(before.status,'needs_attention');
+ assert.ok(before.warnings.some(w=>w.includes('Automated operational alerts are not configured')));
+ assert.ok(before.warnings.some(w=>w.includes('Hosted database restore has not been verified')));
  const fixtures=[['stale','published',new Date(now-31*86400000).toISOString()],['invalid','published','bad-date'],['fresh','published',new Date(now-1000).toISOString()],['archive','archived_research','bad-date']];
  for(const [id,status,checkedAt] of fixtures)sqlite.prepare('INSERT INTO observations VALUES(?,?,?,?,?,?,?,?)').run('health-'+id,recordId,'official_retail','AE','AED',1,new Date(now).toISOString(),JSON.stringify({status,checkedAt,observedAt:'2026-01-01T00:00:00Z',type:'official_retail'}));
  globalThis.testEnv.THEWATCHAPI_TOKEN='SECRET-TEST-SENTINEL';
